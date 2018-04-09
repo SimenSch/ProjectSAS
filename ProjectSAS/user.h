@@ -1,0 +1,19 @@
+#ifndef USER_H
+#define USER_H
+#include <string>;
+#include <iostream>
+using namespace std;
+
+
+class User
+{
+public:
+    User();
+private:
+    int userID;
+    string eMail;
+    string password;
+    string userType;
+};
+
+#endif // USER_H

@@ -17,8 +17,7 @@ string LoginInterface::hashing(string word){
 }
 
 
-void LoginInterface::loginAttempt(string username, string password){
-    /*
+void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
     int loginAttempt = 0;
     while (loginAttempt < 5){
         if (hashedUsername || hashedPassword){
@@ -32,9 +31,10 @@ void LoginInterface::loginAttempt(string username, string password){
     if (loginAttempt == 5)
     {
             cout << "Too many login attempts! The program will now terminate.";
-    }
+
+    } else {
 
     cout << "Thank you for logging in.\n";
-    */
+    }
 }
 

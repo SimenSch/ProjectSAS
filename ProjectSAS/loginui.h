@@ -7,6 +7,7 @@
 #include <QToolButton>
 #include <QFrame>
 #include <QLineEdit>
+#include <QPushButton>
 
 class LoginUI: public QWidget
 {
@@ -21,6 +22,8 @@ private:
 
     QLineEdit *userEdit;
     QLineEdit *passwordEdit;
+
+    QPushButton *loginButton;
 
 
 };

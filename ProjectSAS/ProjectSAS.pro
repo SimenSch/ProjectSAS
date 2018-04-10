@@ -1,7 +1,9 @@
-QT -= gui
+QT       += core gui
 
-CONFIG += c++11 console
-CONFIG -= app_bundle
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = ProjectSAS
+TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -24,6 +26,7 @@ SOURCES += main.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp
+    loginui.cpp
 
 HEADERS += \
     appointment.h \
@@ -34,4 +37,5 @@ HEADERS += \
     session.h \
     user.h \
     vetvisits.h \
-    logininterface.h
+    logininterface.h \
+    loginui.h

@@ -1,6 +1,6 @@
 #include "medjournal.h"
 
-medJournal::medJournal()
+MedJournal::MedJournal()
 {
 
 }

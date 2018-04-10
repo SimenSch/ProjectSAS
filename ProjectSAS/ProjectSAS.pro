@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     pet.cpp \
     session.cpp \
     user.cpp \
-    vetvisits.cpp
+    vetvisits.cpp \
+    logininterface.cpp
 
 HEADERS += \
     appointment.h \
@@ -32,4 +33,5 @@ HEADERS += \
     pet.h \
     session.h \
     user.h \
-    vetvisits.h
+    vetvisits.h \
+    logininterface.h

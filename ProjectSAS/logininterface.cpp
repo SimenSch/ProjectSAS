@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <fstream>
+#include <sys/stat.h>
 using namespace std;
 
 LoginInterface::LoginInterface() {}
@@ -20,29 +21,71 @@ string LoginInterface::hashing(string word){
 
 void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
     int loginAttempt = 0;
+
     while (loginAttempt < 5){
-        if (hashedUsername && hashedPassword){
+        string search = hashedUsername;
+        search.append(", ");
+        search.append(hashedPassword);
+
+        ofstream myFile;
+        myFile.open ("notLogin.txt");
+        if(myFile.fail()){
+            cout << "login file failed";
+            exit(1);
         }
-        else
+
+        bool isFound=0;
+        while(!myFile.eof())
+        {
+            string temp = "";
+            getline(myFile,temp);
+            for(int i=0;i<search.size();i++)
+            {
+                if(temp[i]==search[i])
+                    isFound = 1;
+                else {
+                    isFound =0;
+                    break;
+                }
+            }
+            if(isFound)
+            {
+                cout << "Password is: ";
+                for(int i = search.size()+1;i<temp.size();i++)
+                    cout << temp[i];
+                break;
+            }
+        }
+        if(myFile.eof()&&(!isFound))
         {
             cout << "Invalid login attempt. Please try again.\n" << '\n';
             loginAttempt++;
         }
+        myFile.close();
     }
     if (loginAttempt == 5)
     {
             cout << "Too many login attempts! The program will now terminate.";
-
     } else {
-
     cout << "Thank you for logging in.\n";
     }
 }
 
+/*
+bool fileExists(const string* notLogin) {
+    struct stat buf;
+    return (stat(notLogin, &buf) == 0);
+}
+*/
 void LoginInterface::createUser(string username, string password){
-    ofstream myFile;
-    string hashUsername = hashing(username);
-    string hashPassword = hashing(password);
-    myFile.open (notLogin.txt);
-    myFile << hashUsername << ", " << hashPassword << " /n";
+        ofstream myFile;
+        myFile.open ("notLogin.txt");
+        if(myFile.fail()){
+            cout << "login file failed";
+            exit(1);
+        }
+        string hashUsername = hashing(username);
+        string hashPassword = hashing(password);
+        myFile << hashUsername << ", " << hashPassword << " /n";
+        myFile.close();
 }

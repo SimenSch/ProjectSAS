@@ -20,7 +20,7 @@ string LoginInterface::hashing(string word){
 void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
     int loginAttempt = 0;
     while (loginAttempt < 5){
-        if (hashedUsername || hashedPassword){
+        if (hashedUsername && hashedPassword){
         }
         else
         {

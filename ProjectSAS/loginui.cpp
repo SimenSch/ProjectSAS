@@ -19,19 +19,26 @@ LoginUI::LoginUI(QWidget *parent)
     passwordLabel = new QLabel(tr("Password:"));
     passwordEdit = new QLineEdit;
     passwordEdit->setEchoMode(QLineEdit::Password);
-    loginButton = new QPushButton(tr("Login"));
 
     QVBoxLayout *inputFieldsLayout = new QVBoxLayout;
     inputFieldsLayout->addWidget(userLabel);
     inputFieldsLayout->addWidget(userEdit);
     inputFieldsLayout->addWidget(passwordLabel);
     inputFieldsLayout->addWidget(passwordEdit);
-    inputFieldsLayout->addWidget(loginButton);
+
+    QHBoxLayout *buttonsLayout = new QHBoxLayout;
+
+    loginButton = new QPushButton(tr("Login"));
+    registerButton = new QPushButton(tr("Login"));
+
+    buttonsLayout->addWidget(loginButton);
+    buttonsLayout->addWidget(registerButton);
 
 
     QVBoxLayout *cellLayout = new QVBoxLayout;
     cellLayout->addLayout(loginLabelLayout);
     cellLayout->addLayout(inputFieldsLayout);
+    cellLayout->addLayout(buttonsLayout);
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addLayout(cellLayout);

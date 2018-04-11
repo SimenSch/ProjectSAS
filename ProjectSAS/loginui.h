@@ -24,6 +24,7 @@ private:
     QLineEdit *passwordEdit;
 
     QPushButton *loginButton;
+    QPushButton *registerButton;
 
 
 };

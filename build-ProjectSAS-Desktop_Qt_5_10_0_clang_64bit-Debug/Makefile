@@ -59,6 +59,7 @@ SOURCES       = ../ProjectSAS/main.cpp \
 		../ProjectSAS/session.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
+		../ProjectSAS/logininterface.cpp \
 		../ProjectSAS/loginui.cpp moc_loginui.cpp
 OBJECTS       = main.o \
 		appointment.o \
@@ -69,6 +70,7 @@ OBJECTS       = main.o \
 		session.o \
 		user.o \
 		vetvisits.o \
+		logininterface.o \
 		loginui.o \
 		moc_loginui.o
 DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
@@ -242,6 +244,7 @@ DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../ProjectSAS/session.h \
 		../ProjectSAS/user.h \
 		../ProjectSAS/vetvisits.h \
+		../ProjectSAS/logininterface.h \
 		../ProjectSAS/loginui.h ../ProjectSAS/main.cpp \
 		../ProjectSAS/appointment.cpp \
 		../ProjectSAS/assistant.cpp \
@@ -251,6 +254,7 @@ DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../ProjectSAS/session.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
+		../ProjectSAS/logininterface.cpp \
 		../ProjectSAS/loginui.cpp
 QMAKE_TARGET  = ProjectSAS
 DESTDIR       = 
@@ -634,8 +638,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Applications/Qt/5.10.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/session.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/loginui.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/session.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/loginui.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/session.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/logininterface.h ../ProjectSAS/loginui.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/session.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/logininterface.cpp ../ProjectSAS/loginui.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -682,6 +686,8 @@ moc_loginui.cpp: /Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Header
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		../ProjectSAS/loginui.h \
 		moc_predefs.h \
 		/Applications/Qt/5.10.0/clang_64/bin/moc
@@ -718,6 +724,8 @@ main.o: ../ProjectSAS/main.cpp ../ProjectSAS/loginui.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ProjectSAS/main.cpp
@@ -746,6 +754,9 @@ user.o: ../ProjectSAS/user.cpp ../ProjectSAS/user.h
 vetvisits.o: ../ProjectSAS/vetvisits.cpp ../ProjectSAS/vetvisits.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vetvisits.o ../ProjectSAS/vetvisits.cpp
 
+logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logininterface.o ../ProjectSAS/logininterface.cpp
+
 loginui.o: ../ProjectSAS/loginui.cpp ../ProjectSAS/loginui.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -759,8 +770,11 @@ loginui.o: ../ProjectSAS/loginui.cpp ../ProjectSAS/loginui.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QSpacerItem \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlayoutitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o loginui.o ../ProjectSAS/loginui.cpp

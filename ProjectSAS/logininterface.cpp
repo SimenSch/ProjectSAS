@@ -39,7 +39,10 @@ void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
     }
 }
 
-int LoginInterface::createUser(string hashedUsername, string hashedPassword){
-    ofstream notLogin.txt;
-    return o;
+void LoginInterface::createUser(string username, string password){
+    ofstream myFile;
+    string hashUsername = hashing(username);
+    string hashPassword = hashing(password);
+    myFile.open (notLogin.txt);
+    myFile << hashUsername << ", " << hashPassword << " /n";
 }

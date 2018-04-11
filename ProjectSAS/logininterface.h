@@ -10,7 +10,7 @@ class LoginInterface
 public:
     LoginInterface();
     void loginAttempt(string username, string password);
-    void createUser(string hashedUsername, string hashedPassword);
+    void createUser(string username, string password);
 private:
     string username;
     string password;

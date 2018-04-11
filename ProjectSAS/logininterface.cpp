@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
+#include <fstream>
 using namespace std;
 
 LoginInterface::LoginInterface() {}
@@ -38,3 +39,10 @@ void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
     }
 }
 
+void LoginInterface::createUser(string username, string password){
+    ofstream myFile;
+    string hashUsername = hashing(username);
+    string hashPassword = hashing(password);
+    myFile.open (notLogin.txt);
+    myFile << hashUsername << ", " << hashPassword << " /n";
+}

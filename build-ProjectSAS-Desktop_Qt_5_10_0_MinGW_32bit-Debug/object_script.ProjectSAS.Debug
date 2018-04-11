@@ -9,4 +9,5 @@ INPUT(
 ./debug\user.o
 ./debug\vetvisits.o
 ./debug\logininterface.o
+./debug\moc_loginui.o
 );

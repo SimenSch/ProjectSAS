@@ -5,10 +5,10 @@
 using namespace std;
 
 
-class MedJournal
+class medJournal
 {
 public:
-    MedJournal();
+    medJournal();
 private:
     int medJournalID;
     int  petID;

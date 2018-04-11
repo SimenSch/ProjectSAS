@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
+#include <fstream>
 using namespace std;
 
 LoginInterface::LoginInterface() {}
@@ -20,7 +21,7 @@ string LoginInterface::hashing(string word){
 void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
     int loginAttempt = 0;
     while (loginAttempt < 5){
-        if (hashedUsername || hashedPassword){
+        if (hashedUsername && hashedPassword){
         }
         else
         {
@@ -38,3 +39,7 @@ void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
     }
 }
 
+int LoginInterface::createUser(string hashedUsername, string hashedPassword){
+    ofstream notLogin.txt;
+    return o;
+}

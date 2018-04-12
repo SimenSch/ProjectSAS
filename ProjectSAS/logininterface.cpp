@@ -20,75 +20,59 @@ string LoginInterface::hashing(string word){
 
 
 void LoginInterface::loginAttempt(string username, string password){
-    string hashedUsername = hashing(username);
-    string hashedPassword = hashing(password);
-
+    string search = hashing(username);
+    search.append(", ");
+    search.append(hashing(password));
     int loginAttempt = 0;
-
+    ifstream myFile;
+    myFile.open("notLogin.txt");
     while (loginAttempt < 5){
-        string search = hashedUsername;
-        search.append(", ");
-        search.append(hashedPassword);
-
-        ifstream myFile;
-        myFile.open ("notLogin.txt");
         if(myFile.fail()){
-            cout << "login file failed";
+            cout << "Login attempt: login file failed" << endl;
             exit(1);
         }
-
         bool isFound=0;
-        while(!myFile.eof())
-        {
-            string temp = "";
-            getline(myFile,temp);
-            for(int i=0;i<search.size();i++)
-            {
-                if(temp[i]==search[i])
-                    isFound = 1;
-                else {
-                    isFound =0;
-                    break;
-                }
-            }
-            if(isFound)
-            {
-                cout << "Password is: ";
-                for(int i = search.size()+1;i<temp.size();i++)
-                    cout << temp[i];
-                break;
+        while(!myFile.eof() && isFound == 0){
+            string line;
+            getline(myFile,line);
+            if (line == search){
+                cout << "Getline: Login credentials found" << endl;
+                isFound = 1;
             }
         }
-        if(myFile.eof()&&(!isFound))
-        {
-            cout << "Invalid login attempt. Please try again.\n" << '\n';
+        if(isFound){
+            cout << "isFound: Password is found " << endl;
+            break;
+        }
+        if(myFile.eof()&&(!isFound)){
+            cout << "If Myfile.eof && !isFound: Invalid login attempt. Please try again. " << endl;
             loginAttempt++;
         }
-        myFile.close();
     }
+    myFile.close();
     if (loginAttempt == 5)
     {
-            cout << "Too many login attempts! The program will now terminate.";
+        cout << "Too many login attempts! The program will now terminate.";
+        exit (666);
     } else {
     cout << "Welcome, you are now logged in.\n";
     }
 }
 
-/*
-bool fileExists(const string* notLogin) {
-    struct stat buf;
-    return (stat(notLogin, &buf) == 0);
-}
-*/
 void LoginInterface::createUser(string username, string password){
-        ofstream myFile;
-        myFile.open ("notLogin.txt");
-        if(myFile.fail()){
-            cout << "login file failed";
-            exit(1);
-        }
+    ofstream myFile;
+    myFile.open ("notLogin.txt", ofstream::app);
+    if(myFile.is_open()){
+        cout << "Create user, opening successful" << endl;
         string hashUsername = hashing(username);
         string hashPassword = hashing(password);
-        myFile << hashUsername << ", " << hashPassword << " /n";
+        string inputText = hashUsername;
+        inputText.append(", ");
+        inputText.append(hashPassword);
+        myFile << inputText << endl;
+        myFile.flush();
         myFile.close();
+    } else {
+        cout << "Failure to open file.";
+    }
 }

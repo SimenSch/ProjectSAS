@@ -25,7 +25,7 @@ SOURCES += main.cpp \
     session.cpp \
     user.cpp \
     vetvisits.cpp \
-    logininterface.cpp
+    logininterface.cpp \
     loginui.cpp
 
 HEADERS += \

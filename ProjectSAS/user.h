@@ -9,6 +9,14 @@ class User
 {
 public:
     User();
+    int getuserID();
+    void setuserID(int newuserID);
+    string geteMail();
+    void seteMail(string neweMail);
+    string getpassword();
+    void setpassword(string newpassword);
+    string getuserType();
+    void setuserType(string newusertype);
 private:
     int userID;
     string eMail;

@@ -1,4 +1,5 @@
 #include "loginui.h"
+#include "mainui.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -9,7 +10,6 @@ LoginUI::LoginUI(QWidget *parent)
 {
     welcomeLabel = new QLabel(tr("Welcome to SAS kennel service.\nPlease login to use our service."));
     welcomeLabel->setAlignment(Qt::AlignCenter);
-
 
     QHBoxLayout *loginLabelLayout = new QHBoxLayout;
     loginLabelLayout->addWidget(welcomeLabel);
@@ -26,25 +26,33 @@ LoginUI::LoginUI(QWidget *parent)
     inputFieldsLayout->addWidget(passwordLabel);
     inputFieldsLayout->addWidget(passwordEdit);
 
-    QHBoxLayout *buttonsLayout = new QHBoxLayout;
+    buttonsLayout = new QHBoxLayout;
 
     loginButton = new QPushButton(tr("Login"));
-    registerButton = new QPushButton(tr("Login"));
+    registerButton = new QPushButton(tr("Register"));
 
     buttonsLayout->addWidget(loginButton);
     buttonsLayout->addWidget(registerButton);
 
 
-    QVBoxLayout *cellLayout = new QVBoxLayout;
+    cellLayout = new QVBoxLayout;
     cellLayout->addLayout(loginLabelLayout);
     cellLayout->addLayout(inputFieldsLayout);
     cellLayout->addLayout(buttonsLayout);
 
-    QHBoxLayout *mainLayout = new QHBoxLayout;
+    mainLayout = new QHBoxLayout;
     mainLayout->addLayout(cellLayout);
     setLayout(mainLayout);
 
+
     setWindowTitle(tr("Login"));
+
+    QObject::connect(loginButton, SIGNAL(clicked(bool)),this, SLOT(on_LoginClick()));
+
+}
+
+void LoginUI::on_LoginClick() {
+    LoginUI::~LoginUI();
 
 }
 

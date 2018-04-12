@@ -19,9 +19,11 @@ string LoginInterface::hashing(string word){
 
 
 void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
+    /*
     int loginAttempt = 0;
     while (loginAttempt < 5){
         if (hashedUsername && hashedPassword){
+            cout << "penis" << endl;
         }
         else
         {
@@ -37,12 +39,13 @@ void LoginInterface::loginAttempt(string hashedUsername, string hashedPassword){
 
     cout << "Thank you for logging in.\n";
     }
+    */
 }
 
 void LoginInterface::createUser(string username, string password){
     ofstream myFile;
     string hashUsername = hashing(username);
     string hashPassword = hashing(password);
-    myFile.open (notLogin.txt);
+    //myFile.open (notLogin.txt);
     myFile << hashUsername << ", " << hashPassword << " /n";
 }

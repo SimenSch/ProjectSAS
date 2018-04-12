@@ -9,5 +9,6 @@ INPUT(
 ./release\user.o
 ./release\vetvisits.o
 ./release\logininterface.o
+./release\loginui.o
 ./release\moc_loginui.o
 );

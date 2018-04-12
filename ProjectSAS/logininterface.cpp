@@ -24,16 +24,8 @@ bool LoginInterface::loginAttempt(string username, string password){
     string search = hashing(username);
     search.append(", ");
     search.append(hashing(password));
-    int loginAttempt = 0;
     ifstream myFile;
     myFile.open("notLogin.txt");
-    if(myFile.is_open()) {
-        cout << "is open";
-    }
-                else {
-                cout << "is not open";
-    }
-    while (loginAttempt < 5){
         if(myFile.fail()){
             cout << "Login attempt: login file failed" << endl;
             return false;
@@ -49,28 +41,20 @@ bool LoginInterface::loginAttempt(string username, string password){
         }
         if(isFound){
             cout << "isFound: Password is found " << endl;
-            break;
+            return true;
         }
         if(myFile.eof()&&(!isFound)){
             cout << "If Myfile.eof && !isFound: Invalid login attempt. Please try again. " << endl;
-            loginAttempt++;
+            return false;
         }
-    }
     myFile.close();
-    if (loginAttempt == 5)
-    {
-        cout << "Too many login attempts! The program will now terminate.";
-        exit (666);
-        return false;
-    } else {
-        cout << "Welcome, you are now logged in.\n";
-        return true;
-    }
+    return false;
+
 }
 
-void LoginInterface::createUser(string username, string password){
-    ofstream myFile;
-    myFile.open ("notLogin.txt", ofstream::app);
+bool LoginInterface::createUser(string username, string password){
+    fstream myFile;
+    myFile.open("notLogin.txt");
     if(myFile.is_open()){
         cout << "Create user, opening successful" << endl;
         string hashUsername = hashing(username);
@@ -78,10 +62,21 @@ void LoginInterface::createUser(string username, string password){
         string inputText = hashUsername;
         inputText.append(", ");
         inputText.append(hashPassword);
+        while(!myFile.eof()){
+            string uNameCheck;
+            getline(myFile, uNameCheck);
+            if(uNameCheck == inputText){
+                cout << "Username already registered" << endl;
+                return false;
+            }
+        }
+        myFile.close();
+        myFile.open("notLogin.txt", ofstream::app);
         myFile << inputText << endl;
         myFile.flush();
         myFile.close();
     } else {
         cout << "Failure to open file.";
     }
+    return true;
 }

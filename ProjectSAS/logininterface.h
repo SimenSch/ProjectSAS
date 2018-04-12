@@ -10,7 +10,8 @@ class LoginInterface
 public:
     LoginInterface();
     bool loginAttempt(string username, string password);
-    void createUser(string username, string password);
+    bool createUser(string username, string password);
+
     //bool fileExists(const string* file);
 private:
     string username;

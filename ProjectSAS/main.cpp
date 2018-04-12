@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     LoginUI l;
     l.show();
     LoginInterface li;
-    li.createUser("apekatt", "jungel");
+    li.createUser("bapekatt", "jungel");
     li.loginAttempt("apekatt", "jungel");
 
     return a.exec();

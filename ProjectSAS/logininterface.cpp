@@ -20,18 +20,23 @@ string LoginInterface::hashing(string word){
 
 
 
-void LoginInterface::loginAttempt(string username, string password){
+bool LoginInterface::loginAttempt(string username, string password){
     string search = hashing(username);
     search.append(", ");
     search.append(hashing(password));
     int loginAttempt = 0;
     ifstream myFile;
     myFile.open("notLogin.txt");
+    if(myFile.is_open()) {
+        cout << "is open";
+    }
+                else {
+                cout << "is not open";
+    }
     while (loginAttempt < 5){
-
         if(myFile.fail()){
             cout << "Login attempt: login file failed" << endl;
-            exit(1);
+            return false;
         }
         bool isFound=0;
         while(!myFile.eof() && isFound == 0){
@@ -56,10 +61,11 @@ void LoginInterface::loginAttempt(string username, string password){
     {
         cout << "Too many login attempts! The program will now terminate.";
         exit (666);
+        return false;
     } else {
-    cout << "Welcome, you are now logged in.\n";
+        cout << "Welcome, you are now logged in.\n";
+        return true;
     }
-    */
 }
 
 void LoginInterface::createUser(string username, string password){

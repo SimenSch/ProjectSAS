@@ -1,6 +1,6 @@
 #ifndef ASSISTANT_H
 #define ASSISTANT_H
-#include <string>;
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -9,66 +9,27 @@ class Assistant
 {
 public:
     Assistant();
-    int getassistantID(){
-        return assistantID;
-    }
-    void setassistantID(int newassistantID){
-        assistantID = newassistantID;
-    }
-    string getsurname(){
-        return surname;
-    }
-    void setsurname(int newsurname){
-        surname=newsurname;
-    }
-    string getfirstname(){
-        return firstname;
-    }
-    void setfirstname(int newfirstame){
-        firstname=newfirstame;
-    }
-    string getadress(){
-        return firstname;
-    }
-    void setfirstname(string newfirstame){
-        firstname=newfirstame;
-    }
-    string getaddress(){
-        return address;
-    }
-    void setaddress(string newaddress){
-    address=newaddress;
-    }
-    string getcity(){
-        return city;
-    }
-    void setcity(string newcity){
-        city=newcity;
-    }
-    int getzip(){
-        return zip;
-    }
-    void setzip(int newzip){
-        zip=newzip;
-    }
-    string getdateOfBirth(){
-        return dateOfBirth;
-    }
-    void setdateOfBirth(string newdateofbirth){
-    dateOfBirth=newdateofbirth;
-    }
-    string getdepartment(){
-        return department;
-    }
-    void setdepartment(string newdepartment){
-    department=newdepartment;
-    }
-    string geteMail(){
-        return eMail;
-    }
-    void seteMail(string neweMail){
-    eMail=newdepartment;
-    }
+    int getassistantID();
+    void setassistantID(int newassistantID);
+    string getsurname();
+    void setsurname(int newsurname);
+    string getfirstname();
+    void setfirstname(int newfirstame);
+    string getaddress();
+    void setaddress(string newaddress);
+    string getcity();
+    void setcity(string newcity);
+
+    int getzip();
+
+    void setzip(int newzip);
+
+    string getdateOfBirth();
+    void setdateOfBirth(string newdateofbirth);
+    string getdepartment();
+    void setdepartment(string newdepartment);
+    string geteMail();
+    void seteMail(string neweMail);
 
 private:
     int assistantID;

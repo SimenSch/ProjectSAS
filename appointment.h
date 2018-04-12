@@ -1,6 +1,6 @@
 #ifndef APPOINTMENT_H
 #define APPOINTMENT_H
-#include <string>;
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -9,35 +9,14 @@ class Appointment
 {
 public:
     Appointment();
-    int getorderID(){
-        return orderID;
-
-    }
-    void setorderID(int neworderID){
-        orderID=neworderID;
-    }
-    int getpetID(){
-        return petID;
-
-    }
-    void setpetID(int newpetID){
-        petID=newpetID;
-    }
-
-    int getsessionID(){
-        return sessionID;
-
-    }
-    void setsessionID(int newsessionID){
-        sessionID=newsessionID;
-    }
-    int getprice(){
-        return price;
-
-    }
-    void setprice(int newprice){
-        price=newprice;
-    }
+    int getorderID();
+    void setorderID(int neworderID);
+    int getpetID();
+    void setpetID(int newpetID);
+    int getsessionID();
+    void setsessionID(int newsessionID);
+    int getprice();
+    void setprice(int newprice);
 
 private:
     int orderID;

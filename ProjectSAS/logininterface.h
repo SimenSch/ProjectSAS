@@ -9,7 +9,7 @@ class LoginInterface
 {
 public:
     LoginInterface();
-    void loginAttempt(string username, string password);
+    bool loginAttempt(string username, string password);
     void createUser(string username, string password);
     //bool fileExists(const string* file);
 private:

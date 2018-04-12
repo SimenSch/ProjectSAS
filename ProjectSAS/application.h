@@ -14,6 +14,8 @@ class Application : public QWidget
 public:
     explicit Application(QWidget *parent = 0);
     ~Application();
+private slots:
+    void on_loginButton_clicked();
 
 private:
     Ui::Application *ui;

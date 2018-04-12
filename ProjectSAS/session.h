@@ -1,7 +1,8 @@
 #ifndef SESSION_H
 #define SESSION_H
-#include <string>;
+#include <string>
 #include <iostream>
+
 using namespace std;
 
 
@@ -12,7 +13,7 @@ public:
 private:
     int sessionID;
     int assistantID;
-    string sessiontType;
+    string sessionType;
     string sessionDate;
     string sessionTime;
     string location;

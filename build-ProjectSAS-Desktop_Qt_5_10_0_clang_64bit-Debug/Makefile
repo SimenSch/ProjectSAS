@@ -15,7 +15,7 @@ CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../ProjectSAS -I. -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -F/Applications/Qt/5.10.0/clang_64/lib
+INCPATH       = -I../ProjectSAS -I. -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -F/Applications/Qt/5.10.0/clang_64/lib
 QMAKE         = /Applications/Qt/5.10.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -51,26 +51,28 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../ProjectSAS/main.cpp \
+		../ProjectSAS/application.cpp \
 		../ProjectSAS/appointment.cpp \
 		../ProjectSAS/assistant.cpp \
 		../ProjectSAS/medjournal.cpp \
 		../ProjectSAS/owner.cpp \
 		../ProjectSAS/pet.cpp \
-		../ProjectSAS/session.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
-		../ProjectSAS/loginui.cpp moc_loginui.cpp
+		../ProjectSAS/logininterface.cpp \
+		../ProjectSAS/session.cpp moc_application.cpp
 OBJECTS       = main.o \
+		application.o \
 		appointment.o \
 		assistant.o \
 		medjournal.o \
 		owner.o \
 		pet.o \
-		session.o \
 		user.o \
 		vetvisits.o \
-		loginui.o \
-		moc_loginui.o
+		logininterface.o \
+		session.o \
+		moc_application.o
 DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.10.0/clang_64/mkspecs/qdevice.pri \
 		/Applications/Qt/5.10.0/clang_64/mkspecs/features/device_config.prf \
@@ -234,24 +236,26 @@ DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.10.0/clang_64/mkspecs/features/exceptions.prf \
 		/Applications/Qt/5.10.0/clang_64/mkspecs/features/yacc.prf \
 		/Applications/Qt/5.10.0/clang_64/mkspecs/features/lex.prf \
-		../ProjectSAS/ProjectSAS.pro ../ProjectSAS/appointment.h \
+		../ProjectSAS/ProjectSAS.pro ../ProjectSAS/application.h \
+		../ProjectSAS/appointment.h \
 		../ProjectSAS/assistant.h \
 		../ProjectSAS/medjournal.h \
 		../ProjectSAS/owner.h \
 		../ProjectSAS/pet.h \
-		../ProjectSAS/session.h \
 		../ProjectSAS/user.h \
 		../ProjectSAS/vetvisits.h \
-		../ProjectSAS/loginui.h ../ProjectSAS/main.cpp \
+		../ProjectSAS/logininterface.h \
+		../ProjectSAS/session.h ../ProjectSAS/main.cpp \
+		../ProjectSAS/application.cpp \
 		../ProjectSAS/appointment.cpp \
 		../ProjectSAS/assistant.cpp \
 		../ProjectSAS/medjournal.cpp \
 		../ProjectSAS/owner.cpp \
 		../ProjectSAS/pet.cpp \
-		../ProjectSAS/session.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
-		../ProjectSAS/loginui.cpp
+		../ProjectSAS/logininterface.cpp \
+		../ProjectSAS/session.cpp
 QMAKE_TARGET  = ProjectSAS
 DESTDIR       = 
 TARGET        = ProjectSAS.app/Contents/MacOS/ProjectSAS
@@ -265,7 +269,7 @@ EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_
 first: all
 ####### Build rules
 
-$(TARGET):  $(OBJECTS)  
+$(TARGET): ui_application.h $(OBJECTS)  
 	@test -d ProjectSAS.app/Contents/MacOS/ || mkdir -p ProjectSAS.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -634,8 +638,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Applications/Qt/5.10.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/session.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/loginui.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/session.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/loginui.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/application.h ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/logininterface.h ../ProjectSAS/session.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/application.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/logininterface.cpp ../ProjectSAS/session.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/application.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -667,32 +672,27 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Applications/Qt/5.10.0/clang_64/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h /Applications/Qt/5.10.0/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_loginui.cpp
+compiler_moc_header_make_all: moc_application.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_loginui.cpp
-moc_loginui.cpp: /Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+	-$(DEL_FILE) moc_application.cpp
+moc_application.cpp: /Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QToolButton \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
-		../ProjectSAS/loginui.h \
+		../ProjectSAS/application.h \
 		moc_predefs.h \
 		/Applications/Qt/5.10.0/clang_64/bin/moc
-	/Applications/Qt/5.10.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -I/Users/simenperschandersen/Documents/CProsjekter/ProjectSAS/ProjectSAS -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/usr/include -F/Applications/Qt/5.10.0/clang_64/lib ../ProjectSAS/loginui.h -o moc_loginui.cpp
+	/Applications/Qt/5.10.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -I/Users/simenperschandersen/Documents/CProsjekter/ProjectSAS/ProjectSAS -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/usr/include -F/Applications/Qt/5.10.0/clang_64/lib ../ProjectSAS/application.h -o moc_application.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all:
+compiler_uic_make_all: ui_application.h
 compiler_uic_clean:
+	-$(DEL_FILE) ui_application.h
+ui_application.h: ../ProjectSAS/application.ui \
+		/Applications/Qt/5.10.0/clang_64/bin/uic
+	/Applications/Qt/5.10.0/clang_64/bin/uic ../ProjectSAS/application.ui -o ui_application.h
+
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
 compiler_yacc_decl_make_all:
@@ -701,26 +701,22 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
-main.o: ../ProjectSAS/main.cpp ../ProjectSAS/loginui.h \
+main.o: ../ProjectSAS/main.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QToolButton \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ProjectSAS/main.cpp
+
+application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		ui_application.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o application.o ../ProjectSAS/application.cpp
 
 appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o appointment.o ../ProjectSAS/appointment.cpp
@@ -737,36 +733,20 @@ owner.o: ../ProjectSAS/owner.cpp ../ProjectSAS/owner.h
 pet.o: ../ProjectSAS/pet.cpp ../ProjectSAS/pet.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pet.o ../ProjectSAS/pet.cpp
 
-session.o: ../ProjectSAS/session.cpp ../ProjectSAS/session.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o session.o ../ProjectSAS/session.cpp
-
 user.o: ../ProjectSAS/user.cpp ../ProjectSAS/user.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o user.o ../ProjectSAS/user.cpp
 
 vetvisits.o: ../ProjectSAS/vetvisits.cpp ../ProjectSAS/vetvisits.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vetvisits.o ../ProjectSAS/vetvisits.cpp
 
-loginui.o: ../ProjectSAS/loginui.cpp ../ProjectSAS/loginui.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QSpinBox \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QToolButton \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QFrame \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QSpacerItem \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qlayoutitem.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o loginui.o ../ProjectSAS/loginui.cpp
+logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logininterface.o ../ProjectSAS/logininterface.cpp
 
-moc_loginui.o: moc_loginui.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_loginui.o moc_loginui.cpp
+session.o: ../ProjectSAS/session.cpp ../ProjectSAS/session.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o session.o ../ProjectSAS/session.cpp
+
+moc_application.o: moc_application.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_application.o moc_application.cpp
 
 ####### Install
 

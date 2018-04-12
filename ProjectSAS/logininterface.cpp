@@ -19,6 +19,7 @@ string LoginInterface::hashing(string word){
 }
 
 
+
 void LoginInterface::loginAttempt(string username, string password){
     string search = hashing(username);
     search.append(", ");
@@ -27,6 +28,7 @@ void LoginInterface::loginAttempt(string username, string password){
     ifstream myFile;
     myFile.open("notLogin.txt");
     while (loginAttempt < 5){
+
         if(myFile.fail()){
             cout << "Login attempt: login file failed" << endl;
             exit(1);
@@ -57,6 +59,7 @@ void LoginInterface::loginAttempt(string username, string password){
     } else {
     cout << "Welcome, you are now logged in.\n";
     }
+    */
 }
 
 void LoginInterface::createUser(string username, string password){

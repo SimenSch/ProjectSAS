@@ -17,25 +17,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
+    application.cpp \
     appointment.cpp \
     assistant.cpp \
     medjournal.cpp \
     owner.cpp \
     pet.cpp \
-    session.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp \
-    loginui.cpp
+    session.cpp
 
 HEADERS += \
+    application.h \
     appointment.h \
     assistant.h \
     medjournal.h \
     owner.h \
     pet.h \
-    session.h \
     user.h \
     vetvisits.h \
     logininterface.h \
-    loginui.h
+    session.h
+
+FORMS += \
+    application.ui

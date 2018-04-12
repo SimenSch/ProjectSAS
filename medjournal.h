@@ -9,12 +9,10 @@ class MedJournal
 {
 public:
     MedJournal();
-    int getmedJournalID(){
-        return medJournalID;
-    }
-    void setmedJournalID(int newmedJournalID){
-        medJournalID = newmedJournalID;
-    }
+    int getmedJournalID();
+    void setmedJournalID(int newmedJournalID);
+    int getpetID();
+    void setpetID(int newpetID);
 private:
     int medJournalID;
     int  petID;

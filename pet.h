@@ -1,6 +1,6 @@
 #ifndef PET_H
 #define PET_H
-#include <string>;
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -9,54 +9,22 @@ class Pet
 {
 public:
     Pet();
-    int getpetID(){
-        return petID;
-    }
-    void setpetID(int newpetID){
-
-    }
-    int getownerID(){
-        return ownerID;
-    }
-    void setownerID(int newownerID){
-        ownerID=newownerID;
-    }
-    string getname(){
-        return name;
-    }
-    void setname(string newname){
-        name=newname;
-    }
-    string getpetType(){
-        return petType;
-    }
-    void setpetType(string newpetType){
-        petType=newpetType;
-    }
-    int getrace(){
-        return race;
-    }
-    void setpetID(int newrace){
-        race=newrace;
-    }
-    string getdateOfBirth(){
-        return dateOfBirth;
-    }
-    void setdateOfBirth(string newdateofbirth){
-    dateOfBirth=newdateofbirth;
-    }
-    string getnotes(){
-        return notes;
-    }
-    void setnotes(string newnotes){
-    notes=newnotes;
-    }
-    int getmedJournalID(){
-        return medJournalID;
-    }
-    void setmedJournalID(int newmedJournalID){
-    medJournalID=newmedJournalID;
-    }
+    int getpetID();
+    void setpetID(int newpetID);
+    int getownerID();
+    void setownerID(int newownerID);
+    string getname();
+    void setname(string newname);
+    string getpetType();
+    void setpetType(string newpetType);
+    string getrace();
+    void setrace(string newrace);
+    string getdateOfBirth();
+    void setdateOfBirth(string newdateofbirth);
+    string getnotes();
+    void setnotes(string newnotes);
+    int getmedJournalID();
+    void setmedJournalID(int newmedJournalID);
 private:
     int petID;
     int ownerID;

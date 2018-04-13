@@ -21,22 +21,22 @@ public:
     void setaddress(string newaddress);
     string getcity();
     void setcity(string newcity);
-    int getzip();
-    void setzip(int newzip);
+    string getzip();
+    void setzip(string newzip);
     string getdateOfBirth();
     void setdateOfBirth(string newdateofbirth);
     string getdepartment();
     void setdepartment(string newdepartment);
     string geteMail();
     void seteMail(string neweMail);
-
+    void registerowner(string surname,string firstname,string address,string city, string zip, string dateofbirth, string email);
 private:
     int ownerID;
     string surname;
     string firstName;
     string address;
     string city;
-    int zip;
+    string zip;
     string dateOfBirth;
     string department;
     string eMail;

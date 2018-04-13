@@ -245,7 +245,7 @@ debug/moc_application.cpp: D:/qt/5.10.0/mingw53_32/include/QtWidgets/QWidget \
 		../ProjectSAS/application.h \
 		debug/moc_predefs.h \
 		D:/qt/5.10.0/mingw53_32/bin/moc.exe
-	D:\qt\5.10.0\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/qt/5.10.0/mingw53_32/mkspecs/win32-g++ -IC:/Users/Simen/Desktop/sas/ProjectSAS/ProjectSAS -ID:/qt/5.10.0/mingw53_32/include -ID:/qt/5.10.0/mingw53_32/include/QtWidgets -ID:/qt/5.10.0/mingw53_32/include/QtGui -ID:/qt/5.10.0/mingw53_32/include/QtANGLE -ID:/qt/5.10.0/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\ProjectSAS\application.h -o debug\moc_application.cpp
+	D:\qt\5.10.0\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/qt/5.10.0/mingw53_32/mkspecs/win32-g++ -IC:/Users/Simen/OneDrive/Dokumenter/ProjectSAS/ProjectSAS -ID:/qt/5.10.0/mingw53_32/include -ID:/qt/5.10.0/mingw53_32/include/QtWidgets -ID:/qt/5.10.0/mingw53_32/include/QtGui -ID:/qt/5.10.0/mingw53_32/include/QtANGLE -ID:/qt/5.10.0/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\ProjectSAS\application.h -o debug\moc_application.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -487,7 +487,42 @@ debug/application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		D:/qt/5.10.0/mingw53_32/include/QtCore/qfiledevice.h \
 		D:/qt/5.10.0/mingw53_32/include/QtGui/qvector2d.h \
 		D:/qt/5.10.0/mingw53_32/include/QtGui/qtouchdevice.h \
-		ui_application.h
+		ui_application.h \
+		D:/qt/5.10.0/mingw53_32/include/QtCore/QVariant \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QAction \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qaction.h \
+		D:/qt/5.10.0/mingw53_32/include/QtGui/qicon.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qactiongroup.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QApplication \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qapplication.h \
+		D:/qt/5.10.0/mingw53_32/include/QtCore/qcoreapplication.h \
+		D:/qt/5.10.0/mingw53_32/include/QtCore/qeventloop.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		D:/qt/5.10.0/mingw53_32/include/QtGui/qguiapplication.h \
+		D:/qt/5.10.0/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QButtonGroup \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QHeaderView \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qheaderview.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qframe.h \
+		D:/qt/5.10.0/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/qt/5.10.0/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qstyleoption.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		D:/qt/5.10.0/mingw53_32/include/QtGui/qvalidator.h \
+		D:/qt/5.10.0/mingw53_32/include/QtCore/qregularexpression.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qslider.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qabstractslider.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qstyle.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qtabbar.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qtabwidget.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qrubberband.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QLabel \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qlabel.h \
+		../ProjectSAS/logininterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\application.o ..\ProjectSAS\application.cpp
 
 debug/appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h

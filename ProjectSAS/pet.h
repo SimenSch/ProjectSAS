@@ -25,6 +25,7 @@ public:
     void setnotes(string newnotes);
     int getmedJournalID();
     void setmedJournalID(int newmedJournalID);
+
 private:
     int petID;
     int ownerID;

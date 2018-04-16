@@ -10,6 +10,18 @@ class Session
 {
 public:
     Session();
+    int getsessionID();
+    void setsessionID(int newsessionID);
+    int getassistantID();
+    void setassistantID(int newassistantID);
+    string getsessionType();
+    void setsessionType(string newsessionType);
+    string getsessionDate();
+    void setsessionID(string newsessionDate);
+    string getsessionTime();
+    void setsessionTime(string newsessionTime);
+    string getlocation();
+    void setlocation(string newlocation);
 private:
     int sessionID;
     int assistantID;

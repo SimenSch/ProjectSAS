@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "session.h"
 
 Session::Session()
@@ -40,3 +41,11 @@ string Session::getlocation(){
 void Session::setlocation(string newlocation){
     location= newlocation;
 }
+=======
+#include "session.h"
+
+Session::Session()
+{
+
+}
+>>>>>>> master

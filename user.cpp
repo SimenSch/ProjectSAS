@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "user.h"
 
 User::User()
@@ -28,3 +29,11 @@ string User::getuserType(){
 void User::setuserType(string newusertype){
     userType=newusertype;
 }
+=======
+#include "user.h"
+
+User::User()
+{
+
+}
+>>>>>>> master

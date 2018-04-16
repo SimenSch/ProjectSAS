@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "vetvisits.h"
 
 VetVisits::VetVisits()
@@ -40,3 +41,11 @@ string VetVisits::getnotes(){
 void VetVisits::setnotes(string newdoctor){
     notes=newdoctor;
 }
+=======
+#include "vetvisits.h"
+
+VetVisits::VetVisits()
+{
+
+}
+>>>>>>> master

@@ -17,6 +17,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
@@ -35,20 +36,34 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QLabel *wrongUserLabel;
-    QWidget *UserMenuPage;
-    QTabWidget *tabWidget;
-    QWidget *OverviewTab;
-    QWidget *Hei;
-    QWidget *Appointments;
-    QWidget *EmployeePage;
-    QTabWidget *tabWidget_2;
-    QWidget *tab;
+    QLabel *sasPicLabel;
+    QWidget *mainPage;
+    QStackedWidget *mainStack;
+    QWidget *customerPage;
+    QTabWidget *tabWidget_3;
+    QWidget *OverviewTab_3;
+    QLabel *label_9;
+    QLabel *label_10;
+    QLabel *label_12;
+    QLabel *label_13;
+    QLabel *label_14;
+    QWidget *Hei_3;
+    QWidget *Appointments_3;
+    QWidget *employeePage;
+    QTabWidget *tabWidget_4;
+    QWidget *OverviewTab_4;
+    QLabel *label_11;
+    QLabel *label_15;
+    QLabel *label_16;
+    QLabel *label_17;
+    QLabel *label_18;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QWidget *Hei_4;
+    QWidget *Appointments_4;
+    QPushButton *switchUserButton;
     QLabel *label;
-    QLabel *label_2;
-    QLabel *label_5;
-    QLabel *label_6;
-    QLabel *label_7;
-    QWidget *Appointments1;
+    QLabel *userLabel;
 
     void setupUi(QWidget *Application)
     {
@@ -84,55 +99,101 @@ public:
         wrongUserLabel->setObjectName(QStringLiteral("wrongUserLabel"));
         wrongUserLabel->setGeometry(QRect(310, 440, 171, 16));
         wrongUserLabel->setStyleSheet(QStringLiteral("color: red;"));
+        sasPicLabel = new QLabel(LoginPage);
+        sasPicLabel->setObjectName(QStringLiteral("sasPicLabel"));
+        sasPicLabel->setGeometry(QRect(300, 100, 201, 121));
+        sasPicLabel->setPixmap(QPixmap(QString::fromUtf8("../build-ProjectSAS-Desktop_Qt_5_10_0_clang_64bit-Debug/sas.svg")));
         stackedWidget->addWidget(LoginPage);
-        UserMenuPage = new QWidget();
-        UserMenuPage->setObjectName(QStringLiteral("UserMenuPage"));
-        tabWidget = new QTabWidget(UserMenuPage);
-        tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(10, 0, 761, 581));
-        OverviewTab = new QWidget();
-        OverviewTab->setObjectName(QStringLiteral("OverviewTab"));
-        tabWidget->addTab(OverviewTab, QString());
-        Hei = new QWidget();
-        Hei->setObjectName(QStringLiteral("Hei"));
-        tabWidget->addTab(Hei, QString());
-        Appointments = new QWidget();
-        Appointments->setObjectName(QStringLiteral("Appointments"));
-        tabWidget->addTab(Appointments, QString());
-        stackedWidget->addWidget(UserMenuPage);
-        EmployeePage = new QWidget();
-        EmployeePage->setObjectName(QStringLiteral("EmployeePage"));
-        tabWidget_2 = new QTabWidget(EmployeePage);
-        tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
-        tabWidget_2->setGeometry(QRect(10, 0, 761, 581));
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        label = new QLabel(tab);
+        mainPage = new QWidget();
+        mainPage->setObjectName(QStringLiteral("mainPage"));
+        mainStack = new QStackedWidget(mainPage);
+        mainStack->setObjectName(QStringLiteral("mainStack"));
+        mainStack->setGeometry(QRect(0, 39, 781, 551));
+        customerPage = new QWidget();
+        customerPage->setObjectName(QStringLiteral("customerPage"));
+        tabWidget_3 = new QTabWidget(customerPage);
+        tabWidget_3->setObjectName(QStringLiteral("tabWidget_3"));
+        tabWidget_3->setGeometry(QRect(10, 10, 761, 521));
+        OverviewTab_3 = new QWidget();
+        OverviewTab_3->setObjectName(QStringLiteral("OverviewTab_3"));
+        label_9 = new QLabel(OverviewTab_3);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(90, 130, 60, 16));
+        label_10 = new QLabel(OverviewTab_3);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(90, 150, 81, 16));
+        label_12 = new QLabel(OverviewTab_3);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(90, 70, 71, 16));
+        label_13 = new QLabel(OverviewTab_3);
+        label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setGeometry(QRect(90, 90, 60, 16));
+        label_14 = new QLabel(OverviewTab_3);
+        label_14->setObjectName(QStringLiteral("label_14"));
+        label_14->setGeometry(QRect(90, 110, 60, 16));
+        tabWidget_3->addTab(OverviewTab_3, QString());
+        Hei_3 = new QWidget();
+        Hei_3->setObjectName(QStringLiteral("Hei_3"));
+        tabWidget_3->addTab(Hei_3, QString());
+        Appointments_3 = new QWidget();
+        Appointments_3->setObjectName(QStringLiteral("Appointments_3"));
+        tabWidget_3->addTab(Appointments_3, QString());
+        mainStack->addWidget(customerPage);
+        employeePage = new QWidget();
+        employeePage->setObjectName(QStringLiteral("employeePage"));
+        tabWidget_4 = new QTabWidget(employeePage);
+        tabWidget_4->setObjectName(QStringLiteral("tabWidget_4"));
+        tabWidget_4->setGeometry(QRect(10, 10, 761, 521));
+        OverviewTab_4 = new QWidget();
+        OverviewTab_4->setObjectName(QStringLiteral("OverviewTab_4"));
+        label_11 = new QLabel(OverviewTab_4);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(90, 130, 60, 16));
+        label_15 = new QLabel(OverviewTab_4);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setGeometry(QRect(90, 150, 81, 16));
+        label_16 = new QLabel(OverviewTab_4);
+        label_16->setObjectName(QStringLiteral("label_16"));
+        label_16->setGeometry(QRect(90, 70, 71, 16));
+        label_17 = new QLabel(OverviewTab_4);
+        label_17->setObjectName(QStringLiteral("label_17"));
+        label_17->setGeometry(QRect(90, 90, 60, 16));
+        label_18 = new QLabel(OverviewTab_4);
+        label_18->setObjectName(QStringLiteral("label_18"));
+        label_18->setGeometry(QRect(90, 110, 60, 16));
+        scrollArea = new QScrollArea(OverviewTab_4);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setGeometry(QRect(280, 80, 361, 81));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 359, 79));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+        tabWidget_4->addTab(OverviewTab_4, QString());
+        Hei_4 = new QWidget();
+        Hei_4->setObjectName(QStringLiteral("Hei_4"));
+        tabWidget_4->addTab(Hei_4, QString());
+        Appointments_4 = new QWidget();
+        Appointments_4->setObjectName(QStringLiteral("Appointments_4"));
+        tabWidget_4->addTab(Appointments_4, QString());
+        mainStack->addWidget(employeePage);
+        switchUserButton = new QPushButton(mainPage);
+        switchUserButton->setObjectName(QStringLiteral("switchUserButton"));
+        switchUserButton->setGeometry(QRect(650, 20, 113, 31));
+        label = new QLabel(mainPage);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(70, 70, 71, 16));
-        label_2 = new QLabel(tab);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(70, 90, 60, 16));
-        label_5 = new QLabel(tab);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(70, 110, 60, 16));
-        label_6 = new QLabel(tab);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(70, 150, 81, 16));
-        label_7 = new QLabel(tab);
-        label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(70, 130, 60, 16));
-        tabWidget_2->addTab(tab, QString());
-        Appointments1 = new QWidget();
-        Appointments1->setObjectName(QStringLiteral("Appointments1"));
-        tabWidget_2->addTab(Appointments1, QString());
-        stackedWidget->addWidget(EmployeePage);
+        label->setGeometry(QRect(490, 10, 91, 16));
+        userLabel = new QLabel(mainPage);
+        userLabel->setObjectName(QStringLiteral("userLabel"));
+        userLabel->setGeometry(QRect(490, 30, 81, 16));
+        userLabel->setAlignment(Qt::AlignCenter);
+        stackedWidget->addWidget(mainPage);
 
         retranslateUi(Application);
 
-        stackedWidget->setCurrentIndex(2);
-        tabWidget->setCurrentIndex(2);
-        tabWidget_2->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
+        tabWidget_3->setCurrentIndex(0);
+        tabWidget_4->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Application);
@@ -146,22 +207,38 @@ public:
         label_3->setText(QApplication::translate("Application", "Password", nullptr));
         label_4->setText(QApplication::translate("Application", "Username", nullptr));
         wrongUserLabel->setText(QApplication::translate("Application", "Wrong Username/Password", nullptr));
+        sasPicLabel->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        OverviewTab->setToolTip(QApplication::translate("Application", "<html><head/><body><p>Overview</p></body></html>", nullptr));
+        OverviewTab_3->setToolTip(QApplication::translate("Application", "<html><head/><body><p>Overview</p></body></html>", nullptr));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_WHATSTHIS
-        OverviewTab->setWhatsThis(QString());
+        OverviewTab_3->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
-        tabWidget->setTabText(tabWidget->indexOf(OverviewTab), QApplication::translate("Application", "Overview", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(Hei), QApplication::translate("Application", "Pets", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(Appointments), QApplication::translate("Application", "Appointments", nullptr));
-        label->setText(QApplication::translate("Application", "First Name", nullptr));
-        label_2->setText(QApplication::translate("Application", "Surname", nullptr));
-        label_5->setText(QApplication::translate("Application", "Address", nullptr));
-        label_6->setText(QApplication::translate("Application", "Penis length", nullptr));
-        label_7->setText(QApplication::translate("Application", "Zip", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab), QApplication::translate("Application", "Overview", nullptr));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(Appointments1), QApplication::translate("Application", "Appointments", nullptr));
+        label_9->setText(QApplication::translate("Application", "Zip", nullptr));
+        label_10->setText(QApplication::translate("Application", "Penis length", nullptr));
+        label_12->setText(QApplication::translate("Application", "First Name", nullptr));
+        label_13->setText(QApplication::translate("Application", "Surname", nullptr));
+        label_14->setText(QApplication::translate("Application", "Address", nullptr));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(OverviewTab_3), QApplication::translate("Application", "Overview", nullptr));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(Hei_3), QApplication::translate("Application", "Pets", nullptr));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(Appointments_3), QApplication::translate("Application", "Appointments", nullptr));
+#ifndef QT_NO_TOOLTIP
+        OverviewTab_4->setToolTip(QApplication::translate("Application", "<html><head/><body><p>Overview</p></body></html>", nullptr));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_WHATSTHIS
+        OverviewTab_4->setWhatsThis(QString());
+#endif // QT_NO_WHATSTHIS
+        label_11->setText(QApplication::translate("Application", "Zip", nullptr));
+        label_15->setText(QApplication::translate("Application", "Penis length", nullptr));
+        label_16->setText(QApplication::translate("Application", "First Name", nullptr));
+        label_17->setText(QApplication::translate("Application", "Surname", nullptr));
+        label_18->setText(QApplication::translate("Application", "Address", nullptr));
+        tabWidget_4->setTabText(tabWidget_4->indexOf(OverviewTab_4), QApplication::translate("Application", "Overview", nullptr));
+        tabWidget_4->setTabText(tabWidget_4->indexOf(Hei_4), QApplication::translate("Application", "Pets", nullptr));
+        tabWidget_4->setTabText(tabWidget_4->indexOf(Appointments_4), QApplication::translate("Application", "Appointments", nullptr));
+        switchUserButton->setText(QApplication::translate("Application", "Switch User", nullptr));
+        label->setText(QApplication::translate("Application", "Logged in as:", nullptr));
+        userLabel->setText(QApplication::translate("Application", "user", nullptr));
     } // retranslateUi
 
 };

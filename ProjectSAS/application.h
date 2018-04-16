@@ -16,6 +16,7 @@ public:
     ~Application();
 private slots:
     void on_loginButton_clicked();
+    void on_switchUserButton_clicked();
 
 private:
     Ui::Application *ui;

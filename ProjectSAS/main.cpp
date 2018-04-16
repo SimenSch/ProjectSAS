@@ -13,6 +13,9 @@ int main(int argc, char *argv[])
     LoginInterface li;
     li.createUser("bapekatt", "jungel");
     li.loginAttempt("apekatt", "jungel");
+    li.mydb = QSqlDatabase::addDatabase("QSQLITE");
+        li.mydb.setDatabaseName("../Kennel.db");
+    li.checkDB();
 
     return a.exec();
 }

@@ -7,9 +7,30 @@
 #include <unordered_map>
 #include <fstream>
 #include <sys/stat.h>
+#include <QtSql>
+#include <QtDebug>
+#include <QMessageBox>
 using namespace std;
 
-LoginInterface::LoginInterface() {}
+LoginInterface::LoginInterface() {
+}
+
+
+void LoginInterface::checkDB() {
+        QMessageBox msgBox;
+
+        string msg = "";
+
+        if(!mydb.open()) {
+            msg += "Nei.. Feilet";
+        } else {
+            msg += "Jaa!! :DDDD";
+        }
+
+        msgBox.setText(QString::fromStdString(msg));
+
+        msgBox.exec();
+    }
 
 string LoginInterface::hashing(string word){
     hash<string> hashFunction;

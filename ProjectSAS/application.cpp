@@ -17,14 +17,17 @@ Application::~Application()
 }
 
 void Application::on_loginButton_clicked() {
-    LoginInterface LI;
-    if(LI.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString())) {
+    if(ui->userNameEdit->text().toStdString() == "user") {
         ui->stackedWidget->setCurrentIndex(1);
         ui->wrongUserLabel->hide();
     }
-        else {
-            ui->wrongUserLabel->show();
-        }
+    else if(ui->userNameEdit->text().toStdString() == "employee") {
+        ui->stackedWidget->setCurrentIndex(2);
+        ui->wrongUserLabel->hide();
+    }
+    else {
+        ui->wrongUserLabel->show();
+    }
 }
 
 

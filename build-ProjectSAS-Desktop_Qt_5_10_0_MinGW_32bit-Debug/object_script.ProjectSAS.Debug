@@ -1,13 +1,14 @@
 INPUT(
 ./debug\main.o
+./debug\application.o
 ./debug\appointment.o
 ./debug\assistant.o
 ./debug\medjournal.o
 ./debug\owner.o
 ./debug\pet.o
-./debug\session.o
 ./debug\user.o
 ./debug\vetvisits.o
 ./debug\logininterface.o
-./debug\moc_loginui.o
+./debug\session.o
+./debug\moc_application.o
 );

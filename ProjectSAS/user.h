@@ -1,7 +1,8 @@
 #ifndef USER_H
 #define USER_H
-#include <string>;
+#include <string>
 #include <iostream>
+#include <regex>
 using namespace std;
 
 
@@ -9,6 +10,15 @@ class User
 {
 public:
     User();
+    int getuserID();
+    void setuserID(int newuserID);
+    string geteMail();
+    void seteMail(string neweMail);
+    string getpassword();
+    void setpassword(string newpassword);
+    string getuserType();
+    void setuserType(string newusertype);
+    void registeruser(string email,string password,bool usertype);
 private:
     int userID;
     string eMail;

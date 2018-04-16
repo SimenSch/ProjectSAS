@@ -1,13 +1,14 @@
 INPUT(
 ./release\main.o
+./release\application.o
 ./release\appointment.o
 ./release\assistant.o
 ./release\medjournal.o
 ./release\owner.o
 ./release\pet.o
-./release\session.o
 ./release\user.o
 ./release\vetvisits.o
 ./release\logininterface.o
-./release\moc_loginui.o
+./release\session.o
+./release\moc_application.o
 );

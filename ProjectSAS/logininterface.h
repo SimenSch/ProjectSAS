@@ -13,6 +13,7 @@ public:
     LoginInterface();
     bool loginAttempt(string username, string password);
     bool createUser(string username, string password);
+
     //bool fileExists(const string* file);
     void addDatabase();
     void checkDB();

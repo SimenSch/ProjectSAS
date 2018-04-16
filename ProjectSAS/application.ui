@@ -26,7 +26,7 @@
     <string notr="true">background-color: white;</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="LoginPage">
     <property name="styleSheet">
@@ -120,131 +120,300 @@
       <string>Wrong Username/Password</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QWidget" name="UserMenuPage">
-    <widget class="QTabWidget" name="tabWidget">
+    <widget class="QLabel" name="sasPicLabel">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>761</width>
-       <height>581</height>
+       <x>300</x>
+       <y>100</y>
+       <width>201</width>
+       <height>121</height>
       </rect>
      </property>
-     <property name="currentIndex">
-      <number>2</number>
+     <property name="text">
+      <string/>
      </property>
-     <widget class="QWidget" name="OverviewTab">
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Overview&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="whatsThis">
-       <string/>
-      </property>
-      <attribute name="title">
-       <string>Overview</string>
-      </attribute>
-     </widget>
-     <widget class="QWidget" name="Hei">
-      <attribute name="title">
-       <string>Pets</string>
-      </attribute>
-     </widget>
-     <widget class="QWidget" name="Appointments">
-      <attribute name="title">
-       <string>Appointments</string>
-      </attribute>
-     </widget>
+     <property name="pixmap">
+      <pixmap>../build-ProjectSAS-Desktop_Qt_5_10_0_clang_64bit-Debug/sas.svg</pixmap>
+     </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="EmployeePage">
-    <widget class="QTabWidget" name="tabWidget_2">
+   <widget class="QWidget" name="mainPage">
+    <widget class="QStackedWidget" name="mainStack">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>761</width>
-       <height>581</height>
+       <x>0</x>
+       <y>39</y>
+       <width>781</width>
+       <height>551</height>
       </rect>
      </property>
-     <property name="currentIndex">
-      <number>0</number>
+     <widget class="QWidget" name="customerPage">
+      <widget class="QTabWidget" name="tabWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>761</width>
+         <height>521</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="OverviewTab_3">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Overview&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="whatsThis">
+         <string/>
+        </property>
+        <attribute name="title">
+         <string>Overview</string>
+        </attribute>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>130</y>
+           <width>60</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Zip</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>150</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Penis length</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_12">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>70</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>First Name</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_13">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>90</y>
+           <width>60</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Surname</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_14">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>110</y>
+           <width>60</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Address</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="Hei_3">
+        <attribute name="title">
+         <string>Pets</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="Appointments_3">
+        <attribute name="title">
+         <string>Appointments</string>
+        </attribute>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="employeePage">
+      <widget class="QTabWidget" name="tabWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>761</width>
+         <height>521</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="OverviewTab_4">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Overview&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="whatsThis">
+         <string/>
+        </property>
+        <attribute name="title">
+         <string>Overview</string>
+        </attribute>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>130</y>
+           <width>60</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Zip</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>150</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Penis length</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>70</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>First Name</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_17">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>90</y>
+           <width>60</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Surname</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_18">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>110</y>
+           <width>60</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Address</string>
+         </property>
+        </widget>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="geometry">
+          <rect>
+           <x>280</x>
+           <y>80</y>
+           <width>361</width>
+           <height>81</height>
+          </rect>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>359</width>
+            <height>79</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="Hei_4">
+        <attribute name="title">
+         <string>Pets</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="Appointments_4">
+        <attribute name="title">
+         <string>Appointments</string>
+        </attribute>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="switchUserButton">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>20</y>
+       <width>113</width>
+       <height>31</height>
+      </rect>
      </property>
-     <widget class="QWidget" name="tab">
-      <attribute name="title">
-       <string>Overview</string>
-      </attribute>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>70</y>
-         <width>71</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>First Name</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>90</y>
-         <width>60</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Surname</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_5">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>110</y>
-         <width>60</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Address</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>150</y>
-         <width>81</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Penis length</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_7">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>130</y>
-         <width>60</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Zip</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="Appointments">
-      <attribute name="title">
-       <string>Appointments</string>
-      </attribute>
-     </widget>
+     <property name="text">
+      <string>Switch User</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>10</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Logged in as:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="userLabel">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>30</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>user</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </widget>
   </widget>

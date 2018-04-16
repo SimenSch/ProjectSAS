@@ -59,8 +59,7 @@ SOURCES       = ../ProjectSAS/main.cpp \
 		../ProjectSAS/pet.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
-		../ProjectSAS/logininterface.cpp \
-		../ProjectSAS/session.cpp moc_application.cpp
+		../ProjectSAS/logininterface.cpp moc_application.cpp
 OBJECTS       = main.o \
 		application.o \
 		appointment.o \
@@ -71,7 +70,6 @@ OBJECTS       = main.o \
 		user.o \
 		vetvisits.o \
 		logininterface.o \
-		session.o \
 		moc_application.o
 DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.10.0/clang_64/mkspecs/qdevice.pri \
@@ -244,8 +242,7 @@ DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../ProjectSAS/pet.h \
 		../ProjectSAS/user.h \
 		../ProjectSAS/vetvisits.h \
-		../ProjectSAS/logininterface.h \
-		../ProjectSAS/session.h ../ProjectSAS/main.cpp \
+		../ProjectSAS/logininterface.h ../ProjectSAS/main.cpp \
 		../ProjectSAS/application.cpp \
 		../ProjectSAS/appointment.cpp \
 		../ProjectSAS/assistant.cpp \
@@ -254,8 +251,7 @@ DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../ProjectSAS/pet.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
-		../ProjectSAS/logininterface.cpp \
-		../ProjectSAS/session.cpp
+		../ProjectSAS/logininterface.cpp
 QMAKE_TARGET  = ProjectSAS
 DESTDIR       = 
 TARGET        = ProjectSAS.app/Contents/MacOS/ProjectSAS
@@ -638,8 +634,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Applications/Qt/5.10.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/application.h ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/logininterface.h ../ProjectSAS/session.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/application.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/logininterface.cpp ../ProjectSAS/session.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/application.h ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/logininterface.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/application.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/logininterface.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProjectSAS/application.ui $(DISTDIR)/
 
 
@@ -715,7 +711,8 @@ main.o: ../ProjectSAS/main.cpp ../ProjectSAS/application.h \
 application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		ui_application.h
+		ui_application.h \
+		../ProjectSAS/logininterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o application.o ../ProjectSAS/application.cpp
 
 appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h
@@ -741,9 +738,6 @@ vetvisits.o: ../ProjectSAS/vetvisits.cpp ../ProjectSAS/vetvisits.h
 
 logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logininterface.o ../ProjectSAS/logininterface.cpp
-
-session.o: ../ProjectSAS/session.cpp ../ProjectSAS/session.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o session.o ../ProjectSAS/session.cpp
 
 moc_application.o: moc_application.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_application.o moc_application.cpp

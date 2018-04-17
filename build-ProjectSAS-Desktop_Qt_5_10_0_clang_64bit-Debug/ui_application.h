@@ -17,9 +17,9 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -57,8 +57,7 @@ public:
     QLabel *label_16;
     QLabel *label_17;
     QLabel *label_18;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
+    QTableView *tableView;
     QWidget *Hei_4;
     QWidget *Appointments_4;
     QPushButton *switchUserButton;
@@ -161,14 +160,9 @@ public:
         label_18 = new QLabel(OverviewTab_4);
         label_18->setObjectName(QStringLiteral("label_18"));
         label_18->setGeometry(QRect(90, 110, 60, 16));
-        scrollArea = new QScrollArea(OverviewTab_4);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(280, 80, 361, 81));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 359, 79));
-        scrollArea->setWidget(scrollAreaWidgetContents);
+        tableView = new QTableView(OverviewTab_4);
+        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setGeometry(QRect(290, 60, 256, 192));
         tabWidget_4->addTab(OverviewTab_4, QString());
         Hei_4 = new QWidget();
         Hei_4->setObjectName(QStringLiteral("Hei_4"));

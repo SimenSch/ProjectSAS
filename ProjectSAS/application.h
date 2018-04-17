@@ -18,6 +18,8 @@ private slots:
     void on_loginButton_clicked();
     void on_switchUserButton_clicked();
 
+    void on_loadPetsButton_clicked();
+
 private:
     Ui::Application *ui;
 };

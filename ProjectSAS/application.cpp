@@ -1,6 +1,7 @@
 #include "application.h"
 #include "ui_application.h"
 #include "logininterface.h"
+#include "stackedwidget.h"
 
 Application::Application(QWidget *parent) :
     QWidget(parent),
@@ -29,5 +30,4 @@ void Application::on_loginButton_clicked() {
         ui->wrongUserLabel->show();
     }
 }
-
 

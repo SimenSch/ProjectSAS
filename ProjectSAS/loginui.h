@@ -1,8 +1,6 @@
 #ifndef LOGINUI_H
 #define LOGINUI_H
 
-#include "mainui.h"
-
 #include <QWidget>
 #include <QLabel>
 #include <QSpinBox>
@@ -10,7 +8,6 @@
 #include <QFrame>
 #include <QLineEdit>
 #include <QPushButton>
-#include <QVBoxLayout>
 
 class LoginUI: public QWidget
 {
@@ -27,13 +24,6 @@ private:
     QLineEdit *passwordEdit;
 
     QPushButton *loginButton;
-    QPushButton *registerButton;
-
-    QHBoxLayout *buttonsLayout;
-    QHBoxLayout *mainLayout;
-    QVBoxLayout *cellLayout;
-private slots:
-    void on_LoginClick();
 
 
 };

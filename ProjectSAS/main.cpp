@@ -1,12 +1,13 @@
-
-#include "application.h"
+#include "loginui.h"
+#include "logininterface.h"
 
 #include <QApplication>
+#include <iostream>
+using namespace std;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-<<<<<<< HEAD
     LoginUI l;
     l.show();
     LoginInterface li;
@@ -15,10 +16,6 @@ int main(int argc, char *argv[])
     li.mydb = QSqlDatabase::addDatabase("QSQLITE");
         li.mydb.setDatabaseName("../Kennel.db");
     li.checkDB();
-=======
-    Application w;
-    w.show();
->>>>>>> e4dd08b803efa7e1df98b5b3f7f800a984deeb97
 
     return a.exec();
 }

@@ -40,7 +40,6 @@ string LoginInterface::hashing(string word){
 }
 
 
-
 bool LoginInterface::loginAttempt(string username, string password){
     string search = hashing(username);
     search.append(", ");
@@ -70,7 +69,6 @@ bool LoginInterface::loginAttempt(string username, string password){
         }
     myFile.close();
     return false;
-
 }
 
 bool LoginInterface::createUser(string username, string password){

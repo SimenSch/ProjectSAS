@@ -1,4 +1,5 @@
 #include "application.h"
+#include "qsqldatabase.h"
 #include "ui_application.h"
 #include "logininterface.h"
 #include <string>
@@ -13,9 +14,6 @@ Application::Application(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     ui->wrongUserLabel->hide();
-    QImage sasPic("sas.jpg");
-    ui->sasPicLabel->setPixmap(QPixmap::fromImage(sasPic));
-    string penis = "Hei hei \n hvordan går det";
 }
 
 Application::~Application()
@@ -46,3 +44,25 @@ void Application::on_switchUserButton_clicked() {
 }
 
 
+
+void Application::on_loadPetsButton_clicked()
+{
+
+    LoginInterface li;
+
+    li.mydb = QSqlDatabase::addDatabase("QSQLITE");
+    li.mydb.setDatabaseName("../Kennel.db");
+
+    QSqlQueryModel * model=new QSqlQueryModel;
+
+    QSqlQuery* qry=new QSqlQuery(li.mydb);
+
+    li.mydb.open();
+
+    qry->prepare("SELECT * FROM Pets");
+    qry->exec();
+    model->setQuery(*qry);
+    ui->petTableView->setModel(model);
+
+
+}

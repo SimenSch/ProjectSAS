@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Library/Developer/CommandLineTools/usr/bin/clang
 CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../ProjectSAS -I. -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -F/Applications/Qt/5.10.0/clang_64/lib
+INCPATH       = -I../ProjectSAS -I. -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -F/Applications/Qt/5.10.0/clang_64/lib
 QMAKE         = /Applications/Qt/5.10.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,7 +38,7 @@ DISTNAME      = ProjectSAS1.0.0
 DISTDIR = /Users/simenperschandersen/Documents/CProsjekter/ProjectSAS/build-ProjectSAS-Desktop_Qt_5_10_0_clang_64bit-Debug/.tmp/ProjectSAS1.0.0
 LINK          = /Library/Developer/CommandLineTools/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Applications/Qt/5.10.0/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Applications/Qt/5.10.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Applications/Qt/5.10.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtSql -framework OpenGL -framework AGL 
 AR            = /Library/Developer/CommandLineTools/usr/bin/ar cq
 RANLIB        = /Library/Developer/CommandLineTools/usr/bin/ranlib -s
 SED           = sed
@@ -435,6 +435,7 @@ Makefile: ../ProjectSAS/ProjectSAS.pro /Applications/Qt/5.10.0/clang_64/mkspecs/
 		../ProjectSAS/ProjectSAS.pro \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/QtGui.prl \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/QtSql.prl \
 		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -o Makefile ../ProjectSAS/ProjectSAS.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf:
@@ -603,6 +604,7 @@ Makefile: ../ProjectSAS/ProjectSAS.pro /Applications/Qt/5.10.0/clang_64/mkspecs/
 ../ProjectSAS/ProjectSAS.pro:
 /Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 /Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/QtGui.prl:
+/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/QtSql.prl:
 /Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../ProjectSAS/ProjectSAS.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
@@ -676,7 +678,7 @@ moc_application.cpp: /Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/He
 		../ProjectSAS/application.h \
 		moc_predefs.h \
 		/Applications/Qt/5.10.0/clang_64/bin/moc
-	/Applications/Qt/5.10.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -I/Users/simenperschandersen/Documents/CProsjekter/ProjectSAS/ProjectSAS -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/usr/include -F/Applications/Qt/5.10.0/clang_64/lib ../ProjectSAS/application.h -o moc_application.cpp
+	/Applications/Qt/5.10.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Applications/Qt/5.10.0/clang_64/mkspecs/macx-clang -I/Users/simenperschandersen/Documents/CProsjekter/ProjectSAS/ProjectSAS -I/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers -I/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/usr/include -F/Applications/Qt/5.10.0/clang_64/lib ../ProjectSAS/application.h -o moc_application.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -701,7 +703,26 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: ../ProjectSAS/main.cpp ../ProjectSAS/application.h \
+main.o: ../ProjectSAS/main.cpp ../ProjectSAS/logininterface.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -712,7 +733,29 @@ application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		ui_application.h \
-		../ProjectSAS/logininterface.h
+		../ProjectSAS/logininterface.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QImage \
+		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/qimage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o application.o ../ProjectSAS/application.cpp
 
 appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h
@@ -736,7 +779,27 @@ user.o: ../ProjectSAS/user.cpp ../ProjectSAS/user.h
 vetvisits.o: ../ProjectSAS/vetvisits.cpp ../ProjectSAS/vetvisits.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vetvisits.o ../ProjectSAS/vetvisits.cpp
 
-logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.h
+logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logininterface.o ../ProjectSAS/logininterface.cpp
 
 moc_application.o: moc_application.cpp 

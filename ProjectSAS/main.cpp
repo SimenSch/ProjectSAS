@@ -10,13 +10,16 @@ int main(int argc, char *argv[]){
     Application w;
     w.show();
 
+    /*
     LoginInterface li;
     DbOperator swag;
     li.createUser("apekatt", "jungel");
     li.loginAttempt("apekatt", "jungel");
-    swag.mydb = QSqlDatabase::addDatabase("QSQLITE");
-    swag.mydb.setDatabaseName("../Kennel.db");
-    swag.checkDB();
+    li.mydb = QSqlDatabase::addDatabase("QSQLITE");
+    li.mydb.setDatabaseName("../Kennel.db");
+    li.checkDB();
+    */
+
 
     return a.exec();
 }

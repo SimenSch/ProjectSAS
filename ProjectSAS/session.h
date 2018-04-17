@@ -2,6 +2,7 @@
 #define SESSION_H
 #include <string>
 #include <iostream>
+#include <regex>
 
 using namespace std;
 
@@ -17,11 +18,12 @@ public:
     string getsessionType();
     void setsessionType(string newsessionType);
     string getsessionDate();
-    void setsessionID(string newsessionDate);
+    void setsessionDate(string newsessionDate);
     string getsessionTime();
     void setsessionTime(string newsessionTime);
     string getlocation();
     void setlocation(string newlocation);
+    void registersession(int assistant,string sessiontype,string newsessiondate,string sessiontime,string location);
 private:
     int sessionID;
     int assistantID;

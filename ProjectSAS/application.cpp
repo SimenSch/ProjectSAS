@@ -2,6 +2,7 @@
 #include "qsqldatabase.h"
 #include "ui_application.h"
 #include "logininterface.h"
+#include "dboperator.h"
 #include <string>
 
 #include <QPixmap>
@@ -48,21 +49,20 @@ void Application::on_switchUserButton_clicked() {
 void Application::on_loadPetsButton_clicked()
 {
 
-    LoginInterface li;
+    DbOperator db;
 
-    li.mydb = QSqlDatabase::addDatabase("QSQLITE");
-    li.mydb.setDatabaseName("../Kennel.db");
+    db.mydb = QSqlDatabase::addDatabase("QSQLITE");
+    db.mydb.setDatabaseName("../Kennel.db");
 
     QSqlQueryModel * model=new QSqlQueryModel;
 
-    QSqlQuery* qry=new QSqlQuery(li.mydb);
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    li.mydb.open();
+    db.mydb.open();
 
     qry->prepare("SELECT * FROM Pets");
     qry->exec();
     model->setQuery(*qry);
     ui->petTableView->setModel(model);
-
 
 }

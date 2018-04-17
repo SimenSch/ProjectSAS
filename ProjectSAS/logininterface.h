@@ -2,7 +2,7 @@
 #define LOGININTERFACE_H
 #include <iostream>
 #include <string>
-
+#include <QtSql>
 using namespace std;
 
 
@@ -10,8 +10,9 @@ class LoginInterface
 {
 public:
     LoginInterface();
-    bool loginAttempt(string username, string password);
+    int loginAttempt(string username, string password);
     bool createUser(string username, string password);
+    string getPassword(string username);
 
     //bool fileExists(const string* file);
 private:

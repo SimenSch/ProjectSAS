@@ -34,7 +34,10 @@ string LoginInterface::getPassword(string username){
     return "";
 }
 
+
+
 int LoginInterface::loginAttempt(string username, string password){
+
     string uName = hashing(username);
     string pWord = hashing(password);
     cout << uName << " <-uN pN-> " << pWord;
@@ -44,6 +47,7 @@ int LoginInterface::loginAttempt(string username, string password){
         return 1;
     }
     return 0;
+
 }
 
 bool LoginInterface::createUser(string username, string password){

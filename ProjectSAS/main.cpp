@@ -1,5 +1,4 @@
 
-#include "logininterface.h"
 #include "application.h"
 #include "qsqldatabase.h"
 #include "dboperator.h"

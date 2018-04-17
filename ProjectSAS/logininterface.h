@@ -2,6 +2,8 @@
 #define LOGININTERFACE_H
 #include <iostream>
 #include <string>
+#include <QtSql>
+#include <QtDebug>
 using namespace std;
 
 
@@ -11,6 +13,9 @@ public:
     LoginInterface();
     bool loginAttempt(string username, string password);
     bool createUser(string username, string password);
+    void addDatabase();
+    void checkDB();
+    QSqlDatabase mydb;
 
     //bool fileExists(const string* file);
 private:

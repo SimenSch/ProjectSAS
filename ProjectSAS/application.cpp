@@ -16,8 +16,6 @@ Application::Application(QWidget *parent) :
     QImage sasPic("sas.jpg");
     ui->sasPicLabel->setPixmap(QPixmap::fromImage(sasPic));
     string penis = "Hei hei \n hvordan går det";
-    QSqlQueryModel
-    ui->tableView->
 }
 
 Application::~Application()

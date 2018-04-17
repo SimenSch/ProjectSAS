@@ -9,6 +9,5 @@ INPUT(
 ./debug\user.o
 ./debug\vetvisits.o
 ./debug\logininterface.o
-./debug\session.o
 ./debug\moc_application.o
 );

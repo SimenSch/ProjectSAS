@@ -26,10 +26,23 @@ int Appointment::getsessionID(){
 void Appointment::setsessionID(int newsessionID){
     sessionID=newsessionID;
 }
-int Appointment::getprice(){
+string Appointment::getprice(){
     return price;
 
 }
-void Appointment::setprice(int newprice){
+void Appointment::setprice(string newprice){
     price=newprice;
+}
+void Appointment::registerappointment(int petid,int sessionid,string newprice){
+    regex pricecheck("^[1-9\\.]{6}$");
+    setpetID(petid);
+    setsessionID(sessionid);
+
+    try{
+        if(regex_match(newprice,pricecheck)){
+                setprice(newprice);
+        }
+    }
+    catch(regex_error& e){
+    }
 }

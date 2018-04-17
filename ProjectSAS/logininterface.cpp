@@ -19,25 +19,35 @@ string LoginInterface::hashing(string word){
     return returnable;
 }
 
+string LoginInterface::getPassword(string username){
+    QSqlQuery statem;
+    statem.prepare("SELECT Password FROM Users WHERE Username = ?;");
+    statem.bindValue(0, QString::fromStdString(username));
+
+    if(statem.exec()){
+        if(statem.next()){
+            return statem.value(0).toString().toStdString();
+        }
+    } else {
+        return "";
+    }
+    return "";
+}
 
 
-bool LoginInterface::loginAttempt(string username, string password){
-    /*
+
+int LoginInterface::loginAttempt(string username, string password){
+
     string uName = hashing(username);
     string pWord = hashing(password);
-    QSqlQuery query;
-    string sqlStatement = ("SELECT * FROM User WHERE Email = ");
-    sqlStatement.append(uName);
-    sqlStatement.append(" AND Password = ");
-    sqlStatement.append(pWord);
-    sqlStatement.append(";");
-    query.exec(sqlStatement);
-    if(exec){
-        return true;
+    cout << uName << " <-uN pN-> " << pWord;
+    if(getPassword(uName) == pWord){
+        return 99;
+    } else {
+        return 1;
     }
-    return false;
-    */
-    return true;
+    return 0;
+
 }
 
 bool LoginInterface::createUser(string username, string password){

@@ -3,6 +3,7 @@
 #include "ui_application.h"
 #include "dboperator.h"
 #include "logininterface.h"
+#include "dboperator.h"
 #include <string>
 
 #include <QPixmap>

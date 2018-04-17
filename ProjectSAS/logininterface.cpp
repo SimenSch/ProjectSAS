@@ -8,27 +8,9 @@
 #include <fstream>
 #include <sys/stat.h>
 #include <QtSql>
-#include <QtDebug>
-#include <QMessageBox>
 using namespace std;
 
 LoginInterface::LoginInterface() {}
-
-void LoginInterface::checkDB() {
-    QMessageBox msgBox;
-
-    string msg = "";
-
-    if(!mydb.open()) {
-        msg += "Nei.. Feilet";
-    } else {
-        msg += "Jaa!! :DDDD";
-    }
-
-    msgBox.setText(QString::fromStdString(msg));
-
-    msgBox.exec();
-}
 
 string LoginInterface::hashing(string word){
     hash<string> hashFunction;
@@ -40,35 +22,19 @@ string LoginInterface::hashing(string word){
 
 
 bool LoginInterface::loginAttempt(string username, string password){
-    string search = hashing(username);
-    search.append(", ");
-    search.append(hashing(password));
-    ifstream myFile;
-    myFile.open("notLogin.txt");
-        if(myFile.fail()){
-            cout << "Login attempt: login file failed" << endl;
-            return false;
-        }
-        bool isFound=0;
-        while(!myFile.eof() && isFound == 0){
-            string line;
-            getline(myFile,line);
-            if (line == search){
-                cout << "Getline: Login credentials found" << endl;
-                isFound = 1;
-            }
-        }
-        if(isFound){
-            cout << "isFound: Password is found " << endl;
-            return true;
-        }
-        if(myFile.eof()&&(!isFound)){
-            cout << "If Myfile.eof && !isFound: Invalid login attempt. Please try again. " << endl;
-            return false;
-        }
-    myFile.close();
+    string uName = hashing(username);
+    string pWord = hashing(password);
+    QSqlQuery query;
+    string sqlStatement = ("SELECT * FROM User WHERE Email = ");
+    sqlStatement.append(uName);
+    sqlStatement.append(" AND Password = ");
+    sqlStatement.append(pWord);
+    sqlStatement.append(";");
+    query.exec(sqlStatement);
+    if(exec){
+        return true;
+    }
     return false;
-
 }
 
 bool LoginInterface::createUser(string username, string password){

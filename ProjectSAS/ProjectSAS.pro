@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     pet.cpp \
     user.cpp \
     vetvisits.cpp \
-    logininterface.cpp
+    logininterface.cpp \
+    dboperator.cpp
 
 HEADERS += \
     application.h \
@@ -36,7 +37,8 @@ HEADERS += \
     pet.h \
     user.h \
     vetvisits.h \
-    logininterface.h
+    logininterface.h \
+    dboperator.h
 
 FORMS += \
     application.ui

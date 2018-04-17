@@ -37,6 +37,7 @@ string LoginInterface::getPassword(string username){
 int LoginInterface::loginAttempt(string username, string password){
     string uName = hashing(username);
     string pWord = hashing(password);
+    cout << uName << " <-uN pN-> " << pWord;
     if(getPassword(uName) == pWord){
         return 99;
     } else {

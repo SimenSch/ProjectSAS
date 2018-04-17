@@ -33,7 +33,7 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *LoginPage;
     QPushButton *loginButton;
-    QPushButton *registerButton;
+    QPushButton *newUserButton;
     QLineEdit *userNameEdit;
     QLineEdit *passwordEdit;
     QLabel *label_3;
@@ -83,8 +83,9 @@ public:
     QLineEdit *lineEdit_12;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_2;
-    QPushButton *pushButton;
-    QSplitter *splitter_2;
+    QPushButton *cancelRegisterButton;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
     QLabel *label_5;
     QLabel *label_6;
@@ -110,9 +111,9 @@ public:
         loginButton = new QPushButton(LoginPage);
         loginButton->setObjectName(QStringLiteral("loginButton"));
         loginButton->setGeometry(QRect(280, 400, 113, 32));
-        registerButton = new QPushButton(LoginPage);
-        registerButton->setObjectName(QStringLiteral("registerButton"));
-        registerButton->setGeometry(QRect(410, 400, 113, 32));
+        newUserButton = new QPushButton(LoginPage);
+        newUserButton->setObjectName(QStringLiteral("newUserButton"));
+        newUserButton->setGeometry(QRect(410, 400, 113, 32));
         userNameEdit = new QLineEdit(LoginPage);
         userNameEdit->setObjectName(QStringLiteral("userNameEdit"));
         userNameEdit->setGeometry(QRect(290, 310, 221, 21));
@@ -283,59 +284,79 @@ public:
 
         horizontalLayout->addWidget(pushButton_2);
 
-        pushButton = new QPushButton(verticalLayoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        cancelRegisterButton = new QPushButton(verticalLayoutWidget);
+        cancelRegisterButton->setObjectName(QStringLiteral("cancelRegisterButton"));
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(cancelRegisterButton);
 
 
         verticalLayout->addLayout(horizontalLayout);
 
-        splitter_2 = new QSplitter(registerPage);
-        splitter_2->setObjectName(QStringLiteral("splitter_2"));
-        splitter_2->setGeometry(QRect(190, 150, 66, 271));
-        splitter_2->setOrientation(Qt::Vertical);
-        label_2 = new QLabel(splitter_2);
+        widget = new QWidget(registerPage);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(150, 150, 122, 271));
+        verticalLayout_2 = new QVBoxLayout(widget);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_2 = new QLabel(widget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_2);
-        label_5 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_2);
+
+        label_5 = new QLabel(widget);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_5);
-        label_6 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_5);
+
+        label_6 = new QLabel(widget);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_6);
-        label_7 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_6);
+
+        label_7 = new QLabel(widget);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_7);
-        label_8 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_7);
+
+        label_8 = new QLabel(widget);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_8);
-        label_19 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_8);
+
+        label_19 = new QLabel(widget);
         label_19->setObjectName(QStringLiteral("label_19"));
         label_19->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_19);
-        label_20 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_19);
+
+        label_20 = new QLabel(widget);
         label_20->setObjectName(QStringLiteral("label_20"));
         label_20->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_20);
-        label_21 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_20);
+
+        label_21 = new QLabel(widget);
         label_21->setObjectName(QStringLiteral("label_21"));
         label_21->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_21);
-        label_22 = new QLabel(splitter_2);
+
+        verticalLayout_2->addWidget(label_21);
+
+        label_22 = new QLabel(widget);
         label_22->setObjectName(QStringLiteral("label_22"));
         label_22->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        splitter_2->addWidget(label_22);
+
+        verticalLayout_2->addWidget(label_22);
+
         stackedWidget->addWidget(registerPage);
 
         retranslateUi(Application);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(1);
         tabWidget_3->setCurrentIndex(1);
         tabWidget_4->setCurrentIndex(0);
 
@@ -347,7 +368,7 @@ public:
     {
         Application->setWindowTitle(QApplication::translate("Application", "Form", nullptr));
         loginButton->setText(QApplication::translate("Application", "Login", nullptr));
-        registerButton->setText(QApplication::translate("Application", "Register", nullptr));
+        newUserButton->setText(QApplication::translate("Application", "New User", nullptr));
         label_3->setText(QApplication::translate("Application", "Password", nullptr));
         label_4->setText(QApplication::translate("Application", "Username", nullptr));
         wrongUserLabel->setText(QApplication::translate("Application", "Wrong Username/Password", nullptr));
@@ -385,16 +406,16 @@ public:
         userLabel->setText(QApplication::translate("Application", "user", nullptr));
         switchUserButton->setText(QApplication::translate("Application", "Switch User", nullptr));
         pushButton_2->setText(QApplication::translate("Application", "Register", nullptr));
-        pushButton->setText(QApplication::translate("Application", "Cancel", nullptr));
-        label_2->setText(QApplication::translate("Application", "First Name", nullptr));
-        label_5->setText(QApplication::translate("Application", "Surname", nullptr));
-        label_6->setText(QApplication::translate("Application", "Address", nullptr));
-        label_7->setText(QApplication::translate("Application", "City", nullptr));
-        label_8->setText(QApplication::translate("Application", "Zip", nullptr));
-        label_19->setText(QApplication::translate("Application", "Phone", nullptr));
-        label_20->setText(QApplication::translate("Application", "E-Mail", nullptr));
-        label_21->setText(QApplication::translate("Application", "Password", nullptr));
-        label_22->setText(QApplication::translate("Application", "Re-enter", nullptr));
+        cancelRegisterButton->setText(QApplication::translate("Application", "Cancel", nullptr));
+        label_2->setText(QApplication::translate("Application", "First Name:", nullptr));
+        label_5->setText(QApplication::translate("Application", "Surname:", nullptr));
+        label_6->setText(QApplication::translate("Application", "Address:", nullptr));
+        label_7->setText(QApplication::translate("Application", "City:", nullptr));
+        label_8->setText(QApplication::translate("Application", "Zip:", nullptr));
+        label_19->setText(QApplication::translate("Application", "Phone:", nullptr));
+        label_20->setText(QApplication::translate("Application", "E-Mail:", nullptr));
+        label_21->setText(QApplication::translate("Application", "Password:", nullptr));
+        label_22->setText(QApplication::translate("Application", "Re-enter password:", nullptr));
     } // retranslateUi
 
 };

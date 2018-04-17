@@ -22,6 +22,7 @@ string LoginInterface::hashing(string word){
 
 
 bool LoginInterface::loginAttempt(string username, string password){
+    /*
     string uName = hashing(username);
     string pWord = hashing(password);
     QSqlQuery query;
@@ -35,6 +36,8 @@ bool LoginInterface::loginAttempt(string username, string password){
         return true;
     }
     return false;
+    */
+    return true;
 }
 
 bool LoginInterface::createUser(string username, string password){

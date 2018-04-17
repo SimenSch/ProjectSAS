@@ -9,5 +9,6 @@ INPUT(
 ./release\user.o
 ./release\vetvisits.o
 ./release\logininterface.o
+./release\dboperator.o
 ./release\moc_application.o
 );

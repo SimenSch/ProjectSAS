@@ -356,7 +356,7 @@ public:
 
         retranslateUi(Application);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
         tabWidget_3->setCurrentIndex(1);
         tabWidget_4->setCurrentIndex(0);
 

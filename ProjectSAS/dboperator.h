@@ -12,6 +12,9 @@ public:
     void addDatabase();
     void checkDB();
     QSqlDatabase mydb;
+    void open();
+    void close();
+    bool isOpen();
 };
 
 #endif // DBOPERATOR_H

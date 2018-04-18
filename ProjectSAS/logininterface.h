@@ -21,7 +21,6 @@ private:
     string hashedPassword;
     string hashedUsername;
 
-
     string hashing(string word);
 
 };

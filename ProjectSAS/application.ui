@@ -26,7 +26,7 @@
     <string notr="true">background-color: white;</string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="LoginPage">
     <property name="styleSheet">
@@ -77,6 +77,9 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
     </widget>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
@@ -104,7 +107,7 @@
       <string>Username</string>
      </property>
     </widget>
-    <widget class="QLabel" name="wrongUserLabel">
+    <widget class="QLabel" name="errorLabel">
      <property name="geometry">
       <rect>
        <x>310</x>
@@ -117,7 +120,10 @@
       <string notr="true">color: red;</string>
      </property>
      <property name="text">
-      <string>Wrong Username/Password</string>
+      <string>error message</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="sasPicLabel">
@@ -438,7 +444,7 @@
        <x>290</x>
        <y>150</y>
        <width>291</width>
-       <height>313</height>
+       <height>344</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">

@@ -1,4 +1,5 @@
 #include "logininterface.h"
+#include "dboperator.h"
 #include <iostream>
 #include <iomanip>
 #include <functional>
@@ -61,4 +62,43 @@ int LoginInterface::createUser(string username, string password){
         return skra.exec("select @id:=id as id from class where id = last_insert_id();");
     }
     return 0;
+}
+
+int LoginInterface::getUserID(string userName) {
+    DbOperator db;
+    db.addDatabase();
+    db.open();
+
+    QSqlQueryModel * model=new QSqlQueryModel;
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("SELECT UserID from User WHERE User.EMail = :username");
+    qry->bindValue(":username", QString::fromStdString(userName));
+    qry->exec();
+    int userID = qry->value(0).toInt();
+
+    db.close();
+
+    return userID;
+}
+
+string LoginInterface::getUserType(int userID) {
+    DbOperator db;
+    db.addDatabase();
+    db.open();
+
+    QSqlQueryModel * model=new QSqlQueryModel;
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("SELECT UserType from User WHERE User.UserID = :userid");
+    qry->bindValue(":userid", userID);
+    qry->exec();
+    string userType = qry->value(0).toString().toStdString();
+
+    db.close();
+
+    return userType;
+
 }

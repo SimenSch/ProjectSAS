@@ -12,6 +12,8 @@ public:
     LoginInterface();
     int loginAttempt(string username, string password);
     int createUser(string username, string password);
+    int getUserID(string userName);
+    string getUserType(int userID);
     string getPassword(string username);
 
     //bool fileExists(const string* file);

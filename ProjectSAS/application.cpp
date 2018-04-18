@@ -17,7 +17,7 @@ Application::Application(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-    ui->wrongUserLabel->hide();
+    ui->errorLabel->hide();
 }
 
 Application::~Application()
@@ -29,24 +29,25 @@ void Application::on_loginButton_clicked() {
 
 
     LoginInterface li;
-    if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99) {
-        ui->stackedWidget->setCurrentIndex(1);
-    }
-
-    if(ui->userNameEdit->text().toStdString() == "user") {
-        ui->stackedWidget->setCurrentIndex(1);
-        ui->mainStack->setCurrentIndex(0);
-        ui->userLabel->setText(ui->userNameEdit->text());
-        ui->wrongUserLabel->hide();
-    }
-    else if(ui->userNameEdit->text().toStdString() == "employee") {
-        ui->stackedWidget->setCurrentIndex(1);
-        ui->mainStack->setCurrentIndex(1);
-        ui->userLabel->setText(ui->userNameEdit->text());
-        ui->wrongUserLabel->hide();
+    if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
+    {
+        activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
+        if(li.getUserType(activeUser.getuserID()) == "Customer") {
+            ui->stackedWidget->setCurrentIndex(1);
+            ui->mainStack->setCurrentIndex(0);
+        }
+        else if(li.getUserType(activeUser.getuserID()) == "Employee") {
+            ui->stackedWidget->setCurrentIndex(1);
+            ui->mainStack->setCurrentIndex(1);
+        }
+        else {
+            ui->errorLabel->setText("Error finding usertype");
+            ui->errorLabel->show();
+        }
     }
     else {
-        ui->wrongUserLabel->show();
+        ui->errorLabel->setText("No matching user/password");
+        ui->errorLabel->show();
     }
 }
 

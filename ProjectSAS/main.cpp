@@ -1,5 +1,4 @@
 
-#include "logininterface.h"
 #include "application.h"
 #include "qsqldatabase.h"
 #include "dboperator.h"
@@ -10,15 +9,15 @@ int main(int argc, char *argv[]){
     Application w;
     w.show();
 
-    /*
+
     LoginInterface li;
     DbOperator swag;
     li.createUser("apekatt", "jungel");
     li.loginAttempt("apekatt", "jungel");
-    li.mydb = QSqlDatabase::addDatabase("QSQLITE");
-    li.mydb.setDatabaseName("../Kennel.db");
-    li.checkDB();
-    */
+    swag.mydb = QSqlDatabase::addDatabase("QSQLITE");
+    swag.mydb.setDatabaseName("../Kennel.db");
+    swag.checkDB();
+
 
 
     return a.exec();

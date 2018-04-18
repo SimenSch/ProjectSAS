@@ -15,9 +15,9 @@ public:
     void setsurname(string newsurname);
     string getfirstName();
     void setfirstName(string newfirstName);
-    string getadress();
-    void setfirstname(string newfirstame);
     string getaddress();
+    void setPhone(string phone);
+    string getPhone();
     void setaddress(string newaddress);
     string getcity();
     void setcity(string newcity);
@@ -40,6 +40,7 @@ private:
     string dateOfBirth;
     string department;
     string eMail;
+    string phone;
 
 };
 

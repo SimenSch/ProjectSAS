@@ -26,7 +26,7 @@
     <string notr="true">background-color: white;</string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="LoginPage">
     <property name="styleSheet">
@@ -438,7 +438,7 @@
        <x>290</x>
        <y>150</y>
        <width>291</width>
-       <height>313</height>
+       <height>322</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -449,7 +449,10 @@
        <widget class="QLineEdit" name="surNameInput"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="address"/>
+       <widget class="QLineEdit" name="dateOfBirthInput"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="addressInput"/>
       </item>
       <item>
        <widget class="QLineEdit" name="cityInput"/>
@@ -513,6 +516,16 @@
        <widget class="QLabel" name="label_5">
         <property name="text">
          <string>Surname:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_28">
+        <property name="text">
+         <string>Date of birth</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -703,7 +716,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>290</x>

@@ -12,6 +12,7 @@ class Application : public QWidget
     Q_OBJECT
 
 public:
+    void registerButton();
     explicit Application(QWidget *parent = 0);
     ~Application();
 private slots:
@@ -21,9 +22,9 @@ private slots:
     void on_cancelRegisterButton_clicked();
     void on_newUserButton_clicked();
 
-<<<<<<< HEAD
+
     void on_pushButton_2_clicked();
-=======
+
     void on_registerButton_clicked();
 
     void on_addPetToDBButton_clicked();
@@ -31,7 +32,7 @@ private slots:
     void on_addPetButton_clicked();
 
     void on_cancelPetAddButton_clicked();
->>>>>>> 2976d01c79f26748a75d41268c9dd08bf09332b5
+
 
 private:
     Ui::Application *ui;

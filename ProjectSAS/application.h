@@ -21,6 +21,14 @@ private slots:
     void on_cancelRegisterButton_clicked();
     void on_newUserButton_clicked();
 
+    void on_registerButton_clicked();
+
+    void on_addPetToDBButton_clicked();
+
+    void on_addPetButton_clicked();
+
+    void on_cancelPetAddButton_clicked();
+
 private:
     Ui::Application *ui;
 };

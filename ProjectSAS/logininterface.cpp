@@ -56,7 +56,7 @@ int LoginInterface::createUser(string username, string password){
     create.bindValue(1, QString::fromStdString(pWord));
     if(create.exec()){
         QSqlQuery skra;
-        return skra.exec("select @id:=id as id from class where id = last_insert_id();");
+        return skra.exec("SELECT @id:=id as id from Users where id = last_insert_id();");
     }
     return 0;
 }

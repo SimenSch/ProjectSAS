@@ -7,7 +7,8 @@
 #include "assistant.h"
 #include "pet.h"
 #include <string>
-
+#include "user.h"
+#include "owner.h"
 #include <QPixmap>
 #include <QImage>
 
@@ -85,6 +86,39 @@ void Application::on_newUserButton_clicked()
 }
 
 
+
+void Application::registerButton()
+{
+    User usr;
+    Owner ownr;
+    string firstname= ui->firstNameInput->text().toStdString();
+    string surname = ui->surNameInput->text().toStdString();
+    string zip = ui->zipInput->text().toStdString();
+    string city =ui->cityInput->text().toStdString();
+    string phone=ui->phoneinput->text().toStdString();
+    string eMail= ui->eMailInput->text().toStdString();
+    string dateofbirth = ui->dateOfBirthInput->text().toStdString();
+    string password =ui->passwordInput->text().toStdString();
+    string repassword = ui->reEnterPasswordInput->text().toStdString();
+    string address = ui->addressInput->text().toStdString();
+    if(password == repassword){
+    usr.seteMail(eMail);
+    usr.setpassword(password);
+    usr.setuserType("admin");
+    LoginInterface lgin;
+    ownr.setfirstName(firstname);
+    ownr.setsurname(surname);
+    ownr.setaddress(address);
+    ownr.setcity(city);
+    ownr.setdateOfBirth(dateofbirth);
+    ownr.seteMail(eMail);
+    ownr.setPhone(phone);
+    //ownr.setUserID(lgin.createUser(usr.geteMail(),usr.getpassword()));
+    }
+    else{
+
+    }
+}
 void Application::on_registerButton_clicked()
 {
 
@@ -126,4 +160,5 @@ void Application::on_cancelPetAddButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
     ui->mainStack->setCurrentIndex(0);
+
 }

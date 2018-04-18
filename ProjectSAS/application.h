@@ -19,7 +19,6 @@ private slots:
     void on_switchUserButton_clicked();
     void on_loadPetsButton_clicked();
     void on_cancelRegisterButton_clicked();
-
     void on_newUserButton_clicked();
 
 private:

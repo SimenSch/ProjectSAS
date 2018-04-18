@@ -52,3 +52,39 @@ int Pet::getmedJournalID(){
 void Pet::setmedJournalID(int newmedJournalID){
 medJournalID=newmedJournalID;
 }
+// ownerid and mID is copied from the owner and the medjournal in question.
+void Pet::registerpet(int owner,string name, string race,string dateofbrith,string newnotes, int mID){
+    regex onlyalphabeticcheck("^[a-zæøåÆØÅA-Z\\.]$");
+    regex notecheck("^[a-zæøåÆØÅA-Z0-9\\.]$");
+    regex birthcheck("^[0-9]{2}[0-9]{2}[0-9]{4}$");
+    setownerID(owner);
+    setmedJournalID(mID);
+    try{
+        if(regex_match(name,onlyalphabeticcheck)){
+            setname(name);
+        }
+    }
+    catch(regex_error& e){
+    }
+    try{
+        if(regex_match(race,onlyalphabeticcheck)){
+            setrace(race);
+        }
+    }
+    catch(regex_error& e){
+    }
+    try{
+        if(regex_match(dateofbrith,birthcheck)){
+            setdateOfBirth(dateofbrith);
+        }
+    }
+    catch(regex_error& e){
+    }
+    try{
+        if(regex_match(newnotes,notecheck)){
+            setnotes(newnotes);
+        }
+    }
+    catch(regex_error& e){
+    }
+}

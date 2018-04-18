@@ -34,7 +34,10 @@ string LoginInterface::getPassword(string username){
     return "";
 }
 
+
+
 int LoginInterface::loginAttempt(string username, string password){
+
     string uName = hashing(username);
     string pWord = hashing(password);
     if(getPassword(uName) == pWord){
@@ -43,6 +46,7 @@ int LoginInterface::loginAttempt(string username, string password){
         return 1;
     }
     return 0;
+
 }
 
 int LoginInterface::createUser(string username, string password){

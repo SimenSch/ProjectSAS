@@ -1,6 +1,7 @@
 #include "application.h"
 #include "qsqldatabase.h"
 #include "ui_application.h"
+#include "dboperator.h"
 #include "logininterface.h"
 #include "dboperator.h"
 #include <string>
@@ -23,6 +24,11 @@ Application::~Application()
 }
 
 void Application::on_loginButton_clicked() {
+    LoginInterface li;
+    if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99) {
+        ui->stackedWidget->setCurrentIndex(1);
+    }
+
     if(ui->userNameEdit->text().toStdString() == "user") {
         ui->stackedWidget->setCurrentIndex(1);
         ui->mainStack->setCurrentIndex(0);
@@ -44,12 +50,11 @@ void Application::on_switchUserButton_clicked() {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-
-
 void Application::on_loadPetsButton_clicked()
 {
 
     DbOperator db;
+
 
     db.mydb = QSqlDatabase::addDatabase("QSQLITE");
     db.mydb.setDatabaseName("../Kennel.db");
@@ -60,9 +65,24 @@ void Application::on_loadPetsButton_clicked()
 
     db.mydb.open();
 
-    qry->prepare("SELECT * FROM Pets");
+    qry->prepare("SELECT * FROM Pet");
     qry->exec();
     model->setQuery(*qry);
     ui->petTableView->setModel(model);
 
+    db.mydb.close();
+    qDebug() << (model->rowCount());
+
+
 }
+
+void Application::on_cancelRegisterButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void Application::on_newUserButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+

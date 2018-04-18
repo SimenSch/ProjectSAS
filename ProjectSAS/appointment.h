@@ -2,6 +2,7 @@
 #define APPOINTMENT_H
 #include <string>
 #include <iostream>
+#include <regex>
 using namespace std;
 
 
@@ -15,14 +16,14 @@ public:
     void setpetID(int newpetID);
     int getsessionID();
     void setsessionID(int newsessionID);
-    int getprice();
-    void setprice(int newprice);
-
+    string getprice();
+    void setprice(string newprice);
+    void registerappointment(int petid,int sessionid, string newprice);
 private:
     int orderID;
     int petID;
     int sessionID;
-    int price;
+    string price;
 };
 
 #endif // APPOINTMENT_H

@@ -1,7 +1,8 @@
 #ifndef VETVISITS_H
 #define VETVISITS_H
-#include <string>;
+#include <string>
 #include <iostream>
+#include <regex>
 using namespace std;
 
 
@@ -11,8 +12,8 @@ public:
     VetVisits();
     int getvisitID();
     void setvisitID(int newvisitID);
-    int getperID();
-    void setperID(int newperID);
+    int getpetID();
+    void setpetID(int newperID);
     string getappointmentDate();
     void setappointmentDate(string newappointmentDate);
     string getappointmentTime();
@@ -21,9 +22,10 @@ public:
     void setdoctor(string newdoctor);
     string getnotes();
     void setnotes(string newdoctor);
+    void registervetvisits(int petid,string appointmentdate, string appointmenttime,string newdoctor);
 private:
     int visitID;
-    int perID;
+    int petID;
     string appointmentDate;
     string appointmentTime;
     string doctor;

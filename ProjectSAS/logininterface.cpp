@@ -49,12 +49,11 @@ int LoginInterface::loginAttempt(string username, string password){
 }
 
 int LoginInterface::createUser(string username, string password){
-    string uName = hashing(username);
     string pWord = hashing(password);
     QSqlQuery create;
     create.prepare("INSERT INTO Users (Username, Password) "
                    "VALUES (?, ?");
-    create.bindValue(0, QString::fromStdString(uName));
+    create.bindValue(0, QString::fromStdString(username));
     create.bindValue(1, QString::fromStdString(pWord));
     if(create.exec()){
         QSqlQuery skra;

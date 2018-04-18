@@ -11,7 +11,7 @@ class LoginInterface
 public:
     LoginInterface();
     int loginAttempt(string username, string password);
-    bool createUser(string username, string password);
+    int createUser(string username, string password);
     string getPassword(string username);
 
     //bool fileExists(const string* file);

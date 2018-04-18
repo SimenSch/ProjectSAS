@@ -37,10 +37,8 @@ string LoginInterface::getPassword(string username){
 
 
 int LoginInterface::loginAttempt(string username, string password){
-
     string uName = hashing(username);
     string pWord = hashing(password);
-    cout << uName << " <-uN pN-> " << pWord;
     if(getPassword(uName) == pWord){
         return 99;
     } else {
@@ -50,31 +48,17 @@ int LoginInterface::loginAttempt(string username, string password){
 
 }
 
-bool LoginInterface::createUser(string username, string password){
-    fstream myFile;
-    myFile.open("notLogin.txt");
-    if(myFile.is_open()){
-        cout << "Create user, opening successful" << endl;
-        string hashUsername = hashing(username);
-        string hashPassword = hashing(password);
-        string inputText = hashUsername;
-        inputText.append(", ");
-        inputText.append(hashPassword);
-        while(!myFile.eof()){
-            string uNameCheck;
-            getline(myFile, uNameCheck);
-            if(uNameCheck == inputText){
-                cout << "Username already registered" << endl;
-                return false;
-            }
-        }
-        myFile.close();
-        myFile.open("notLogin.txt", ofstream::app);
-        myFile << inputText << endl;
-        myFile.flush();
-        myFile.close();
-    } else {
-        cout << "Failure to open file.";
+int LoginInterface::createUser(string username, string password){
+    string uName = hashing(username);
+    string pWord = hashing(password);
+    QSqlQuery create;
+    create.prepare("INSERT INTO Users (Username, Password) "
+                   "VALUES (?, ?");
+    create.bindValue(0, QString::fromStdString(uName));
+    create.bindValue(1, QString::fromStdString(pWord));
+    if(create.exec()){
+        QSqlQuery skra;
+        return skra.exec("select @id:=id as id from class where id = last_insert_id();");
     }
-    return true;
+    return 0;
 }

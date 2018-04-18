@@ -37,9 +37,8 @@ string LoginInterface::getPassword(string username){
 
 
 int LoginInterface::loginAttempt(string username, string password){
-    string uName = hashing(username);
     string pWord = hashing(password);
-    if(getPassword(uName) == pWord){
+    if(getPassword(username) == pWord){
         return 99;
     } else {
         return 1;

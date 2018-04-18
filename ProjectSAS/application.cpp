@@ -86,3 +86,12 @@ void Application::on_newUserButton_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
+
+void Application::registerButton()
+{
+    ui->firstNameInput->text().toStdString();
+    ui->surNameInput->text().toStdString();
+    ui->zipInput->text().toStdString();
+    ui->cityInput->text().toStdString();
+    ui->phoneinput
+}

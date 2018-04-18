@@ -37,7 +37,6 @@ string LoginInterface::getPassword(string username){
 
 
 int LoginInterface::loginAttempt(string username, string password){
-
     string uName = hashing(username);
     string pWord = hashing(password);
     if(getPassword(uName) == pWord){
@@ -53,12 +52,13 @@ int LoginInterface::createUser(string username, string password){
     string uName = hashing(username);
     string pWord = hashing(password);
     QSqlQuery create;
-    create.prepare("UPDATE Users (Username, Password) "
+    create.prepare("INSERT INTO Users (Username, Password) "
                    "VALUES (?, ?");
     create.bindValue(0, QString::fromStdString(uName));
     create.bindValue(1, QString::fromStdString(pWord));
     if(create.exec()){
-        return 69;
+        QSqlQuery skra;
+        return skra.exec("select @id:=id as id from class where id = last_insert_id();");
     }
     return 0;
 }

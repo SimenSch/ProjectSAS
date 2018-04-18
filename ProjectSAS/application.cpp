@@ -65,7 +65,7 @@ void Application::on_loadPetsButton_clicked()
 
     db.mydb.open();
 
-    qry->prepare("SELECT * FROM Pets");
+    qry->prepare("SELECT * FROM Pet");
     qry->exec();
     model->setQuery(*qry);
     ui->petTableView->setModel(model);
@@ -85,3 +85,4 @@ void Application::on_newUserButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
+

@@ -228,4 +228,14 @@ Thumbs.db
 
 # Build folders
 /build*/
+hei*
 
+Kennel.db
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/Makefile.Debug
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/Makefile.Release
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/debug/ProjectSAS.exe
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/debug/application.o
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/debug/logininterface.o
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/debug/regularExpression.o
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/object_script.ProjectSAS.Debug
+build-ProjectSAS-Desktop_Qt_5_10_0_MinGW_32bit-Debug/object_script.ProjectSAS.Release

@@ -49,49 +49,63 @@ SOURCES       = ..\ProjectSAS\main.cpp \
 		..\ProjectSAS\application.cpp \
 		..\ProjectSAS\appointment.cpp \
 		..\ProjectSAS\assistant.cpp \
+		..\ProjectSAS\dboperator.cpp \
 		..\ProjectSAS\medjournal.cpp \
 		..\ProjectSAS\owner.cpp \
 		..\ProjectSAS\pet.cpp \
 		..\ProjectSAS\user.cpp \
 		..\ProjectSAS\vetvisits.cpp \
 		..\ProjectSAS\logininterface.cpp \
+<<<<<<< HEAD
+		..\ProjectSAS\regularExpression.cpp debug\moc_application.cpp
+=======
 <<<<<<< HEAD
 =======
 		..\ProjectSAS\dboperator.cpp \
 >>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
 		..\ProjectSAS\regularExpression.cpp \
 		..\ProjectSAS\dboperator.cpp debug\moc_application.cpp
+>>>>>>> master
 OBJECTS       = debug/main.o \
 		debug/application.o \
 		debug/appointment.o \
 		debug/assistant.o \
+		debug/dboperator.o \
 		debug/medjournal.o \
 		debug/owner.o \
 		debug/pet.o \
 		debug/user.o \
 		debug/vetvisits.o \
 		debug/logininterface.o \
+<<<<<<< HEAD
+=======
 		debug/regularExpression.o \
 		debug/dboperator.o \
+>>>>>>> master
 		debug/regularExpression.o \
-		debug/dboperator.o \
 		debug/moc_application.o
 
 DIST          =  ..\ProjectSAS\application.h \
 		..\ProjectSAS\appointment.h \
 		..\ProjectSAS\assistant.h \
+		..\ProjectSAS\dboperator.h \
 		..\ProjectSAS\medjournal.h \
 		..\ProjectSAS\owner.h \
 		..\ProjectSAS\pet.h \
 		..\ProjectSAS\user.h \
 		..\ProjectSAS\vetvisits.h \
+<<<<<<< HEAD
+		..\ProjectSAS\logininterface.h ..\ProjectSAS\main.cpp \
+=======
 		..\ProjectSAS\logininterface.h \
 		..\ProjectSAS\dboperator.h \
 		..\ProjectSAS\regularExpression.h \
 		..\ProjectSAS\dboperator.h ..\ProjectSAS\main.cpp \
+>>>>>>> master
 		..\ProjectSAS\application.cpp \
 		..\ProjectSAS\appointment.cpp \
 		..\ProjectSAS\assistant.cpp \
+		..\ProjectSAS\dboperator.cpp \
 		..\ProjectSAS\medjournal.cpp \
 		..\ProjectSAS\owner.cpp \
 		..\ProjectSAS\pet.cpp \
@@ -99,11 +113,15 @@ DIST          =  ..\ProjectSAS\application.h \
 		..\ProjectSAS\vetvisits.cpp \
 		..\ProjectSAS\logininterface.cpp \
 <<<<<<< HEAD
+		..\ProjectSAS\regularExpression.cpp
+=======
+<<<<<<< HEAD
 =======
 		..\ProjectSAS\dboperator.cpp \
 >>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
 		..\ProjectSAS\regularExpression.cpp \
 		..\ProjectSAS\dboperator.cpp
+>>>>>>> master
 QMAKE_TARGET  = ProjectSAS
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = ProjectSAS.exe
@@ -124,6 +142,12 @@ qmake_all: FORCE
 
 dist:
 <<<<<<< HEAD
+	$(ZIP) ProjectSAS.zip $(SOURCES) $(DIST) ..\ProjectSAS\ProjectSAS.pro C:\Qt\5.10.0\mingw53_32\mkspecs\features\spec_pre.prf C:\Qt\5.10.0\mingw53_32\mkspecs\qdevice.pri C:\Qt\5.10.0\mingw53_32\mkspecs\features\device_config.prf C:\Qt\5.10.0\mingw53_32\mkspecs\common\g++-base.conf C:\Qt\5.10.0\mingw53_32\mkspecs\common\angle.conf C:\Qt\5.10.0\mingw53_32\mkspecs\common\windows-vulkan.conf C:\Qt\5.10.0\mingw53_32\mkspecs\common\sanitize.conf C:\Qt\5.10.0\mingw53_32\mkspecs\common\gcc-base.conf C:\Qt\5.10.0\mingw53_32\mkspecs\qconfig.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_core.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_help.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_location.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_network.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.10.0\mingw53_32\mkspecs\features\qt_functions.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\qt_config.prf C:\Qt\5.10.0\mingw53_32\mkspecs\win32-g++\qmake.conf C:\Qt\5.10.0\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.10.0\mingw53_32\mkspecs\features\exclusive_builds.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\toolchain.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\default_pre.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\win32\default_pre.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\resolve_config.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\default_post.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\build_pass.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\qml_debug.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\precompile_header.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\warn_on.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\qt.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\resources.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\moc.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\win32\opengl.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\uic.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\qmake_use.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\file_copies.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\win32\windows.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\testcase_targets.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\exceptions.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\yacc.prf C:\Qt\5.10.0\mingw53_32\mkspecs\features\lex.prf ..\ProjectSAS\ProjectSAS.pro C:\Qt\5.10.0\mingw53_32\lib\qtmaind.prl C:\Qt\5.10.0\mingw53_32\lib\Qt5Widgetsd.prl C:\Qt\5.10.0\mingw53_32\lib\Qt5Guid.prl C:\Qt\5.10.0\mingw53_32\lib\Qt5Sqld.prl C:\Qt\5.10.0\mingw53_32\lib\Qt5Cored.prl    C:\Qt\5.10.0\mingw53_32\mkspecs\features\data\dummy.cpp ..\ProjectSAS\application.h ..\ProjectSAS\appointment.h ..\ProjectSAS\assistant.h ..\ProjectSAS\dboperator.h ..\ProjectSAS\medjournal.h ..\ProjectSAS\owner.h ..\ProjectSAS\pet.h ..\ProjectSAS\user.h ..\ProjectSAS\vetvisits.h ..\ProjectSAS\logininterface.h  ..\ProjectSAS\main.cpp ..\ProjectSAS\application.cpp ..\ProjectSAS\appointment.cpp ..\ProjectSAS\assistant.cpp ..\ProjectSAS\dboperator.cpp ..\ProjectSAS\medjournal.cpp ..\ProjectSAS\owner.cpp ..\ProjectSAS\pet.cpp ..\ProjectSAS\user.cpp ..\ProjectSAS\vetvisits.cpp ..\ProjectSAS\logininterface.cpp ..\ProjectSAS\regularExpression.cpp ..\ProjectSAS\application.ui    
+
+clean: compiler_clean 
+	-$(DEL_FILE) debug\main.o debug\application.o debug\appointment.o debug\assistant.o debug\dboperator.o debug\medjournal.o debug\owner.o debug\pet.o debug\user.o debug\vetvisits.o debug\logininterface.o debug\regularExpression.o debug\moc_application.o
+=======
+<<<<<<< HEAD
 	$(ZIP) ProjectSAS.zip $(SOURCES) $(DIST) ..\ProjectSAS\ProjectSAS.pro D:\qt\5.10.0\mingw53_32\mkspecs\features\spec_pre.prf D:\qt\5.10.0\mingw53_32\mkspecs\qdevice.pri D:\qt\5.10.0\mingw53_32\mkspecs\features\device_config.prf D:\qt\5.10.0\mingw53_32\mkspecs\common\g++-base.conf D:\qt\5.10.0\mingw53_32\mkspecs\common\angle.conf D:\qt\5.10.0\mingw53_32\mkspecs\common\windows-vulkan.conf D:\qt\5.10.0\mingw53_32\mkspecs\common\sanitize.conf D:\qt\5.10.0\mingw53_32\mkspecs\common\gcc-base.conf D:\qt\5.10.0\mingw53_32\mkspecs\qconfig.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3danimation.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3danimation_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3drender.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axbase.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axserver.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_charts.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_charts_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_core.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_core_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_datavisualization.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_datavisualization_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_dbus.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_designer.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_edid_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gui.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_help.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_help_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_location.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_location_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_network.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_network_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_networkauth.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_networkauth_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_nfc.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_opengl.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_positioning.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qml.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quick.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_remoteobjects.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_remoteobjects_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_repparser.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_repparser_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_script.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_script_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_scxml.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sensors.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialport.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sql.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_svg.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_testlib.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_texttospeech.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_texttospeech_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_uitools.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_websockets.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_widgets.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_winextras.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xml.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\qt\5.10.0\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\qt\5.10.0\mingw53_32\mkspecs\features\qt_functions.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\qt_config.prf D:\qt\5.10.0\mingw53_32\mkspecs\win32-g++\qmake.conf D:\qt\5.10.0\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash D:\qt\5.10.0\mingw53_32\mkspecs\features\exclusive_builds.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\toolchain.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\default_pre.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\win32\default_pre.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\resolve_config.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\exclusive_builds_post.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\default_post.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\build_pass.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\qml_debug.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\precompile_header.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\warn_on.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\qt.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\resources.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\moc.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\win32\opengl.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\uic.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\qmake_use.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\file_copies.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\win32\windows.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\testcase_targets.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\exceptions.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\yacc.prf D:\qt\5.10.0\mingw53_32\mkspecs\features\lex.prf ..\ProjectSAS\ProjectSAS.pro D:\qt\5.10.0\mingw53_32\lib\qtmaind.prl D:\qt\5.10.0\mingw53_32\lib\Qt5Widgetsd.prl D:\qt\5.10.0\mingw53_32\lib\Qt5Guid.prl D:\qt\5.10.0\mingw53_32\lib\Qt5Sqld.prl D:\qt\5.10.0\mingw53_32\lib\Qt5Cored.prl    D:\qt\5.10.0\mingw53_32\mkspecs\features\data\dummy.cpp ..\ProjectSAS\application.h ..\ProjectSAS\appointment.h ..\ProjectSAS\assistant.h ..\ProjectSAS\medjournal.h ..\ProjectSAS\owner.h ..\ProjectSAS\pet.h ..\ProjectSAS\user.h ..\ProjectSAS\vetvisits.h ..\ProjectSAS\logininterface.h ..\ProjectSAS\dboperator.h ..\ProjectSAS\regularExpression.h ..\ProjectSAS\dboperator.h  ..\ProjectSAS\main.cpp ..\ProjectSAS\application.cpp ..\ProjectSAS\appointment.cpp ..\ProjectSAS\assistant.cpp ..\ProjectSAS\medjournal.cpp ..\ProjectSAS\owner.cpp ..\ProjectSAS\pet.cpp ..\ProjectSAS\user.cpp ..\ProjectSAS\vetvisits.cpp ..\ProjectSAS\logininterface.cpp ..\ProjectSAS\regularExpression.cpp ..\ProjectSAS\dboperator.cpp ..\ProjectSAS\application.ui    
 
 clean: compiler_clean 
@@ -134,6 +158,7 @@ clean: compiler_clean
 clean: compiler_clean 
 	-$(DEL_FILE) debug\main.o debug\application.o debug\appointment.o debug\assistant.o debug\medjournal.o debug\owner.o debug\pet.o debug\user.o debug\vetvisits.o debug\logininterface.o debug\dboperator.o debug\regularExpression.o debug\dboperator.o debug\moc_application.o
 >>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
+>>>>>>> master
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -876,6 +901,8 @@ debug/appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h
 debug/assistant.o: ../ProjectSAS/assistant.cpp ../ProjectSAS/assistant.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\assistant.o ..\ProjectSAS\assistant.cpp
 
+<<<<<<< HEAD
+=======
 debug/medjournal.o: ../ProjectSAS/medjournal.cpp ../ProjectSAS/medjournal.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\medjournal.o ..\ProjectSAS\medjournal.cpp
 
@@ -1150,6 +1177,7 @@ debug/logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininte
 debug/regularExpression.o: ../ProjectSAS/regularExpression.cpp ../ProjectSAS/regularExpression.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\regularExpression.o ..\ProjectSAS\regularExpression.cpp
 
+>>>>>>> master
 debug/dboperator.o: ../ProjectSAS/dboperator.cpp ../ProjectSAS/dboperator.h \
 		D:/qt/5.10.0/mingw53_32/include/QtSql/QtSql \
 		D:/qt/5.10.0/mingw53_32/include/QtSql/QtSqlDepends \
@@ -1408,10 +1436,22 @@ debug/dboperator.o: ../ProjectSAS/dboperator.cpp ../ProjectSAS/dboperator.h \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\dboperator.o ..\ProjectSAS\dboperator.cpp
 
-debug/regularExpression.o: ../ProjectSAS/regularExpression.cpp ../ProjectSAS/regularExpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\regularExpression.o ..\ProjectSAS\regularExpression.cpp
+debug/medjournal.o: ../ProjectSAS/medjournal.cpp ../ProjectSAS/medjournal.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\medjournal.o ..\ProjectSAS\medjournal.cpp
 
-debug/dboperator.o: ../ProjectSAS/dboperator.cpp ../ProjectSAS/dboperator.h \
+debug/owner.o: ../ProjectSAS/owner.cpp ../ProjectSAS/owner.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\owner.o ..\ProjectSAS\owner.cpp
+
+debug/pet.o: ../ProjectSAS/pet.cpp ../ProjectSAS/pet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\pet.o ..\ProjectSAS\pet.cpp
+
+debug/user.o: ../ProjectSAS/user.cpp ../ProjectSAS/user.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\user.o ..\ProjectSAS\user.cpp
+
+debug/vetvisits.o: ../ProjectSAS/vetvisits.cpp ../ProjectSAS/vetvisits.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\vetvisits.o ..\ProjectSAS\vetvisits.cpp
+
+debug/logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.h \
 		C:/Qt/5.10.0/mingw53_32/include/QtSql/QtSql \
 		C:/Qt/5.10.0/mingw53_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.10.0/mingw53_32/include/QtCore/QtCore \
@@ -1663,11 +1703,12 @@ debug/dboperator.o: ../ProjectSAS/dboperator.cpp ../ProjectSAS/dboperator.h \
 		C:/Qt/5.10.0/mingw53_32/include/QtSql/qsqltablemodel.h \
 		C:/Qt/5.10.0/mingw53_32/include/QtSql/qsqlresult.h \
 		C:/Qt/5.10.0/mingw53_32/include/QtSql/qtsqlversion.h \
-		C:/Qt/5.10.0/mingw53_32/include/QtCore/QtDebug \
-		C:/Qt/5.10.0/mingw53_32/include/QtWidgets/QMessageBox \
-		C:/Qt/5.10.0/mingw53_32/include/QtWidgets/qmessagebox.h \
-		C:/Qt/5.10.0/mingw53_32/include/QtWidgets/qdialog.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\dboperator.o ..\ProjectSAS\dboperator.cpp
+		../ProjectSAS/dboperator.h \
+		C:/Qt/5.10.0/mingw53_32/include/QtCore/QtDebug
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\logininterface.o ..\ProjectSAS\logininterface.cpp
+
+debug/regularExpression.o: ../ProjectSAS/regularExpression.cpp ../ProjectSAS/regularExpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\regularExpression.o ..\ProjectSAS\regularExpression.cpp
 
 debug/moc_application.o: debug/moc_application.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_application.o debug\moc_application.cpp

@@ -20,6 +20,7 @@ SOURCES += main.cpp \
     application.cpp \
     appointment.cpp \
     assistant.cpp \
+    dboperator.cpp \
     medjournal.cpp \
     owner.cpp \
     pet.cpp \
@@ -27,22 +28,32 @@ SOURCES += main.cpp \
     vetvisits.cpp \
     logininterface.cpp \
 <<<<<<< HEAD
+    regularExpression.cpp
+
+=======
+<<<<<<< HEAD
     regularExpression.cpp \
     dboperator.cpp
 =======
 >>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
     dboperator.cpp \
+>>>>>>> master
 
 
 HEADERS += \
     application.h \
     appointment.h \
     assistant.h \
+    dboperator.h \
     medjournal.h \
     owner.h \
     pet.h \
     user.h \
     vetvisits.h \
+<<<<<<< HEAD
+    logininterface.h
+
+=======
     logininterface.h \
 <<<<<<< HEAD
     dboperator.h \
@@ -50,6 +61,7 @@ HEADERS += \
 >>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
     regularExpression.h \
     dboperator.h
+>>>>>>> master
 
 FORMS += \
     application.ui

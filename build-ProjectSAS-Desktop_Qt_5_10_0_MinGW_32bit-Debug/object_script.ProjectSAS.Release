@@ -3,14 +3,13 @@ INPUT(
 ./release\application.o
 ./release\appointment.o
 ./release\assistant.o
+./release\dboperator.o
 ./release\medjournal.o
 ./release\owner.o
 ./release\pet.o
 ./release\user.o
 ./release\vetvisits.o
 ./release\logininterface.o
-./release\dboperator.o
 ./release\regularExpression.o
-./release\dboperator.o
 ./release\moc_application.o
 );

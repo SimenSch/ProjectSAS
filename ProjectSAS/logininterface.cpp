@@ -56,13 +56,14 @@ int LoginInterface::createUser(string username, string password){
     string pWord = hashing(password);
     DbOperator db;
     QSqlQuery* create=new QSqlQuery(db.mydb);
-    create->prepare("INSERT INTO User (EMail, Password, UserType) "
-                   "VALUES (?, ?, 'Customer'");
+    create->prepare("INSERT INTO User (EMail, Password, UserType) VALUES (?, ?, ?)");
     create->bindValue(0, QString::fromStdString(username));
     create->bindValue(1, QString::fromStdString(pWord));
+    create->bindValue(2, "Customer");
     if(create->exec()){
-        QSqlQuery skra;
-        return skra->exec("SELECT @id:=id as id from User where id = last_insert_id();");
+        return create->lastInsertId().toInt();
+    } else {
+        cout << "Create User failed.";
     }
     return 0;
 }

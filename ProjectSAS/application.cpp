@@ -100,6 +100,11 @@ void Application::on_newUserButton_clicked()
 
 void Application::on_registerButton_clicked()
 {
+
+    DbOperator db;
+    db.addDatabase();
+    db.open();
+    LoginInterface li;
     User usr;
     Owner ownr;
     string firstname= ui->firstNameInput->text().toStdString();
@@ -125,11 +130,9 @@ void Application::on_registerButton_clicked()
     ownr.seteMail(eMail);
     ownr.setPhone(phone);
 
-    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
-    ownr.setUserID(userid);
-    DbOperator db;
-    db.addDatabase();
-    db.open();
+    int userid = lgin.createUser(usr.geteMail(),usr.getpassword());
+    //ownr.setUserID(userid);
+
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
@@ -165,7 +168,7 @@ void Application::on_addPetToDBButton_clicked()
 
     qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, ?, :birthdate, :pettype, :race, :notes)");
     qry->bindValue(":name", QString::fromStdString(pet.getname()));
-    qry->bindValue(1, db.getOwnerID(activeUser.getuserID()));
+    //qry->bindValue(1, db.getOwnerID(activeUser.getuserID()));
     qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
     qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
     qry->bindValue(":race", QString::fromStdString(pet.getrace()));

@@ -7,6 +7,9 @@ Owner::Owner()
 int Owner::getownerID(){
     return ownerID;
 }
+void Owner::setUserID(int newownerid){
+    ownerID= newownerid;
+}
 void Owner::setownerID(int newownerID){
     ownerID=newownerID;
 }

@@ -18,3 +18,15 @@ void DbOperator::checkDB() {
     msgBox.setText(QString::fromStdString(msg));
     msgBox.exec();
 }
+
+void DbOperator::addDatabase() {
+    mydb=QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("../Kennel.db");
+}
+
+void DbOperator::open() { mydb.open(); }
+
+void DbOperator::close() {
+    mydb.close();
+    QSqlDatabase::removeDatabase("QSQLITE");
+}

@@ -4,6 +4,12 @@ Owner::Owner()
 {
 
 }
+int Owner::getuserID(){
+    return userID;
+}
+void Owner::setUserID(int newuserid){
+    userID=newuserid;
+}
 int Owner::getownerID(){
     return ownerID;
 }
@@ -21,6 +27,12 @@ string Owner::getfirstName(){
 }
 void Owner::setfirstName(string newfirstName){
     firstName=newfirstName;
+}
+string Owner::getPhone(){
+    return phone;
+}
+void Owner::setPhone(string newphone){
+phone=newphone;
 }
 string Owner::getaddress(){
     return address;

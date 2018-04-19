@@ -18,7 +18,7 @@ public:
     void setpassword(string newpassword);
     string getuserType();
     void setuserType(string newusertype);
-    void registeruser(string email,string password,bool usertype);
+    void registeruser(string email,string password,string usertype);
 private:
     int userID;
     string eMail;

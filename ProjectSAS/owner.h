@@ -9,15 +9,17 @@ class Owner
 {
 public:
     Owner();
+    int getuserID();
+    void setUserID(int newuserid);
     int getownerID();
     void setownerID(int newownerID);
     string getsurname();
     void setsurname(string newsurname);
     string getfirstName();
     void setfirstName(string newfirstName);
-    string getadress();
-    void setfirstname(string newfirstame);
     string getaddress();
+    void setPhone(string phone);
+    string getPhone();
     void setaddress(string newaddress);
     string getcity();
     void setcity(string newcity);
@@ -31,6 +33,7 @@ public:
     void seteMail(string neweMail);
     void registerowner(string surname,string firstname,string address,string city, string zip, string dateofbirth, string email);
 private:
+    int userID;
     int ownerID;
     string surname;
     string firstName;
@@ -40,6 +43,7 @@ private:
     string dateOfBirth;
     string department;
     string eMail;
+    string phone;
 
 };
 

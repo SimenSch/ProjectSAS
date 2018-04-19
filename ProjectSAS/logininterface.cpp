@@ -54,14 +54,15 @@ int LoginInterface::loginAttempt(string username, string password){
 
 int LoginInterface::createUser(string username, string password){
     string pWord = hashing(password);
-    QSqlQuery create;
-    create.prepare("INSERT INTO User (Username, Password) "
-                   "VALUES (?, ?");
-    create.bindValue(0, QString::fromStdString(username));
-    create.bindValue(1, QString::fromStdString(pWord));
-    if(create.exec()){
+    DbOperator db;
+    QSqlQuery* create=new QSqlQuery(db.mydb);
+    create->prepare("INSERT INTO User (EMail, Password, UserType) "
+                   "VALUES (?, ?, 'Customer'");
+    create->bindValue(0, QString::fromStdString(username));
+    create->bindValue(1, QString::fromStdString(pWord));
+    if(create->exec()){
         QSqlQuery skra;
-        return skra.exec("SELECT @id:=id as id from User where id = last_insert_id();");
+        return skra->exec("SELECT @id:=id as id from User where id = last_insert_id();");
     }
     return 0;
 }

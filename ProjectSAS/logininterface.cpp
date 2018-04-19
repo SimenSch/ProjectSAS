@@ -53,17 +53,18 @@ int LoginInterface::loginAttempt(string username, string password){
 }
 
 int LoginInterface::createUser(string username, string password){
+    DbOperator db;
+    db.mydb.open();
     string pWord = hashing(password);
-    QSqlQuery create;
-    create.prepare("INSERT INTO User (Username, Password) "
-                   "VALUES (?, ?");
-    create.bindValue(0, QString::fromStdString(username));
-    create.bindValue(1, QString::fromStdString(pWord));
-    if(create.exec()){
-        QSqlQuery skra;
-        return skra.exec("SELECT @id:=id as id from User where id = last_insert_id();");
-    }
-    return 0;
+    QSqlQuery* create=new QSqlQuery(db.mydb);
+    create->prepare("INSERT INTO User (Username, Password, UserType) VALUES (?, ?, ?)");
+    create->bindValue(0, QString::fromStdString(username));
+    create->bindValue(1, QString::fromStdString(pWord));
+    create->bindValue(2, QString::fromStdString("Customer"));
+
+        QSqlQuery* skra=new QSqlQuery(db.mydb);
+        return skra->exec("SELECT @id:=id as id from User where id = last_insert_id();");
+
 }
 
 int LoginInterface::getUserID(string userName) {
@@ -79,7 +80,6 @@ int LoginInterface::getUserID(string userName) {
         cout << "Query 0 i getuserID: " << qry->value(0).toInt();
         userID = qry->value(0).toInt();
     }
-
 
     cout << "User ID: " << userID;
 

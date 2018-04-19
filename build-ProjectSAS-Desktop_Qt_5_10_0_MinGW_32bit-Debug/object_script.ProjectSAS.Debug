@@ -9,6 +9,7 @@ INPUT(
 ./debug\user.o
 ./debug\vetvisits.o
 ./debug\logininterface.o
+./debug\regularExpression.o
 ./debug\dboperator.o
 ./debug\moc_application.o
 );

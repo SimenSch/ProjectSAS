@@ -26,9 +26,9 @@ SOURCES += main.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp \
-
+    regularExpression.cpp \
+    dboperator.cpp
     dboperator.cpp \
-    regularExpression.cpp
 
     dboperator.cpp
 
@@ -43,6 +43,8 @@ HEADERS += \
     user.h \
     vetvisits.h \
     logininterface.h \
+    dboperator.h \
+    regularExpression.h \
     dboperator.h
 
 FORMS += \

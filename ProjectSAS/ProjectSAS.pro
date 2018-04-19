@@ -28,6 +28,7 @@ SOURCES += main.cpp \
     logininterface.cpp \
     dboperator.cpp
 
+
 HEADERS += \
     application.h \
     appointment.h \

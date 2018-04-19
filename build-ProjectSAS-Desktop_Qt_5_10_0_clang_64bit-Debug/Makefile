@@ -767,7 +767,9 @@ application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QImage \
-		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/qimage.h
+		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o application.o ../ProjectSAS/application.cpp
 
 appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h

@@ -119,7 +119,8 @@ void Application::on_registerButton_clicked()
     ownr.setdateOfBirth(dateofbirth);
     ownr.seteMail(eMail);
     ownr.setPhone(phone);
-    //ownr.setUserID(lgin.createUser(usr.geteMail(),usr.getpassword()));
+    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+    ownr.setUserID(userid);
     }
     else{
 

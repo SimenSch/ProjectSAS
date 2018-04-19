@@ -27,6 +27,10 @@ Application::~Application()
 
 void Application::on_loginButton_clicked() {
 
+    DbOperator db;
+    db.addDatabase();
+    db.open();
+
 
     LoginInterface li;
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
@@ -49,6 +53,7 @@ void Application::on_loginButton_clicked() {
         ui->errorLabel->setText("No matching user/password");
         ui->errorLabel->show();
     }
+    db.close();
 }
 
 void Application::on_switchUserButton_clicked() {

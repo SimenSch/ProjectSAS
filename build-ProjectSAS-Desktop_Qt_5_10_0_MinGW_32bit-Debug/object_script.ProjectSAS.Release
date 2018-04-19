@@ -10,5 +10,6 @@ INPUT(
 ./release\vetvisits.o
 ./release\logininterface.o
 ./release\dboperator.o
+./release\regex.o
 ./release\moc_application.o
 );

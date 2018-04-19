@@ -29,7 +29,7 @@ string User::getuserType(){
 void User::setuserType(string newusertype){
     userType=newusertype;
 }
-void User::registeruser(string email,string password,bool usertype){
+void User::registeruser(string email,string password,string usertype){
     regex passwordcheck("^[a-zæøåÆØÅA-Z]{4,10}[0-9]{2,5}$");
     regex emailcheck("^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])$");
      try{
@@ -38,7 +38,7 @@ void User::registeruser(string email,string password,bool usertype){
          }
      }
      catch(regex_error& e){
-         cout<<"please type in a valid email";
+
      }
      try{
          if(regex_match(password,passwordcheck)){
@@ -46,13 +46,13 @@ void User::registeruser(string email,string password,bool usertype){
          }
      }
      catch(regex_error& e){
-         cout<<"please type in a valid password with minimum 4 letters followed by minimum 2 numbers maximum 10 letters and 5 numbers";
+
      }
-    if(usertype){
-        setuserType("admin");
+    if(usertype=="admin"||usertype=="owner"||usertype=="assistant"){
+        setuserType(usertype);
     }
-    else if(!usertype){
-        setuserType("normal");
+    else{
+
     }
 
 

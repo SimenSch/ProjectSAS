@@ -22,6 +22,12 @@ string Owner::getfirstName(){
 void Owner::setfirstName(string newfirstName){
     firstName=newfirstName;
 }
+string Owner::getPhone(){
+    return phone;
+}
+void Owner::setPhone(string newphone){
+phone=newphone;
+}
 string Owner::getaddress(){
     return address;
 }

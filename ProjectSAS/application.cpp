@@ -100,6 +100,7 @@ void Application::on_newUserButton_clicked()
 
 void Application::on_registerButton_clicked()
 {
+    /*
     User usr;
     Owner ownr;
     string firstname= ui->firstNameInput->text().toStdString();
@@ -146,10 +147,12 @@ void Application::on_registerButton_clicked()
     else{
 
     }
+    */
 }
 
 void Application::on_addPetToDBButton_clicked()
 {
+    LoginInterface li;
     Pet pet;
     pet.setname(ui->petNameEdit->text().toStdString());
     pet.setpetType(ui->typeCombobox->currentText().toStdString());
@@ -163,9 +166,9 @@ void Application::on_addPetToDBButton_clicked()
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, ?, :birthdate, :pettype, :race, :notes)");
+    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, :ownerid, :birthdate, :pettype, :race, :notes)");
     qry->bindValue(":name", QString::fromStdString(pet.getname()));
-    qry->bindValue(1, db.getOwnerID(activeUser.getuserID()));
+    qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
     qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
     qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
     qry->bindValue(":race", QString::fromStdString(pet.getrace()));

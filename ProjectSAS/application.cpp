@@ -35,6 +35,7 @@ void Application::on_loginButton_clicked() {
 
 
     LoginInterface li;
+    cout << "login attempt return: " << li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString());
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
     {
         activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
@@ -66,6 +67,7 @@ void Application::on_switchUserButton_clicked() {
 void Application::on_loadPetsButton_clicked()
 {
 
+    LoginInterface li;
     DbOperator db;
     db.addDatabase();
     db.open();
@@ -74,7 +76,8 @@ void Application::on_loadPetsButton_clicked()
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("SELECT Name, PetType, Race, BirthDate, Notes FROM Pet");
+    qry->prepare("SELECT Name, PetType, Race, BirthDate, Notes FROM Pet WHERE OwnerID = :ownerid");
+    qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
     qry->exec();
     model->setQuery(*qry);
     ui->petTableView->setModel(model);
@@ -121,8 +124,24 @@ void Application::on_registerButton_clicked()
     ownr.setdateOfBirth(dateofbirth);
     ownr.seteMail(eMail);
     ownr.setPhone(phone);
+
     int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
     ownr.setUserID(userid);
+    DbOperator db;
+    db.addDatabase();
+    db.open();
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("INSERT INTO Owner (Name, User, BirthDate, PetType, Race, Notes) VALUES (:name, 1, :birthdate, :pettype, :race, :notes)");
+    qry->bindValue(":name", QString::fromStdString(pet.getname()));
+    qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
+    qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
+    qry->bindValue(":race", QString::fromStdString(pet.getrace()));
+    qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
+    qry->exec();
+
+    db.close();
     }
     else{
 

@@ -27,8 +27,17 @@ SOURCES += main.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp \
+<<<<<<< HEAD
     regularExpression.cpp
 
+=======
+<<<<<<< HEAD
+    regularExpression.cpp \
+    dboperator.cpp
+=======
+>>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
+    dboperator.cpp \
+>>>>>>> master
 
 
 HEADERS += \
@@ -41,8 +50,18 @@ HEADERS += \
     pet.h \
     user.h \
     vetvisits.h \
+<<<<<<< HEAD
     logininterface.h
 
+=======
+    logininterface.h \
+<<<<<<< HEAD
+    dboperator.h \
+=======
+>>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
+    regularExpression.h \
+    dboperator.h
+>>>>>>> master
 
 FORMS += \
     application.ui

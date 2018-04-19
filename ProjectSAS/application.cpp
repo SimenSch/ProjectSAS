@@ -101,6 +101,7 @@ void Application::on_newUserButton_clicked()
 void Application::on_registerButton_clicked()
 {
     /*
+<<<<<<< HEAD
 
     DbOperator db;
     db.addDatabase();
@@ -134,18 +135,52 @@ void Application::on_registerButton_clicked()
     int userid = lgin.createUser(usr.geteMail(),usr.getpassword());
     //ownr.setUserID(userid);
 
+=======
+    User usr;
+    Owner ownr;
+    DbOperator db;
+    db.addDatabase();
+    db.open();
+>>>>>>> master
+
+
+    if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
+    usr.seteMail(ui->eMailInput->text().toStdString());
+    usr.setpassword(ui->passwordInput->text().toStdString());
+    usr.setuserType("Customer");
+    LoginInterface lgin;
+    ownr.setzip(ui->zipInput->text().toStdString());
+    ownr.setfirstName(ui->firstNameInput->text().toStdString());
+    ownr.setsurname(ui->surNameInput->text().toStdString());
+    ownr.setaddress(ui->addressInput->text().toStdString());
+    ownr.setcity(ui->cityInput->text().toStdString());
+    ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
+
+    ownr.seteMail(ui->eMailInput->text().toStdString());
+    ownr.setPhone(ui->phoneinput->text().toStdString());
+    DbOperator db;
+    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+
+    ownr.setUserID(userid);
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Owner (Name, User, BirthDate, PetType, Race, Notes) VALUES (:name, 1, :birthdate, :pettype, :race, :notes)");
-    qry->bindValue(":name", QString::fromStdString(pet.getname()));
-    qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
-    qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
-    qry->bindValue(":race", QString::fromStdString(pet.getrace()));
-    qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
+    qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
+    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
+    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
+    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
+    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
+    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
+    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
+    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
+    qry->bindValue(":userid", ownr.getuserID());
     qry->exec();
 
     db.close();
+<<<<<<< HEAD
+    ui->stackedWidget->setCurrentIndex(0);
+=======
+>>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
     }
     else{
         // fuck you mama
@@ -155,6 +190,7 @@ void Application::on_registerButton_clicked()
 
 void Application::on_addPetToDBButton_clicked()
 {
+    LoginInterface li;
     Pet pet;
     pet.setname(ui->petNameEdit->text().toStdString());
     pet.setpetType(ui->typeCombobox->currentText().toStdString());
@@ -168,9 +204,13 @@ void Application::on_addPetToDBButton_clicked()
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, ?, :birthdate, :pettype, :race, :notes)");
+    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, :ownerid, :birthdate, :pettype, :race, :notes)");
     qry->bindValue(":name", QString::fromStdString(pet.getname()));
+<<<<<<< HEAD
     //qry->bindValue(1, db.getOwnerID(activeUser.getuserID()));
+=======
+    qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
+>>>>>>> master
     qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
     qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
     qry->bindValue(":race", QString::fromStdString(pet.getrace()));

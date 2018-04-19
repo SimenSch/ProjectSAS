@@ -10,6 +10,11 @@ INPUT(
 ./release\user.o
 ./release\vetvisits.o
 ./release\logininterface.o
+<<<<<<< HEAD
+=======
+./release\regularExpression.o
+./release\dboperator.o
+>>>>>>> master
 ./release\regularExpression.o
 ./release\moc_application.o
 );

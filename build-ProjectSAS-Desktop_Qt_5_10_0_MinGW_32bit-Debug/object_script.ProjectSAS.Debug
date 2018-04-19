@@ -10,6 +10,11 @@ INPUT(
 ./debug\user.o
 ./debug\vetvisits.o
 ./debug\logininterface.o
+<<<<<<< HEAD
+=======
+./debug\regularExpression.o
+./debug\dboperator.o
+>>>>>>> master
 ./debug\regularExpression.o
 ./debug\moc_application.o
 );

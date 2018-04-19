@@ -26,7 +26,8 @@ SOURCES += main.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp \
-    dboperator.cpp
+    dboperator.cpp \
+    regex.cpp
 
 HEADERS += \
     application.h \
@@ -38,7 +39,8 @@ HEADERS += \
     user.h \
     vetvisits.h \
     logininterface.h \
-    dboperator.h
+    dboperator.h \
+    regularExpression.h
 
 FORMS += \
     application.ui

@@ -679,7 +679,6 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_application.cpp
 moc_application.cpp: /Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../ProjectSAS/user.h \
 		../ProjectSAS/application.h \
 		moc_predefs.h \
 		/Applications/Qt/5.10.0/clang_64/bin/moc
@@ -709,9 +708,13 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 main.o: ../ProjectSAS/main.cpp ../ProjectSAS/logininterface.h \
+		../ProjectSAS/application.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../ProjectSAS/dboperator.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
@@ -725,11 +728,6 @@ main.o: ../ProjectSAS/main.cpp ../ProjectSAS/logininterface.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
-		../ProjectSAS/application.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../ProjectSAS/user.h \
-		../ProjectSAS/dboperator.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
 		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -739,31 +737,9 @@ main.o: ../ProjectSAS/main.cpp ../ProjectSAS/logininterface.h \
 application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../ProjectSAS/user.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
 		ui_application.h \
-		../ProjectSAS/dboperator.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
-		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../ProjectSAS/logininterface.h \
-		../ProjectSAS/assistant.h \
-		../ProjectSAS/pet.h \
-		../ProjectSAS/owner.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QImage \
@@ -807,10 +783,7 @@ logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
-		../ProjectSAS/dboperator.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
-		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logininterface.o ../ProjectSAS/logininterface.cpp
 
 dboperator.o: ../ProjectSAS/dboperator.cpp ../ProjectSAS/dboperator.h \

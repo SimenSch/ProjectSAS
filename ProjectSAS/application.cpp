@@ -37,11 +37,12 @@ void Application::on_loginButton_clicked() {
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
     {
         activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
-        if(li.getUserType(activeUser.getuserID()) == "Customer") {
+        cout << "user type fra loginbutton clicked: " << li.getUserType(activeUser.getuserID()) << endl;
+        if(li.getUserType(activeUser.getuserID()).compare("Customer")) {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(0);
         }
-        else if(li.getUserType(activeUser.getuserID()) == "Employee") {
+        else if(li.getUserType(activeUser.getuserID()).compare("Employee")) {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(1);
         }
@@ -119,6 +120,7 @@ void Application::on_registerButton_clicked()
     ownr.setdateOfBirth(dateofbirth);
     ownr.seteMail(eMail);
     ownr.setPhone(phone);
+
     int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
     ownr.setUserID(userid);
     DbOperator db;
@@ -136,6 +138,7 @@ void Application::on_registerButton_clicked()
     qry->exec();
 
     db.close();
+
     }
     else{
 

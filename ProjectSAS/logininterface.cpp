@@ -21,13 +21,17 @@ string LoginInterface::hashing(string word){
 }
 
 string LoginInterface::getPassword(string username){
-    QSqlQuery statem;
-    statem.prepare("SELECT Password FROM Users WHERE Username = ?;");
-    statem.bindValue(0, QString::fromStdString(username));
+    DbOperator db;
+    QSqlQuery* statem=new QSqlQuery(db.mydb);
+    statem->prepare("SELECT Password FROM User WHERE EMail = ?;");
+    statem->bindValue(0, QString::fromStdString(username));
 
-    if(statem.exec()){
-        if(statem.next()){
-            return statem.value(0).toString().toStdString();
+    if(statem->exec()){
+
+        cout << " plz print dis sheeeet -> " << statem->value(0).toString().toStdString();
+        if(statem->next()){
+            cout << statem->value(0).toString().toStdString();
+            return statem->value(0).toString().toStdString();
         }
     } else {
         return "";
@@ -51,52 +55,53 @@ int LoginInterface::loginAttempt(string username, string password){
 int LoginInterface::createUser(string username, string password){
     string pWord = hashing(password);
     QSqlQuery create;
-    create.prepare("INSERT INTO Users (Username, Password) "
+    create.prepare("INSERT INTO User (Username, Password) "
                    "VALUES (?, ?");
     create.bindValue(0, QString::fromStdString(username));
     create.bindValue(1, QString::fromStdString(pWord));
     if(create.exec()){
         QSqlQuery skra;
-        return skra.exec("SELECT @id:=id as id from Users where id = last_insert_id();");
+        return skra.exec("SELECT @id:=id as id from User where id = last_insert_id();");
     }
     return 0;
 }
 
 int LoginInterface::getUserID(string userName) {
     DbOperator db;
-    db.addDatabase();
-    db.open();
-
-    QSqlQueryModel * model=new QSqlQueryModel;
+    int userID;
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("SELECT UserID from User WHERE User.EMail = :username");
+    qry->prepare("SELECT UserID from User WHERE EMail = :username");
     qry->bindValue(":username", QString::fromStdString(userName));
-    qry->exec();
-    int userID = qry->value(0).toInt();
+    if(qry->exec()) {
+        qry->next();
+        cout << "Query 0 i getuserID: " << qry->value(0).toInt();
+        userID = qry->value(0).toInt();
+    }
 
-    db.close();
+
+    cout << "User ID: " << userID;
 
     return userID;
 }
 
 string LoginInterface::getUserType(int userID) {
     DbOperator db;
-    db.addDatabase();
-    db.open();
-
-    QSqlQueryModel * model=new QSqlQueryModel;
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("SELECT UserType from User WHERE User.UserID = :userid");
+    qry->prepare("SELECT UserType from User WHERE UserID = :userid");
     qry->bindValue(":userid", userID);
-    qry->exec();
-    string userType = qry->value(0).toString().toStdString();
+    if(qry->exec()){
+        qry->next();
+        cout << "UserType: " << qry->value(0).toString().toStdString();
+        return qry->value(0).toString().toStdString();
+    } else {
+        cout << "exec failed";
+        return "Get User Type failed";
+    }
 
-    db.close();
-
-    return userType;
+    return "";
 
 }

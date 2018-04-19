@@ -121,6 +121,21 @@ void Application::on_registerButton_clicked()
     ownr.setPhone(phone);
     int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
     ownr.setUserID(userid);
+    DbOperator db;
+    db.addDatabase();
+    db.open();
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("INSERT INTO Owner (Name, User, BirthDate, PetType, Race, Notes) VALUES (:name, 1, :birthdate, :pettype, :race, :notes)");
+    qry->bindValue(":name", QString::fromStdString(pet.getname()));
+    qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
+    qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
+    qry->bindValue(":race", QString::fromStdString(pet.getrace()));
+    qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
+    qry->exec();
+
+    db.close();
     }
     else{
 

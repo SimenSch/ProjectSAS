@@ -76,14 +76,15 @@ public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QLineEdit *firstNameInput;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_5;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_6;
-    QLineEdit *lineEdit_7;
-    QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_12;
+    QLineEdit *surNameInput;
+    QLineEdit *dateOfBirthInput;
+    QLineEdit *addressInput;
+    QLineEdit *cityInput;
+    QLineEdit *zipInput;
+    QLineEdit *phoneinput;
+    QLineEdit *eMailInput;
+    QLineEdit *passwordInput;
+    QLineEdit *reEnterPasswordInput;
     QHBoxLayout *horizontalLayout;
     QPushButton *registerButton;
     QPushButton *cancelRegisterButton;
@@ -91,6 +92,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
     QLabel *label_5;
+    QLabel *label_28;
     QLabel *label_6;
     QLabel *label_7;
     QLabel *label_8;
@@ -113,7 +115,7 @@ public:
     QLineEdit *raceEdit;
     QDateEdit *petBirthEdit;
     QLineEdit *petNotesEdit;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *addPetToDBButton;
     QPushButton *cancelPetAddButton;
@@ -264,45 +266,50 @@ public:
 
         verticalLayout->addWidget(firstNameInput);
 
-        lineEdit = new QLineEdit(verticalLayoutWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        surNameInput = new QLineEdit(verticalLayoutWidget);
+        surNameInput->setObjectName(QStringLiteral("surNameInput"));
 
-        verticalLayout->addWidget(lineEdit);
+        verticalLayout->addWidget(surNameInput);
 
-        lineEdit_5 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
+        dateOfBirthInput = new QLineEdit(verticalLayoutWidget);
+        dateOfBirthInput->setObjectName(QStringLiteral("dateOfBirthInput"));
 
-        verticalLayout->addWidget(lineEdit_5);
+        verticalLayout->addWidget(dateOfBirthInput);
 
-        lineEdit_2 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        addressInput = new QLineEdit(verticalLayoutWidget);
+        addressInput->setObjectName(QStringLiteral("addressInput"));
 
-        verticalLayout->addWidget(lineEdit_2);
+        verticalLayout->addWidget(addressInput);
 
-        lineEdit_3 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        cityInput = new QLineEdit(verticalLayoutWidget);
+        cityInput->setObjectName(QStringLiteral("cityInput"));
 
-        verticalLayout->addWidget(lineEdit_3);
+        verticalLayout->addWidget(cityInput);
 
-        lineEdit_6 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
+        zipInput = new QLineEdit(verticalLayoutWidget);
+        zipInput->setObjectName(QStringLiteral("zipInput"));
 
-        verticalLayout->addWidget(lineEdit_6);
+        verticalLayout->addWidget(zipInput);
 
-        lineEdit_7 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
+        phoneinput = new QLineEdit(verticalLayoutWidget);
+        phoneinput->setObjectName(QStringLiteral("phoneinput"));
 
-        verticalLayout->addWidget(lineEdit_7);
+        verticalLayout->addWidget(phoneinput);
 
-        lineEdit_4 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        eMailInput = new QLineEdit(verticalLayoutWidget);
+        eMailInput->setObjectName(QStringLiteral("eMailInput"));
 
-        verticalLayout->addWidget(lineEdit_4);
+        verticalLayout->addWidget(eMailInput);
 
-        lineEdit_12 = new QLineEdit(verticalLayoutWidget);
-        lineEdit_12->setObjectName(QStringLiteral("lineEdit_12"));
+        passwordInput = new QLineEdit(verticalLayoutWidget);
+        passwordInput->setObjectName(QStringLiteral("passwordInput"));
 
-        verticalLayout->addWidget(lineEdit_12);
+        verticalLayout->addWidget(passwordInput);
+
+        reEnterPasswordInput = new QLineEdit(verticalLayoutWidget);
+        reEnterPasswordInput->setObjectName(QStringLiteral("reEnterPasswordInput"));
+
+        verticalLayout->addWidget(reEnterPasswordInput);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -336,6 +343,12 @@ public:
         label_5->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         verticalLayout_2->addWidget(label_5);
+
+        label_28 = new QLabel(layoutWidget);
+        label_28->setObjectName(QStringLiteral("label_28"));
+        label_28->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_2->addWidget(label_28);
 
         label_6 = new QLabel(layoutWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
@@ -453,18 +466,18 @@ public:
 
         verticalLayout_3->addWidget(petNotesEdit);
 
-        widget = new QWidget(registerPetPage);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(290, 280, 285, 33));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        layoutWidget1 = new QWidget(registerPetPage);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(290, 280, 285, 33));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        addPetToDBButton = new QPushButton(widget);
+        addPetToDBButton = new QPushButton(layoutWidget1);
         addPetToDBButton->setObjectName(QStringLiteral("addPetToDBButton"));
 
         horizontalLayout_2->addWidget(addPetToDBButton);
 
-        cancelPetAddButton = new QPushButton(widget);
+        cancelPetAddButton = new QPushButton(layoutWidget1);
         cancelPetAddButton->setObjectName(QStringLiteral("cancelPetAddButton"));
 
         horizontalLayout_2->addWidget(cancelPetAddButton);
@@ -473,7 +486,7 @@ public:
 
         retranslateUi(Application);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         mainStack->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(1);
         tabWidget_4->setCurrentIndex(0);
@@ -528,6 +541,7 @@ public:
         cancelRegisterButton->setText(QApplication::translate("Application", "Cancel", nullptr));
         label_2->setText(QApplication::translate("Application", "First Name:", nullptr));
         label_5->setText(QApplication::translate("Application", "Surname:", nullptr));
+        label_28->setText(QApplication::translate("Application", "Date of birth", nullptr));
         label_6->setText(QApplication::translate("Application", "Address:", nullptr));
         label_7->setText(QApplication::translate("Application", "City:", nullptr));
         label_8->setText(QApplication::translate("Application", "Zip:", nullptr));

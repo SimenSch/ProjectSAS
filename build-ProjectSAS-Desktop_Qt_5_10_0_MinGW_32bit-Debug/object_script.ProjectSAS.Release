@@ -11,5 +11,7 @@ INPUT(
 ./release\logininterface.o
 ./release\regularExpression.o
 ./release\dboperator.o
+./release\regularExpression.o
+./release\dboperator.o
 ./release\moc_application.o
 );

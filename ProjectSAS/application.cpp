@@ -11,6 +11,7 @@
 #include "owner.h"
 #include <QPixmap>
 #include <QImage>
+#include <QMessageBox>
 
 Application::Application(QWidget *parent) :
     QWidget(parent),
@@ -34,6 +35,7 @@ void Application::on_loginButton_clicked() {
 
 
     LoginInterface li;
+    cout << "login attempt return: " << li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString());
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
     {
         activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
@@ -65,6 +67,7 @@ void Application::on_switchUserButton_clicked() {
 void Application::on_loadPetsButton_clicked()
 {
 
+    LoginInterface li;
     DbOperator db;
     db.addDatabase();
     db.open();
@@ -73,7 +76,8 @@ void Application::on_loadPetsButton_clicked()
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("SELECT Name, PetType, Race, BirthDate, Notes FROM Pet");
+    qry->prepare("SELECT Name, PetType, Race, BirthDate, Notes FROM Pet WHERE OwnerID = :ownerid");
+    qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
     qry->exec();
     model->setQuery(*qry);
     ui->petTableView->setModel(model);
@@ -96,6 +100,7 @@ void Application::on_newUserButton_clicked()
 
 void Application::on_registerButton_clicked()
 {
+    /*
     User usr;
     Owner ownr;
     DbOperator db;
@@ -136,15 +141,20 @@ void Application::on_registerButton_clicked()
     qry->exec();
 
     db.close();
+<<<<<<< HEAD
     ui->stackedWidget->setCurrentIndex(0);
+=======
+>>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
     }
     else{
 
     }
+    */
 }
 
 void Application::on_addPetToDBButton_clicked()
 {
+    LoginInterface li;
     Pet pet;
     pet.setname(ui->petNameEdit->text().toStdString());
     pet.setpetType(ui->typeCombobox->currentText().toStdString());
@@ -158,13 +168,20 @@ void Application::on_addPetToDBButton_clicked()
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, 1, :birthdate, :pettype, :race, :notes)");
+    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, :ownerid, :birthdate, :pettype, :race, :notes)");
     qry->bindValue(":name", QString::fromStdString(pet.getname()));
+    qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
     qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
     qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
     qry->bindValue(":race", QString::fromStdString(pet.getrace()));
     qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
-    qry->exec();
+    if(qry->exec()){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->mainStack->setCurrentIndex(0);
+        QMessageBox msgBox;
+        msgBox.setText("Pet successfully added");
+        msgBox.exec();
+    }
 
     db.close();
 

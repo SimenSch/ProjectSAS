@@ -43,7 +43,7 @@ string LoginInterface::getPassword(string username){
 
 int LoginInterface::loginAttempt(string username, string password){
     string pWord = hashing(password);
-    if(getPassword(username) == pWord){
+    if(getPassword(username).compare(pWord)){
         return 99;
     } else {
         return 1;
@@ -56,6 +56,7 @@ int LoginInterface::createUser(string username, string password){
     DbOperator db;
     db.mydb.open();
     string pWord = hashing(password);
+<<<<<<< HEAD
     QSqlQuery* create=new QSqlQuery(db.mydb);
     create->prepare("INSERT INTO User (Username, Password, UserType) VALUES (?, ?, ?)");
     create->bindValue(0, QString::fromStdString(username));
@@ -65,6 +66,19 @@ int LoginInterface::createUser(string username, string password){
         QSqlQuery* skra=new QSqlQuery(db.mydb);
         return skra->exec("SELECT @id:=id as id from User where id = last_insert_id();");
 
+=======
+    DbOperator db;
+    QSqlQuery* create=new QSqlQuery(db.mydb);
+    create->prepare("INSERT INTO User (EMail, Password, UserType) "
+                   "VALUES (?, ?, 'Customer'");
+    create->bindValue(0, QString::fromStdString(username));
+    create->bindValue(1, QString::fromStdString(pWord));
+    if(create->exec()){
+        QSqlQuery skra;
+        return skra->exec("SELECT @id:=id as id from User where id = last_insert_id();");
+    }
+    return 0;
+>>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
 }
 
 int LoginInterface::getUserID(string userName) {
@@ -98,10 +112,22 @@ string LoginInterface::getUserType(int userID) {
         cout << "UserType: " << qry->value(0).toString().toStdString();
         return qry->value(0).toString().toStdString();
     } else {
-        cout << "exec failed";
         return "Get User Type failed";
     }
 
-    return "";
+}
 
+int LoginInterface::getOwnerID(int userID) {
+    DbOperator db;
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("SELECT UserID from User WHERE UserID = :userid");
+    qry->bindValue(":userid", userID);
+    if(qry->exec()){
+        qry->next();
+        return qry->value(0).toString().toInt();
+    } else {
+        return 0;
+    }
 }

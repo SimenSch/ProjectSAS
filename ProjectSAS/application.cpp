@@ -11,6 +11,7 @@
 #include "owner.h"
 #include <QPixmap>
 #include <QImage>
+#include <QMessageBox>
 
 Application::Application(QWidget *parent) :
     QWidget(parent),
@@ -141,7 +142,6 @@ void Application::on_registerButton_clicked()
     qry->exec();
 
     db.close();
-
     }
     else{
 
@@ -163,13 +163,20 @@ void Application::on_addPetToDBButton_clicked()
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, 1, :birthdate, :pettype, :race, :notes)");
+    qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, ?, :birthdate, :pettype, :race, :notes)");
     qry->bindValue(":name", QString::fromStdString(pet.getname()));
+    qry->bindValue(1, db.getOwnerID(activeUser.getuserID()));
     qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
     qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
     qry->bindValue(":race", QString::fromStdString(pet.getrace()));
     qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
-    qry->exec();
+    if(qry->exec()){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->mainStack->setCurrentIndex(0);
+        QMessageBox msgBox;
+        msgBox.setText("Pet successfully added");
+        msgBox.exec();
+    }
 
     db.close();
 

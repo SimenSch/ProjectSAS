@@ -100,6 +100,7 @@ void Application::on_newUserButton_clicked()
 
 void Application::on_registerButton_clicked()
 {
+    /*
 
     DbOperator db;
     db.addDatabase();
@@ -147,8 +148,9 @@ void Application::on_registerButton_clicked()
     db.close();
     }
     else{
-
+        // fuck you mama
     }
+    */
 }
 
 void Application::on_addPetToDBButton_clicked()

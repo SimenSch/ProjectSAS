@@ -2,6 +2,7 @@
 #define APPLICATION_H
 
 #include <QWidget>
+#include "user.h"
 
 namespace Ui {
 class Application;
@@ -12,7 +13,7 @@ class Application : public QWidget
     Q_OBJECT
 
 public:
-    void registerButton();
+    User activeUser;
     explicit Application(QWidget *parent = 0);
     ~Application();
 private slots:

@@ -40,7 +40,7 @@ public:
     QLineEdit *passwordEdit;
     QLabel *label_3;
     QLabel *label_4;
-    QLabel *wrongUserLabel;
+    QLabel *errorLabel;
     QLabel *sasPicLabel;
     QWidget *mainPage;
     QStackedWidget *mainStack;
@@ -142,16 +142,18 @@ public:
         passwordEdit = new QLineEdit(LoginPage);
         passwordEdit->setObjectName(QStringLiteral("passwordEdit"));
         passwordEdit->setGeometry(QRect(290, 360, 221, 21));
+        passwordEdit->setEchoMode(QLineEdit::Password);
         label_3 = new QLabel(LoginPage);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(290, 340, 60, 16));
         label_4 = new QLabel(LoginPage);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(290, 290, 71, 16));
-        wrongUserLabel = new QLabel(LoginPage);
-        wrongUserLabel->setObjectName(QStringLiteral("wrongUserLabel"));
-        wrongUserLabel->setGeometry(QRect(310, 440, 171, 16));
-        wrongUserLabel->setStyleSheet(QStringLiteral("color: red;"));
+        errorLabel = new QLabel(LoginPage);
+        errorLabel->setObjectName(QStringLiteral("errorLabel"));
+        errorLabel->setGeometry(QRect(310, 440, 171, 16));
+        errorLabel->setStyleSheet(QStringLiteral("color: red;"));
+        errorLabel->setAlignment(Qt::AlignCenter);
         sasPicLabel = new QLabel(LoginPage);
         sasPicLabel->setObjectName(QStringLiteral("sasPicLabel"));
         sasPicLabel->setGeometry(QRect(300, 100, 201, 121));
@@ -253,7 +255,7 @@ public:
         registerPage->setObjectName(QStringLiteral("registerPage"));
         verticalLayoutWidget = new QWidget(registerPage);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(290, 150, 291, 313));
+        verticalLayoutWidget->setGeometry(QRect(290, 150, 291, 344));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -471,7 +473,7 @@ public:
 
         retranslateUi(Application);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
         mainStack->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(1);
         tabWidget_4->setCurrentIndex(0);
@@ -487,7 +489,7 @@ public:
         newUserButton->setText(QApplication::translate("Application", "New User", nullptr));
         label_3->setText(QApplication::translate("Application", "Password", nullptr));
         label_4->setText(QApplication::translate("Application", "Username", nullptr));
-        wrongUserLabel->setText(QApplication::translate("Application", "Wrong Username/Password", nullptr));
+        errorLabel->setText(QApplication::translate("Application", "error message", nullptr));
         sasPicLabel->setText(QString());
 #ifndef QT_NO_TOOLTIP
         OverviewTab_3->setToolTip(QApplication::translate("Application", "<html><head/><body><p>Overview</p></body></html>", nullptr));

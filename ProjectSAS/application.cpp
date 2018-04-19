@@ -37,11 +37,12 @@ void Application::on_loginButton_clicked() {
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
     {
         activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
-        if(li.getUserType(activeUser.getuserID()) == "Customer") {
+        cout << "user type fra loginbutton clicked: " << li.getUserType(activeUser.getuserID()) << endl;
+        if(li.getUserType(activeUser.getuserID()).compare("Customer")) {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(0);
         }
-        else if(li.getUserType(activeUser.getuserID()) == "Employee") {
+        else if(li.getUserType(activeUser.getuserID()).compare("Employee")) {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(1);
         }
@@ -93,7 +94,7 @@ void Application::on_newUserButton_clicked()
 
 
 
-void Application::registerButton()
+void Application::on_registerButton_clicked()
 {
     User usr;
     Owner ownr;
@@ -124,10 +125,6 @@ void Application::registerButton()
     else{
 
     }
-}
-void Application::on_registerButton_clicked()
-{
-
 }
 
 void Application::on_addPetToDBButton_clicked()

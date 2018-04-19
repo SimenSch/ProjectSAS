@@ -26,10 +26,8 @@ SOURCES += main.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp \
-
     dboperator.cpp \
-    regularExpression.cpp
-
+    regularExpression.cpp \
     dboperator.cpp
 
 

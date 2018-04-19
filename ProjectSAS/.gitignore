@@ -72,5 +72,5 @@ Thumbs.db
 *.exe
 
 # Build folders
-./build*
+build*/
 

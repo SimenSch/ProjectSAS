@@ -27,7 +27,7 @@ SOURCES += main.cpp \
     vetvisits.cpp \
     logininterface.cpp \
     dboperator.cpp \
-    regex.cpp
+    regularExpression.cpp
 
 HEADERS += \
     application.h \

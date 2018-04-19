@@ -43,7 +43,7 @@ string LoginInterface::getPassword(string username){
 
 int LoginInterface::loginAttempt(string username, string password){
     string pWord = hashing(password);
-    if(getPassword(username) == pWord){
+    if(getPassword(username).compare(pWord)){
         return 99;
     } else {
         return 1;
@@ -98,10 +98,22 @@ string LoginInterface::getUserType(int userID) {
         cout << "UserType: " << qry->value(0).toString().toStdString();
         return qry->value(0).toString().toStdString();
     } else {
-        cout << "exec failed";
         return "Get User Type failed";
     }
 
-    return "";
+}
 
+int LoginInterface::getOwnerID(int userID) {
+    DbOperator db;
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("SELECT UserID from User WHERE UserID = :userid");
+    qry->bindValue(":userid", userID);
+    if(qry->exec()){
+        qry->next();
+        return qry->value(0).toString().toInt();
+    } else {
+        return 0;
+    }
 }

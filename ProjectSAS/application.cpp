@@ -93,7 +93,7 @@ void Application::on_newUserButton_clicked()
 
 
 
-void Application::registerButton()
+void Application::on_registerButton_clicked()
 {
     User usr;
     Owner ownr;
@@ -124,10 +124,6 @@ void Application::registerButton()
     else{
 
     }
-}
-void Application::on_registerButton_clicked()
-{
-
 }
 
 void Application::on_addPetToDBButton_clicked()

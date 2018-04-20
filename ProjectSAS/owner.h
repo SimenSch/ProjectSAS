@@ -9,13 +9,8 @@ class Owner
 {
 public:
     Owner();
-<<<<<<< HEAD
     int getuserID();
     void setUserID(int newuserid);
-=======
-    int getUserID();
-    void setUserID(int userid);
->>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
     int getownerID();
     void setownerID(int newownerID);
     string getsurname();

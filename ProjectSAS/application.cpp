@@ -100,48 +100,13 @@ void Application::on_newUserButton_clicked()
 
 void Application::on_registerButton_clicked()
 {
-    /*
-<<<<<<< HEAD
 
-    DbOperator db;
-    db.addDatabase();
-    db.open();
-    LoginInterface li;
-    User usr;
-    Owner ownr;
-    string firstname= ui->firstNameInput->text().toStdString();
-    string surname = ui->surNameInput->text().toStdString();
-    string zip = ui->zipInput->text().toStdString();
-    string city =ui->cityInput->text().toStdString();
-    string phone=ui->phoneinput->text().toStdString();
-    string eMail= ui->eMailInput->text().toStdString();
-    string dateofbirth = ui->dateOfBirthInput->text().toStdString();
-    string password =ui->passwordInput->text().toStdString();
-    string repassword = ui->reEnterPasswordInput->text().toStdString();
-    string address = ui->addressInput->text().toStdString();
-    if(password == repassword){
-    usr.seteMail(eMail);
-    usr.setpassword(password);
-    usr.setuserType("admin");
-    LoginInterface lgin;
-    ownr.setfirstName(firstname);
-    ownr.setsurname(surname);
-    ownr.setaddress(address);
-    ownr.setcity(city);
-    ownr.setdateOfBirth(dateofbirth);
-    ownr.seteMail(eMail);
-    ownr.setPhone(phone);
-
-    int userid = lgin.createUser(usr.geteMail(),usr.getpassword());
-    //ownr.setUserID(userid);
-
-=======
     User usr;
     Owner ownr;
     DbOperator db;
     db.addDatabase();
     db.open();
->>>>>>> master
+
 
 
     if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
@@ -177,15 +142,14 @@ void Application::on_registerButton_clicked()
     qry->exec();
 
     db.close();
-<<<<<<< HEAD
+
     ui->stackedWidget->setCurrentIndex(0);
-=======
->>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
+
     }
     else{
         // fuck you mama
     }
-    */
+
 }
 
 void Application::on_addPetToDBButton_clicked()
@@ -206,11 +170,7 @@ void Application::on_addPetToDBButton_clicked()
 
     qry->prepare("INSERT INTO Pet (Name, OwnerID, BirthDate, PetType, Race, Notes) VALUES (:name, :ownerid, :birthdate, :pettype, :race, :notes)");
     qry->bindValue(":name", QString::fromStdString(pet.getname()));
-<<<<<<< HEAD
-    //qry->bindValue(1, db.getOwnerID(activeUser.getuserID()));
-=======
     qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
->>>>>>> master
     qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
     qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
     qry->bindValue(":race", QString::fromStdString(pet.getrace()));

@@ -56,18 +56,6 @@ int LoginInterface::createUser(string username, string password){
     DbOperator db;
     db.mydb.open();
     string pWord = hashing(password);
-<<<<<<< HEAD
-    QSqlQuery* create=new QSqlQuery(db.mydb);
-    create->prepare("INSERT INTO User (Username, Password, UserType) VALUES (?, ?, ?)");
-    create->bindValue(0, QString::fromStdString(username));
-    create->bindValue(1, QString::fromStdString(pWord));
-    create->bindValue(2, QString::fromStdString("Customer"));
-
-        QSqlQuery* skra=new QSqlQuery(db.mydb);
-        return skra->exec("SELECT @id:=id as id from User where id = last_insert_id();");
-
-=======
-    DbOperator db;
     QSqlQuery* create=new QSqlQuery(db.mydb);
     create->prepare("INSERT INTO User (EMail, Password, UserType) VALUES (?, ?, ?)");
     create->bindValue(0, QString::fromStdString(username));
@@ -79,7 +67,7 @@ int LoginInterface::createUser(string username, string password){
         cout << "Create User failed.";
     }
     return 0;
->>>>>>> 64218730126cdca1061cbf1663c144397eb2e66b
+
 }
 
 int LoginInterface::getUserID(string userName) {

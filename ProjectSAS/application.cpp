@@ -40,14 +40,16 @@ void Application::on_loginButton_clicked() {
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
     {
         activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
-        if(li.getUserType(activeUser.getuserID()).compare("Customer")) {
+        if(li.getUserType(activeUser.getuserID()) == "Customer") {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(0);
             ui->customerTab->setCurrentIndex(0);
+            ui->activeUserLabel->setText(ui->userNameEdit->text());
         }
-        else if(li.getUserType(activeUser.getuserID()).compare("Employee")) {
+        else if(li.getUserType(activeUser.getuserID()) =="Employee") {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(1);
+            ui->activeUserLabel->setText(ui->userNameEdit->text());
         }
         else {
             ui->errorLabel->setText("Error finding usertype");
@@ -171,7 +173,7 @@ void Application::on_addPetToDBButton_clicked()
     pet.setpetType(ui->typeCombobox->currentText().toStdString());
     pet.setrace(ui->raceEdit->text().toStdString());
     pet.setdateOfBirth(ui->petBirthEdit->text().toStdString());
-    pet.setnotes(ui->petNotesEdit->text().toStdString());
+    pet.setnotes(ui->petNotesEdit->toPlainText().toStdString());
 
     DbOperator db;
     db.addDatabase();
@@ -189,6 +191,7 @@ void Application::on_addPetToDBButton_clicked()
     if(qry->exec()){
         ui->stackedWidget->setCurrentIndex(1);
         ui->mainStack->setCurrentIndex(0);
+        loadPets();
         QMessageBox msgBox;
         msgBox.setText("Pet successfully added");
         msgBox.exec();

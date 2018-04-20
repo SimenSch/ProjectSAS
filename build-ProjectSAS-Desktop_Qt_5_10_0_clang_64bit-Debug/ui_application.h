@@ -21,10 +21,10 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -55,7 +55,6 @@ public:
     QLabel *label_14;
     QWidget *Hei_3;
     QTableView *petTableView;
-    QPushButton *loadPetsButton;
     QPushButton *addPetButton;
     QWidget *Appointments_3;
     QWidget *employeePage;
@@ -69,10 +68,8 @@ public:
     QTableView *tableView;
     QWidget *Hei_4;
     QWidget *Appointments_4;
-    QSplitter *splitter;
-    QLabel *label;
-    QLabel *userLabel;
     QPushButton *switchUserButton;
+    QLabel *activeUserLabel;
     QWidget *registerPetPage;
     QWidget *layoutWidget_2;
     QVBoxLayout *verticalLayout_4;
@@ -87,7 +84,7 @@ public:
     QComboBox *typeCombobox;
     QLineEdit *raceEdit;
     QDateEdit *petBirthEdit;
-    QLineEdit *petNotesEdit;
+    QTextEdit *petNotesEdit;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *addPetToDBButton;
@@ -225,12 +222,9 @@ public:
         petTableView = new QTableView(Hei_3);
         petTableView->setObjectName(QStringLiteral("petTableView"));
         petTableView->setGeometry(QRect(60, 60, 651, 351));
-        loadPetsButton = new QPushButton(Hei_3);
-        loadPetsButton->setObjectName(QStringLiteral("loadPetsButton"));
-        loadPetsButton->setGeometry(QRect(240, 430, 113, 32));
         addPetButton = new QPushButton(Hei_3);
         addPetButton->setObjectName(QStringLiteral("addPetButton"));
-        addPetButton->setGeometry(QRect(390, 430, 113, 32));
+        addPetButton->setGeometry(QRect(320, 430, 113, 32));
         customerTab->addTab(Hei_3, QString());
         Appointments_3 = new QWidget();
         Appointments_3->setObjectName(QStringLiteral("Appointments_3"));
@@ -269,20 +263,12 @@ public:
         Appointments_4->setObjectName(QStringLiteral("Appointments_4"));
         tabWidget_4->addTab(Appointments_4, QString());
         mainStack->addWidget(employeePage);
-        splitter = new QSplitter(mainPage);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setGeometry(QRect(490, 10, 224, 32));
-        splitter->setOrientation(Qt::Horizontal);
-        label = new QLabel(splitter);
-        label->setObjectName(QStringLiteral("label"));
-        splitter->addWidget(label);
-        userLabel = new QLabel(splitter);
-        userLabel->setObjectName(QStringLiteral("userLabel"));
-        userLabel->setAlignment(Qt::AlignCenter);
-        splitter->addWidget(userLabel);
-        switchUserButton = new QPushButton(splitter);
+        switchUserButton = new QPushButton(mainPage);
         switchUserButton->setObjectName(QStringLiteral("switchUserButton"));
-        splitter->addWidget(switchUserButton);
+        switchUserButton->setGeometry(QRect(650, 10, 113, 32));
+        activeUserLabel = new QLabel(mainPage);
+        activeUserLabel->setObjectName(QStringLiteral("activeUserLabel"));
+        activeUserLabel->setGeometry(QRect(10, 20, 141, 16));
         stackedWidget->addWidget(mainPage);
         registerPetPage = new QWidget();
         registerPetPage->setObjectName(QStringLiteral("registerPetPage"));
@@ -324,10 +310,10 @@ public:
 
         verticalLayoutWidget_2 = new QWidget(registerPetPage);
         verticalLayoutWidget_2->setObjectName(QStringLiteral("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(290, 110, 291, 151));
+        verticalLayoutWidget_2->setGeometry(QRect(290, 110, 291, 261));
         verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_3->setContentsMargins(0, 4, 0, 0);
         petNameEdit = new QLineEdit(verticalLayoutWidget_2);
         petNameEdit->setObjectName(QStringLiteral("petNameEdit"));
 
@@ -352,14 +338,14 @@ public:
 
         verticalLayout_3->addWidget(petBirthEdit);
 
-        petNotesEdit = new QLineEdit(verticalLayoutWidget_2);
+        petNotesEdit = new QTextEdit(verticalLayoutWidget_2);
         petNotesEdit->setObjectName(QStringLiteral("petNotesEdit"));
 
         verticalLayout_3->addWidget(petNotesEdit);
 
         layoutWidget = new QWidget(registerPetPage);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(290, 280, 285, 33));
+        layoutWidget->setGeometry(QRect(290, 370, 285, 33));
         horizontalLayout_2 = new QHBoxLayout(layoutWidget);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -683,7 +669,7 @@ public:
         stackedWidget->setCurrentIndex(1);
         mainStack->setCurrentIndex(0);
         customerTab->setCurrentIndex(1);
-        tabWidget_4->setCurrentIndex(0);
+        tabWidget_4->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Application);
@@ -710,7 +696,6 @@ public:
         label_13->setText(QApplication::translate("Application", "Surname", nullptr));
         label_14->setText(QApplication::translate("Application", "Address", nullptr));
         customerTab->setTabText(customerTab->indexOf(OverviewTab_3), QApplication::translate("Application", "Overview", nullptr));
-        loadPetsButton->setText(QApplication::translate("Application", "Load Pets", nullptr));
         addPetButton->setText(QApplication::translate("Application", "Add Pet", nullptr));
         customerTab->setTabText(customerTab->indexOf(Hei_3), QApplication::translate("Application", "Pets", nullptr));
         customerTab->setTabText(customerTab->indexOf(Appointments_3), QApplication::translate("Application", "Appointments", nullptr));
@@ -728,9 +713,8 @@ public:
         tabWidget_4->setTabText(tabWidget_4->indexOf(OverviewTab_4), QApplication::translate("Application", "Overview", nullptr));
         tabWidget_4->setTabText(tabWidget_4->indexOf(Hei_4), QApplication::translate("Application", "Pets", nullptr));
         tabWidget_4->setTabText(tabWidget_4->indexOf(Appointments_4), QApplication::translate("Application", "Appointments", nullptr));
-        label->setText(QApplication::translate("Application", "Logged in as:", nullptr));
-        userLabel->setText(QApplication::translate("Application", "user", nullptr));
         switchUserButton->setText(QApplication::translate("Application", "Switch User", nullptr));
+        activeUserLabel->setText(QApplication::translate("Application", "user", nullptr));
         label_23->setText(QApplication::translate("Application", "Name:", nullptr));
         label_24->setText(QApplication::translate("Application", "Type:", nullptr));
         label_26->setText(QApplication::translate("Application", "Race:", nullptr));

@@ -6,7 +6,6 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
-#include <fstream>
 #include <sys/stat.h>
 #include <QtSql>
 using namespace std;
@@ -25,29 +24,35 @@ string LoginInterface::getPassword(string username){
     QSqlQuery* statem=new QSqlQuery(db.mydb);
     statem->prepare("SELECT Password FROM User WHERE EMail = ?;");
     statem->bindValue(0, QString::fromStdString(username));
-
     if(statem->exec()){
-
-        cout << " plz print dis sheeeet -> " << statem->value(0).toString().toStdString();
         if(statem->next()){
-            cout << statem->value(0).toString().toStdString();
+            cout << statem->value(0).toString().toStdString() << endl;
             return statem->value(0).toString().toStdString();
         }
     } else {
+        cout << "GetPassword statement failed" << endl;
         return "";
     }
+    cout << "IF statement failed, major fuckups." << endl;
     return "";
 }
 
 
 
 int LoginInterface::loginAttempt(string username, string password){
+    if(username.empty()){
+        return 2;
+    } else if(password.empty()){
+        return 2;
+    }
     string pWord = hashing(password);
-    if(getPassword(username).compare(pWord)){
+    if(getPassword(username) == pWord){
         return 99;
     } else {
+        cout << "Login attempt failed: " << endl;
         return 1;
     }
+    cout << "Login Attempt IF failed. Shits fucked yo." << endl;
     return 0;
 
 }
@@ -64,7 +69,7 @@ int LoginInterface::createUser(string username, string password){
     if(create->exec()){
         return create->lastInsertId().toInt();
     } else {
-        cout << "Create User failed.";
+        cout << "Create User failed." << endl;
     }
     return 0;
 
@@ -73,32 +78,26 @@ int LoginInterface::createUser(string username, string password){
 int LoginInterface::getUserID(string userName) {
     DbOperator db;
     int userID;
-
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
     qry->prepare("SELECT UserID from User WHERE EMail = :username");
     qry->bindValue(":username", QString::fromStdString(userName));
     if(qry->exec()) {
         qry->next();
-        cout << "Query 0 i getuserID: " << qry->value(0).toInt();
         userID = qry->value(0).toInt();
+    } else {
+        cout << "GetUserId Failed: SQL Query failed." << endl;
     }
-
-    cout << "User ID: " << userID;
-
     return userID;
 }
 
 string LoginInterface::getUserType(int userID) {
     DbOperator db;
-
     QSqlQuery* qry=new QSqlQuery(db.mydb);
-
     qry->prepare("SELECT UserType from User WHERE UserID = :userid");
     qry->bindValue(":userid", userID);
     if(qry->exec()){
         qry->next();
-        cout << "UserType: " << qry->value(0).toString().toStdString();
         return qry->value(0).toString().toStdString();
     } else {
         return "Get User Type failed";
@@ -108,15 +107,14 @@ string LoginInterface::getUserType(int userID) {
 
 int LoginInterface::getOwnerID(int userID) {
     DbOperator db;
-
     QSqlQuery* qry=new QSqlQuery(db.mydb);
-
     qry->prepare("SELECT UserID from User WHERE UserID = :userid");
     qry->bindValue(":userid", userID);
     if(qry->exec()){
         qry->next();
         return qry->value(0).toString().toInt();
     } else {
+        cout << "Get Owner ID failed: " << endl;
         return 0;
     }
 }

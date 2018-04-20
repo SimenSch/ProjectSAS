@@ -13,6 +13,7 @@
 #include <QPixmap>
 #include <QImage>
 #include <QMessageBox>
+#include <QSqlDatabase>
 
 Application::Application(QWidget *parent) :
     QWidget(parent),
@@ -36,11 +37,9 @@ void Application::on_loginButton_clicked() {
 
 
     LoginInterface li;
-    cout << "login attempt return: " << li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString());
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
     {
         activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
-        cout << "user type fra loginbutton clicked: " << li.getUserType(activeUser.getuserID()) << endl;
         if(li.getUserType(activeUser.getuserID()).compare("Customer")) {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(0);
@@ -54,6 +53,9 @@ void Application::on_loginButton_clicked() {
             ui->errorLabel->setText("Error finding usertype");
             ui->errorLabel->show();
         }
+    } else if (li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 2){
+        ui->errorLabel->setText("Fields cannot be empty");
+        ui->errorLabel->show();
     }
     else {
         ui->errorLabel->setText("No matching user/password");
@@ -63,7 +65,11 @@ void Application::on_loginButton_clicked() {
 }
 
 void Application::on_switchUserButton_clicked() {
+    db.close();
     ui->stackedWidget->setCurrentIndex(0);
+    activeUser.setuserID(0);
+    ui->userNameEdit->clear();
+    ui->passwordEdit->clear();
 }
 
 void Application::loadPets()

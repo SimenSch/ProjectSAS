@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "user.h"
+#include "dboperator.h"
 
 namespace Ui {
 class Application;
@@ -13,6 +14,7 @@ class Application : public QWidget
     Q_OBJECT
 
 public:
+    DbOperator db;
     User activeUser;
     explicit Application(QWidget *parent = 0);
     ~Application();

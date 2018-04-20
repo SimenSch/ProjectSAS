@@ -3,9 +3,8 @@
 #include "ui_application.h"
 #include "dboperator.h"
 #include "logininterface.h"
-#include "dboperator.h"
 #include "assistant.h"
-#include "regex.h"
+#include "regularExpression.h"
 #include "pet.h"
 #include <string>
 #include "user.h"
@@ -30,11 +29,8 @@ Application::~Application()
 }
 
 void Application::on_loginButton_clicked() {
-
-    DbOperator db;
     db.addDatabase();
     db.open();
-
 
     LoginInterface li;
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
@@ -78,7 +74,6 @@ void Application::loadPets()
 {
 
     LoginInterface li;
-    DbOperator db;
     db.addDatabase();
     db.open();
 
@@ -116,51 +111,48 @@ void Application::on_registerButton_clicked()
 
     User usr;
     Owner ownr;
-    DbOperator db;
     db.addDatabase();
     db.open();
 
 
 
     if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
-    usr.seteMail(ui->eMailInput->text().toStdString());
-    usr.setpassword(ui->passwordInput->text().toStdString());
-    usr.setuserType("Customer");
-    LoginInterface lgin;
-    ownr.setzip(ui->zipInput->text().toStdString());
-    ownr.setfirstName(ui->firstNameInput->text().toStdString());
-    ownr.setsurname(ui->surNameInput->text().toStdString());
-    ownr.setaddress(ui->addressInput->text().toStdString());
-    ownr.setcity(ui->cityInput->text().toStdString());
-    ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
+        usr.seteMail(ui->eMailInput->text().toStdString());
+        usr.setpassword(ui->passwordInput->text().toStdString());
+        usr.setuserType("Customer");
+        LoginInterface lgin;
+        ownr.setzip(ui->zipInput->text().toStdString());
+        ownr.setfirstName(ui->firstNameInput->text().toStdString());
+        ownr.setsurname(ui->surNameInput->text().toStdString());
+        ownr.setaddress(ui->addressInput->text().toStdString());
+        ownr.setcity(ui->cityInput->text().toStdString());
+        ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
 
-    ownr.seteMail(ui->eMailInput->text().toStdString());
-    ownr.setPhone(ui->phoneinput->text().toStdString());
-    DbOperator db;
-    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+        ownr.seteMail(ui->eMailInput->text().toStdString());
+        ownr.setPhone(ui->phoneinput->text().toStdString());
+        int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
 
-    ownr.setUserID(userid);
+        ownr.setUserID(userid);
 
-    QSqlQuery* qry=new QSqlQuery(db.mydb);
+        QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
-    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
-    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
-    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
-    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
-    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
-    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
-    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
-    qry->bindValue(":userid", ownr.getuserID());
-    qry->exec();
+        qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
+        qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
+        qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
+        qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
+        qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
+        qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
+        qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
+        qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
+        qry->bindValue(":userid", ownr.getuserID());
+        qry->exec();
 
-    db.close();
+        db.close();
 
-    ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget->setCurrentIndex(0);
 
-    }
-    else{
-        // fuck you mama
+    } else{
+        cout << "Register IF failed" << endl;
     }
 
 }
@@ -175,7 +167,6 @@ void Application::on_addPetToDBButton_clicked()
     pet.setdateOfBirth(ui->petBirthEdit->text().toStdString());
     pet.setnotes(ui->petNotesEdit->toPlainText().toStdString());
 
-    DbOperator db;
     db.addDatabase();
     db.open();
 
@@ -310,7 +301,7 @@ void Application::on_chooseUserTypeButton_clicked()
 
 void Application::on_customerTab_currentChanged(int index)
 {
-    if(index = 1) {
+    if(index == 1) {
         loadPets();
     }
 }

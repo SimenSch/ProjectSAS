@@ -291,7 +291,7 @@
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="OverviewTab_4">
         <property name="toolTip">
@@ -392,36 +392,31 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QSplitter" name="splitter">
+    <widget class="QPushButton" name="switchUserButton">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>650</x>
        <y>10</y>
-       <width>224</width>
+       <width>113</width>
        <height>32</height>
       </rect>
      </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+     <property name="text">
+      <string>Switch User</string>
      </property>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Logged in as:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="userLabel">
-      <property name="text">
-       <string>user</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="switchUserButton">
-      <property name="text">
-       <string>Switch User</string>
-      </property>
-     </widget>
+    </widget>
+    <widget class="QLabel" name="activeUserLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>user</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="registerPetPage">
@@ -493,10 +488,13 @@
        <x>290</x>
        <y>110</y>
        <width>291</width>
-       <height>151</height>
+       <height>261</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <property name="topMargin">
+       <number>4</number>
+      </property>
       <item>
        <widget class="QLineEdit" name="petNameEdit"/>
       </item>
@@ -531,7 +529,7 @@
        <widget class="QDateEdit" name="petBirthEdit"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="petNotesEdit"/>
+       <widget class="QTextEdit" name="petNotesEdit"/>
       </item>
      </layout>
     </widget>
@@ -539,7 +537,7 @@
      <property name="geometry">
       <rect>
        <x>290</x>
-       <y>280</y>
+       <y>370</y>
        <width>285</width>
        <height>33</height>
       </rect>

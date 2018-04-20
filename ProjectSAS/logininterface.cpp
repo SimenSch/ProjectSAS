@@ -25,12 +25,9 @@ string LoginInterface::getPassword(string username){
     QSqlQuery* statem=new QSqlQuery(db.mydb);
     statem->prepare("SELECT Password FROM User WHERE EMail = ?;");
     statem->bindValue(0, QString::fromStdString(username));
-
     if(statem->exec()){
-
-        cout << " plz print dis sheeeet -> " << statem->value(0).toString().toStdString();
         if(statem->next()){
-            cout << statem->value(0).toString().toStdString();
+            cout << "GetPassword Statem.next cout'en - " << statem->value(0).toString().toStdString();
             return statem->value(0).toString().toStdString();
         }
     } else {
@@ -43,7 +40,11 @@ string LoginInterface::getPassword(string username){
 
 int LoginInterface::loginAttempt(string username, string password){
     string pWord = hashing(password);
-    if(getPassword(username).compare(pWord)){
+    if(getPassword(username) == pWord){
+        cout << "Login attempt == function used ";
+        return 99;
+    } else if(getPassword(username).compare(pWord)) {
+        cout << "Login attempt .compare function used ";
         return 99;
     } else {
         return 1;

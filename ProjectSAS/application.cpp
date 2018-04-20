@@ -204,7 +204,7 @@ void Application::on_registerButton_clicked()
     }
 }
 }*/
-    void Application::addOrder(){
+ /*   void Application::addOrder(){
     Order ordr;
     LoginInterface lgn;
     DbOperator db;
@@ -234,7 +234,7 @@ void Application::on_registerButton_clicked()
         // nothing happens
     }
 }
-
+*/
 void Application::on_addPetToDBButton_clicked()
 {
     LoginInterface li;

@@ -1,7 +1,7 @@
 
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
-kennel.db
+Kennel.db
 *~
 *.autosave
 *.a

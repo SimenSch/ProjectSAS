@@ -6,7 +6,6 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
-#include <fstream>
 #include <sys/stat.h>
 #include <QtSql>
 using namespace std;
@@ -27,6 +26,7 @@ string LoginInterface::getPassword(string username){
     statem->bindValue(0, QString::fromStdString(username));
     if(statem->exec()){
         if(statem->next()){
+            cout << statem->value(0).toString().toStdString() << endl;
             return statem->value(0).toString().toStdString();
         }
     } else {
@@ -47,8 +47,6 @@ int LoginInterface::loginAttempt(string username, string password){
     }
     string pWord = hashing(password);
     if(getPassword(username) == pWord){
-        return 99;
-    } else if(getPassword(username).compare(pWord)) {
         return 99;
     } else {
         cout << "Login attempt failed: " << endl;

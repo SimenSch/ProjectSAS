@@ -12,6 +12,7 @@
 #include <QPixmap>
 #include <QImage>
 #include <QMessageBox>
+#include <QSqlDatabase>
 
 Application::Application(QWidget *parent) :
     QWidget(parent),
@@ -62,7 +63,11 @@ void Application::on_loginButton_clicked() {
 }
 
 void Application::on_switchUserButton_clicked() {
+    db.close();
     ui->stackedWidget->setCurrentIndex(0);
+    activeUser.setuserID(0);
+    ui->userNameEdit->clear();
+    ui->passwordEdit->clear();
 }
 
 void Application::on_loadPetsButton_clicked()

@@ -27,10 +27,8 @@ SOURCES += main.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp \
-    regularExpression.cpp \
-    order.cpp
-
-
+    order.cpp \
+    regularExpression.cpp
 
 
 
@@ -44,10 +42,9 @@ HEADERS += \
     pet.h \
     user.h \
     vetvisits.h \
-    regularExpression.h \
     logininterface.h \
-    order.h
-
+    order.h \
+    regularExpression.h
 
 
 FORMS += \

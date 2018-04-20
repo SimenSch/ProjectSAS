@@ -120,3 +120,31 @@ int LoginInterface::getOwnerID(int userID) {
         return 0;
     }
 }
+int LoginInterface::getPetIDAppointment(int userID) {
+    DbOperator db;
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("SELECT PetID from Pet WHERE OwnerID = (SELECT OwnerID from Owner where UserID=:userid)");
+    qry->bindValue(":userid", userID);
+    if(qry->exec()){
+        qry->next();
+        return qry->value(0).toString().toInt();
+    } else {
+        return 0;
+    }
+}
+int LoginInterface::getOrderIDAppointment(int userID) {
+    DbOperator db;
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("SELECT OrderID from Pet WHERE OwnerID = (SELECT OwnerID from Owner where UserID=:userid)");
+    qry->bindValue(":userid", userID);
+    if(qry->exec()){
+        qry->next();
+        return qry->value(0).toString().toInt();
+    } else {
+        return 0;
+    }
+}

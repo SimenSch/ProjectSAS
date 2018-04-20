@@ -11,11 +11,11 @@ int Appointment::getorderID(){
 void Appointment::setorderID(int neworderID){
     orderID=neworderID;
 }
-int Appointment::getpetID(){
+int Appointment::getPetID(){
     return petID;
 
 }
-void Appointment::setpetID(int newpetID){
+void Appointment::setPetID(int newpetID){
     petID=newpetID;
 }
 
@@ -35,7 +35,7 @@ void Appointment::setprice(string newprice){
 }
 void Appointment::registerappointment(int petid,int sessionid,string newprice){
     regex pricecheck("^[1-9\\.]{6}$");
-    setpetID(petid);
+    setPetID(petid);
     setsessionID(sessionid);
 
     try{

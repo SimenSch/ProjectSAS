@@ -10,16 +10,29 @@ int Assistant::getassistantID(){
 void Assistant::setassistantID(int newassistantID){
     assistantID = newassistantID;
 }
+int Assistant::getUserID(){
+    return userID;
+}
+void Assistant::setUserID(int newassistantID){
+    userID = newassistantID;
+}
 string Assistant::getsurname(){
     return surname;
 }
 void Assistant::setsurname(string newsurname){
     surname=newsurname;
 }
-string Assistant::getfirstname(){
+string Assistant::getPhone(){
+    return phone;
+}
+void Assistant::setPhone(string newPhone){
+    phone=newPhone;
+}
+string Assistant::getFirstName(){
     return firstname;
 }
-void Assistant::setfirstname(string newfirstame){
+
+void Assistant::setFirstName(string newfirstame){
     firstname=newfirstame;
 }
 
@@ -77,7 +90,7 @@ void Assistant::registerassistant(string surname,string firstname,string address
     }
     try{
         if(regex_match(firstname,onlyalphabeticcheck)){
-            setfirstname(firstname);
+            setFirstName(firstname);
         }
     }
     catch(regex_error& e){

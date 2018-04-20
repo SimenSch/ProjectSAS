@@ -12,10 +12,12 @@ public:
     Assistant();
     int getassistantID();
     void setassistantID(int newassistantID);
+    int getUserID();
+    void setUserID(int newuserid);
     string getsurname();
     void setsurname(string newsurname);
-    string getfirstname();
-    void setfirstname(string newfirstame);
+    string getFirstName();
+    void setFirstName(string newfirstame);
     string getaddress();
     void setaddress(string newaddress);
     string getcity();
@@ -28,10 +30,13 @@ public:
     void setdepartment(string newdepartment);
     string geteMail();
     void seteMail(string neweMail);
+    string getPhone();
+    void setPhone(string newPhone);
     void registerassistant(string surname,string firstname,string address,string city, string zip, string dateofbirth, string department, string email);
 
 private:
     int assistantID;
+    int userID;
     string surname;
     string firstname;
     string address;
@@ -40,6 +45,7 @@ private:
     string dateOfBirth;
     string department;
     string eMail;
+    string phone;
 
 };
 

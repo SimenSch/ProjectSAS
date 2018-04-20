@@ -11,5 +11,6 @@ INPUT(
 ./release\vetvisits.o
 ./release\logininterface.o
 ./release\regularExpression.o
+./release\order.o
 ./release\moc_application.o
 );

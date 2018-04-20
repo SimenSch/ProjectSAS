@@ -16,6 +16,7 @@ public:
     string getUserType(int userID);
     string getPassword(string username);
     int getOwnerID(int userID);
+    int getPetID(int userID);
 
     //bool fileExists(const string* file);
 private:

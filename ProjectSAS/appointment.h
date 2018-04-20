@@ -12,8 +12,8 @@ public:
     Appointment();
     int getorderID();
     void setorderID(int neworderID);
-    int getpetID();
-    void setpetID(int newpetID);
+    int getPetID();
+    void setPetID(int newpetID);
     int getsessionID();
     void setsessionID(int newsessionID);
     string getprice();

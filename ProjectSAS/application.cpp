@@ -5,6 +5,7 @@
 #include "logininterface.h"
 #include "dboperator.h"
 #include "assistant.h"
+#include "regex.h"
 #include "pet.h"
 #include <string>
 #include "user.h"
@@ -42,6 +43,7 @@ void Application::on_loginButton_clicked() {
         if(li.getUserType(activeUser.getuserID()).compare("Customer")) {
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(0);
+            ui->customerTab->setCurrentIndex(0);
         }
         else if(li.getUserType(activeUser.getuserID()).compare("Employee")) {
             ui->stackedWidget->setCurrentIndex(1);
@@ -70,7 +72,7 @@ void Application::on_switchUserButton_clicked() {
     ui->passwordEdit->clear();
 }
 
-void Application::on_loadPetsButton_clicked()
+void Application::loadPets()
 {
 
     LoginInterface li;
@@ -99,7 +101,10 @@ void Application::on_cancelRegisterButton_clicked()
 
 void Application::on_newUserButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(3);
+    ui->employeeKeyInput->hide();
+    ui->employeeKeyLabel->hide();
+    ui->invalidKeyLabel->hide();
 }
 
 
@@ -195,7 +200,7 @@ void Application::on_addPetToDBButton_clicked()
 
 void Application::on_addPetButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
 void Application::on_cancelPetAddButton_clicked()
@@ -203,4 +208,106 @@ void Application::on_cancelPetAddButton_clicked()
     ui->stackedWidget->setCurrentIndex(1);
     ui->mainStack->setCurrentIndex(0);
 
+}
+
+void Application::on_firstNameInput_textEdited()
+{
+    if(!(ui->firstNameInput->text().isEmpty())) ui->firstNameMsg->setText("");
+    else ui->firstNameMsg->setText("*");
+}
+
+
+
+void Application::on_surNameInput_textEdited()
+{
+    if(!(ui->surNameInput->text().isEmpty())) ui->surNameMsg->setText("");
+    else ui->surNameMsg->setText("*");
+
+}
+
+void Application::on_dateOfBirthInput_textEdited()
+{
+    if(!(ui->dateOfBirthInput->text().isEmpty())) ui->dateOfBirthMsg->setText("");
+    else ui->dateOfBirthMsg->setText("*");
+}
+
+void Application::on_addressInput_textChanged()
+{
+    if(!(ui->addressInput->text().isEmpty())) ui->addressMsg->setText("");
+    else ui->addressMsg->setText("*");
+}
+
+void Application::on_cityInput_textEdited()
+{
+    if(!(ui->cityInput->text().isEmpty())) ui->cityMsg->setText("");
+    else ui->cityMsg->setText("*");
+}
+
+void Application::on_zipInput_textEdited()
+{
+    if(!(ui->zipInput->text().isEmpty())) ui->zipMsg->setText("");
+    else ui->zipMsg->setText("*");
+}
+
+void Application::on_phoneinput_textEdited()
+{
+    if(!(ui->phoneinput->text().isEmpty())) ui->phoneMsg->setText("");
+    else ui->phoneMsg->setText("*");
+}
+
+void Application::on_eMailInput_textEdited()
+{
+    if(!(ui->eMailInput->text().isEmpty())) ui->emailMsg->setText("");
+    else ui->emailMsg->setText("*");
+}
+
+void Application::on_passwordInput_textEdited()
+{
+    if(!(ui->passwordInput->text().isEmpty())) ui->firstPasswordMsg->setText("");
+    else ui->firstPasswordMsg->setText("*");
+}
+
+void Application::on_reEnterPasswordInput_textEdited()
+{
+    if(!(ui->reEnterPasswordInput->text().isEmpty())) ui->secondPasswordMsg->setText("");
+    else ui->secondPasswordMsg->setText("*");
+}
+
+void Application::on_cancelUserChoiceButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void Application::on_chooseUserTypeButton_clicked()
+{
+    if(ui->customerRadioButton->isChecked())
+    {
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+    else
+    {
+        if((ui->employeeKeyInput->isHidden())) {
+            ui->employeeKeyLabel->show();
+            ui->employeeKeyInput->show();
+        }
+        else if(ui->employeeKeyInput->text() == "sukimidiki")
+        {
+            ui->employeeKeyInput->hide();
+            ui->employeeKeyLabel->hide();
+            ui->invalidKeyLabel->hide();
+            ui->stackedWidget->setCurrentIndex(5);
+        }
+        else
+        {
+            ui->invalidKeyLabel->show();
+        }
+    }
+}
+
+void Application::on_customerTab_currentChanged(int index)
+{
+    if(index = 1) {
+        loadPets();
+    }
 }

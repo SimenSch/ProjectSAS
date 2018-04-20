@@ -9,8 +9,8 @@ class Owner
 {
 public:
     Owner();
-    int getUserID();
-    void setUserID(int userid);
+    int getuserID();
+    void setUserID(int newuserid);
     int getownerID();
     void setownerID(int newownerID);
     string getsurname();

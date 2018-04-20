@@ -4,11 +4,14 @@ Owner::Owner()
 {
 
 }
+int Owner::getuserID(){
+    return userID;
+}
+void Owner::setUserID(int newuserid){
+    userID=newuserid;
+}
 int Owner::getownerID(){
     return ownerID;
-}
-void Owner::setUserID(int newownerid){
-    ownerID= newownerid;
 }
 void Owner::setownerID(int newownerID){
     ownerID=newownerID;

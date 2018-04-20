@@ -100,54 +100,56 @@ void Application::on_newUserButton_clicked()
 
 void Application::on_registerButton_clicked()
 {
-    /*
+
     User usr;
     Owner ownr;
-    string firstname= ui->firstNameInput->text().toStdString();
-    string surname = ui->surNameInput->text().toStdString();
-    string zip = ui->zipInput->text().toStdString();
-    string city =ui->cityInput->text().toStdString();
-    string phone=ui->phoneinput->text().toStdString();
-    string eMail= ui->eMailInput->text().toStdString();
-    string dateofbirth = ui->dateOfBirthInput->text().toStdString();
-    string password =ui->passwordInput->text().toStdString();
-    string repassword = ui->reEnterPasswordInput->text().toStdString();
-    string address = ui->addressInput->text().toStdString();
-    if(password == repassword){
-    usr.seteMail(eMail);
-    usr.setpassword(password);
-    usr.setuserType("admin");
-    LoginInterface lgin;
-    ownr.setfirstName(firstname);
-    ownr.setsurname(surname);
-    ownr.setaddress(address);
-    ownr.setcity(city);
-    ownr.setdateOfBirth(dateofbirth);
-    ownr.seteMail(eMail);
-    ownr.setPhone(phone);
-
-    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
-    ownr.setUserID(userid);
     DbOperator db;
     db.addDatabase();
     db.open();
 
+
+
+    if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
+    usr.seteMail(ui->eMailInput->text().toStdString());
+    usr.setpassword(ui->passwordInput->text().toStdString());
+    usr.setuserType("Customer");
+    LoginInterface lgin;
+    ownr.setzip(ui->zipInput->text().toStdString());
+    ownr.setfirstName(ui->firstNameInput->text().toStdString());
+    ownr.setsurname(ui->surNameInput->text().toStdString());
+    ownr.setaddress(ui->addressInput->text().toStdString());
+    ownr.setcity(ui->cityInput->text().toStdString());
+    ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
+
+    ownr.seteMail(ui->eMailInput->text().toStdString());
+    ownr.setPhone(ui->phoneinput->text().toStdString());
+    DbOperator db;
+    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+
+    ownr.setUserID(userid);
+
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Owner (Name, User, BirthDate, PetType, Race, Notes) VALUES (:name, 1, :birthdate, :pettype, :race, :notes)");
-    qry->bindValue(":name", QString::fromStdString(pet.getname()));
-    qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
-    qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
-    qry->bindValue(":race", QString::fromStdString(pet.getrace()));
-    qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
+    qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
+    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
+    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
+    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
+    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
+    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
+    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
+    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
+    qry->bindValue(":userid", ownr.getuserID());
     qry->exec();
 
     db.close();
-    }
-    else{
+
+    ui->stackedWidget->setCurrentIndex(0);
 
     }
-    */
+    else{
+        // fuck you mama
+    }
+
 }
 
 void Application::on_addPetToDBButton_clicked()

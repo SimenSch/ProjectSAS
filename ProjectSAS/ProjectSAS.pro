@@ -20,28 +20,33 @@ SOURCES += main.cpp \
     application.cpp \
     appointment.cpp \
     assistant.cpp \
+    dboperator.cpp \
     medjournal.cpp \
     owner.cpp \
     pet.cpp \
     user.cpp \
     vetvisits.cpp \
     logininterface.cpp \
-    dboperator.cpp \
     regularExpression.cpp
+
+
+
 
 
 HEADERS += \
     application.h \
     appointment.h \
     assistant.h \
+    dboperator.h \
     medjournal.h \
     owner.h \
     pet.h \
     user.h \
     vetvisits.h \
-    logininterface.h \
     regularExpression.h \
-    dboperator.h
+    logininterface.h
+
+
 
 FORMS += \
     application.ui

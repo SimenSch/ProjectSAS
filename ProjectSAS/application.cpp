@@ -235,6 +235,7 @@ void Application::on_registerButton_clicked()
     }
 }
 */
+//
 void Application::on_addPetToDBButton_clicked()
 {
     LoginInterface li;

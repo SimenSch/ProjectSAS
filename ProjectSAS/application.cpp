@@ -3,9 +3,8 @@
 #include "ui_application.h"
 #include "dboperator.h"
 #include "logininterface.h"
-#include "dboperator.h"
 #include "assistant.h"
-#include "regex.h"
+#include "regularExpression.h"
 #include "pet.h"
 #include <string>
 #include "user.h"

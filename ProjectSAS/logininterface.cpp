@@ -26,14 +26,13 @@ string LoginInterface::getPassword(string username){
     statem->bindValue(0, QString::fromStdString(username));
     if(statem->exec()){
         if(statem->next()){
-            cout << statem->value(0).toString().toStdString() << endl;
             return statem->value(0).toString().toStdString();
         }
     } else {
         cout << "GetPassword statement failed" << endl;
         return "";
     }
-    cout << "IF statement failed, major fuckups." << endl;
+    cout << "GetPassword IF statement failed, major fuckups." << endl;
     return "";
 }
 
@@ -52,7 +51,7 @@ int LoginInterface::loginAttempt(string username, string password){
         cout << "Login attempt failed: " << endl;
         return 1;
     }
-    cout << "Login Attempt IF failed. Shits fucked yo." << endl;
+    cout << "Login Attempt IF statement failed. Shits fucked yo." << endl;
     return 0;
 
 }
@@ -71,6 +70,7 @@ int LoginInterface::createUser(string username, string password){
     } else {
         cout << "Create User failed." << endl;
     }
+    cout << "CreateUser IF statement failed, u done fucked up" << endl;
     return 0;
 
 }
@@ -88,6 +88,7 @@ int LoginInterface::getUserID(string userName) {
     } else {
         cout << "GetUserId Failed: SQL Query failed." << endl;
     }
+    cout << "GetUserID IF statement failed. Fucking thing sucks!" << endl;
     return userID;
 }
 
@@ -102,7 +103,8 @@ string LoginInterface::getUserType(int userID) {
     } else {
         return "Get User Type failed";
     }
-
+    cout << "GetUserType IF statement failed, what have you done??" << endl;
+    return "NULL";
 }
 
 int LoginInterface::getOwnerID(int userID) {
@@ -117,4 +119,6 @@ int LoginInterface::getOwnerID(int userID) {
         cout << "Get Owner ID failed: " << endl;
         return 0;
     }
+    cout << "GetOwnerID IF statement failed, shit has happend" << endl;
+    return 0;
 }

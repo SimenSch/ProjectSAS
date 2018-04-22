@@ -13,6 +13,7 @@
 #include <QImage>
 #include <QMessageBox>
 #include <QSqlDatabase>
+#include "order.h"
 
 Application::Application(QWidget *parent) :
     QWidget(parent),
@@ -156,7 +157,7 @@ void Application::on_registerButton_clicked()
     }
 
 }
-/*
+    void Application::addAssistant(){
     User usr;
     Assistant ownr;
     DbOperator db;
@@ -171,31 +172,30 @@ void Application::on_registerButton_clicked()
     usr.setuserType("assistant");
     LoginInterface lgin;
     ownr.setzip(ui->zipInput->text().toStdString());
-    ownr.setFirstName(ui->firstNameInput->text().toStdString());
+    ownr.setfirstname(ui->firstNameInput->text().toStdString());
     ownr.setsurname(ui->surNameInput->text().toStdString());
     ownr.setaddress(ui->addressInput->text().toStdString());
     ownr.setcity(ui->cityInput->text().toStdString());
     ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
 
     ownr.seteMail(ui->eMailInput->text().toStdString());
-    ownr.setPhone(ui->phoneinput->text().toStdString());
     DbOperator db;
     int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
 
-    ownr.setUserID(userid);
+    ownr.setassistantID(userid);
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
     qry->prepare("INSERT INTO Assistant (Surname, FirstName, Address, City, Zip, BirthDate,Department,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate,:department, :email, :userid)");
     qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
-    qry->bindValue(":firstname", QString::fromStdString(ownr.getFirstName()));
+    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstname()));
     qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
     qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
     qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
     qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
     qry->bindValue(":department", QString::fromStdString(ownr.getdepartment()));
     qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
-    qry->bindValue(":userid", ownr.getUserID());
+    qry->bindValue(":userid", ownr.getassistantID());
     qry->exec();
 
     db.close();
@@ -207,38 +207,44 @@ void Application::on_registerButton_clicked()
         // fuck you mama
     }
 }
-}*/
- /*   void Application::addOrder(){
+
+    void Application::addOrder(){
     Order ordr;
     LoginInterface lgn;
     DbOperator db;
     db.addDatabase();
     db.open();
 
-    ordr.setPetID(lgn.getPetID(activeUser.getuserID()));
-    ordr.setBeginDate(ui->beginDateInput->text().toStdString());
-    ordr.setEndDate(ui->endDateInput->text().toStdString());
-    ordr.setBeginTime(ui->beginTimeInput->text().toStdString());
-    ordr.setEndTime(ui->endTimeInput->text().toStdString());
-    ordr.setNotes(ui->notesInput->text().toStdString());
+    ordr.setPetID(7/*lgn.getPetID(activeUser.getuserID()))*/);
+    ordr.setBeginDate("121212"/*ui->beginDateInput->text().toStdString()*/);
+    ordr.setEndDate("232323"/*ui->endDateInput->text().toStdString()*/);
+    ordr.setBeginTime("2323"/*ui->beginTimeInput->text().toStdString()*/);
+    ordr.setEndTime("2324"/*ui->endTimeInput->text().toStdString()*/);
+    ordr.setNotes("TESTING"/*ui->notesInput->text().toStdString()*/);
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("INSERT INTO Order (PetID, BeginDate, EndDate, BeginTime, EndTime, Notes) VALUES (:petid, :begindate, :enddate, :begintime, :endtime, :notes)");
-    qry->bindValue(":petid", QString::fromStdString(ordr.getPetID()));
+    qry->prepare("INSERT INTO Order (PetID, BeginDate, EndDate, EndTime, Notes, BeginTime ) VALUES (:petid, :begindate, :enddate, :endtime, :notes, :begintime )");
+    qry->bindValue(":petid", ordr.getPetID());
     qry->bindValue(":begindate", QString::fromStdString(ordr.getBeginDate()));
     qry->bindValue(":enddate", QString::fromStdString(ordr.getEndDate()));
     qry->bindValue(":begintime", QString::fromStdString(ordr.getBeginTime()));
     qry->bindValue(":endtime", QString::fromStdString(ordr.getEndTime()));
     qry->bindValue(":notes", QString::fromStdString(ordr.getNotes()));
-    qry->exec();
+    if(qry->exec()){
+            ui->stackedWidget->setCurrentIndex(0);
+            ui->mainStack->setCurrentIndex(0);
+
+            QMessageBox msgBox;
+            msgBox.setText("Order successfully added");
+            msgBox.exec();
+        }
+
     db.close();
-    ui->stackedWidget->setCurrentIndex(0);
-    else{
-        // nothing happens
-    }
+
+
 }
-*/
+
 
 void Application::on_addPetToDBButton_clicked()
 {

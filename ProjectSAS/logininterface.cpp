@@ -110,7 +110,7 @@ string LoginInterface::getUserType(int userID) {
 int LoginInterface::getOwnerID(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
-    qry->prepare("SELECT UserID from User WHERE UserID = :userid");
+    qry->prepare("SELECT OwnerID from Owner WHERE UserID = :userid");
     qry->bindValue(":userid", userID);
     if(qry->exec()){
         qry->next();

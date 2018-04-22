@@ -43,5 +43,3 @@ Order::Order(){}
     void Order::setNotes(string newnote){
         notes=newnote;
     }
-
-

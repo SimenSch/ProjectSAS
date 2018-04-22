@@ -5,8 +5,9 @@
 #include <regex>
 using namespace std;
 class Order{
-    Order();
+
 public:
+    Order();
     int getOrderID();
     void setOrderID(int neworderid);
     int getPetID();
@@ -31,4 +32,4 @@ private:
     string notes;
 
 };
-#endif // ORDER_H
+

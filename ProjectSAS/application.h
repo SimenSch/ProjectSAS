@@ -16,6 +16,8 @@ class Application : public QWidget
 public:
     DbOperator db;
     User activeUser;
+    void addOrder();
+    void addAssistant();
     explicit Application(QWidget *parent = 0);
     ~Application();
 private slots:

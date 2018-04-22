@@ -22,18 +22,17 @@ Application::Application(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     ui->errorLabel->hide();
+    db.addDatabase();
+    db.open();
 }
 
 Application::~Application()
 {
     delete ui;
+    db.close();
 }
 
 void Application::on_loginButton_clicked() {
-
-    DbOperator db;
-    db.addDatabase();
-    db.open();
 
 
     LoginInterface li;
@@ -45,6 +44,8 @@ void Application::on_loginButton_clicked() {
             ui->mainStack->setCurrentIndex(0);
             ui->customerTab->setCurrentIndex(0);
             ui->activeUserLabel->setText(ui->userNameEdit->text());
+            loadPets();
+            loadUserInfo();
         }
         else if(li.getUserType(activeUser.getuserID()) =="Employee") {
             ui->stackedWidget->setCurrentIndex(1);
@@ -63,11 +64,9 @@ void Application::on_loginButton_clicked() {
         ui->errorLabel->setText("No matching user/password");
         ui->errorLabel->show();
     }
-    db.close();
 }
 
 void Application::on_switchUserButton_clicked() {
-    db.close();
     ui->stackedWidget->setCurrentIndex(0);
     activeUser.setuserID(0);
     ui->userNameEdit->clear();
@@ -78,22 +77,54 @@ void Application::loadPets()
 {
 
     LoginInterface li;
-    DbOperator db;
-    db.addDatabase();
-    db.open();
 
     QSqlQueryModel * model=new QSqlQueryModel;
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
-    qry->prepare("SELECT Name, PetType, Race, BirthDate, Notes FROM Pet WHERE OwnerID = :ownerid");
+    if(ui->customerTab->currentIndex() == 1)
+    {
+        qry->prepare("SELECT Name, PetType, Race, BirthDate, Notes FROM Pet WHERE OwnerID = :ownerid");
+    }
+    else {
+        qry->prepare("SELECT Name, PetType, Race FROM Pet WHERE OwnerID = :ownerid");
+    }
     qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
     qry->exec();
     model->setQuery(*qry);
-    ui->petTableView->setModel(model);
-    qDebug() << (model->rowCount());
+    if(ui->customerTab->currentIndex() == 1)
+    {
+        ui->petTableView->setModel(model);
+        ui->petTableView->setColumnWidth(4, 230);
+        ui->petTableView->setRowHeight(1,50);
+        ui->petTableView->columnAt(1);
+    }
+    else {
+        ui->petTableOverview->setModel(model);
+    }
 
-    db.close();
+}
+
+void Application::loadUserInfo()
+{
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    QSqlQueryModel* model=new QSqlQueryModel;
+
+    qry->prepare("SELECT FirstName, Surname, Address, City, Zip FROM Owner WHERE UserID = :userid");
+    qry->bindValue(":userid", activeUser.getuserID());
+    qry->exec();
+
+    model->setQuery(*qry);
+
+    ui->firstNameInfoCustomer->setText(model->record(0).value(0).toString());
+    ui->surNameInfoCustomer->setText(model->record(0).value(1).toString());
+    ui->addressInfoCustomer->setText(model->record(0).value(2).toString());
+    ui->cityInfoCustomer->setText(model->record(0).value(3).toString());
+    ui->zipInfoCustomer->setText(model->record(0).value(4).toString());
+
+
 }
 
 void Application::on_cancelRegisterButton_clicked()
@@ -116,11 +147,6 @@ void Application::on_registerButton_clicked()
 
     User usr;
     Owner ownr;
-    DbOperator db;
-    db.addDatabase();
-    db.open();
-
-
 
     if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
     usr.seteMail(ui->eMailInput->text().toStdString());
@@ -154,7 +180,6 @@ void Application::on_registerButton_clicked()
     qry->bindValue(":userid", ownr.getuserID());
     qry->exec();
 
-    db.close();
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -175,9 +200,6 @@ void Application::on_addPetToDBButton_clicked()
     pet.setdateOfBirth(ui->petBirthEdit->text().toStdString());
     pet.setnotes(ui->petNotesEdit->toPlainText().toStdString());
 
-    DbOperator db;
-    db.addDatabase();
-    db.open();
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
@@ -196,8 +218,6 @@ void Application::on_addPetToDBButton_clicked()
         msgBox.setText("Pet successfully added");
         msgBox.exec();
     }
-
-    db.close();
 
 }
 
@@ -310,7 +330,27 @@ void Application::on_chooseUserTypeButton_clicked()
 
 void Application::on_customerTab_currentChanged(int index)
 {
-    if(index = 1) {
+    if(index == 1) {
         loadPets();
     }
+}
+
+void Application::on_viewPetsButton_clicked()
+{
+    ui->customerTab->setCurrentIndex(1);
+}
+
+void Application::on_viewAppButton_clicked()
+{
+    ui->customerTab->setCurrentIndex(2);
+}
+
+void Application::on_passwordEdit_returnPressed()
+{
+    on_loginButton_clicked();
+}
+
+void Application::on_userNameEdit_returnPressed()
+{
+    on_loginButton_clicked();
 }

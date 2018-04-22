@@ -22,6 +22,7 @@ private slots:
     void on_loginButton_clicked();
     void on_switchUserButton_clicked();
     void loadPets();
+    void loadUserInfo();
     void on_cancelRegisterButton_clicked();
     void on_newUserButton_clicked();
     void on_registerButton_clicked();
@@ -55,6 +56,14 @@ private slots:
     void on_chooseUserTypeButton_clicked();
 
     void on_customerTab_currentChanged(int index);
+
+    void on_viewPetsButton_clicked();
+
+    void on_viewAppButton_clicked();
+
+    void on_passwordEdit_returnPressed();
+
+    void on_userNameEdit_returnPressed();
 
 private:
     Ui::Application *ui;

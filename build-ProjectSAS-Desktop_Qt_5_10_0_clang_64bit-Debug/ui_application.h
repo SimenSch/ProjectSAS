@@ -21,6 +21,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
@@ -43,31 +44,69 @@ public:
     QLabel *label_4;
     QLabel *errorLabel;
     QLabel *sasPicLabel;
+    QLabel *label;
+    QLabel *label_32;
     QWidget *mainPage;
     QStackedWidget *mainStack;
     QWidget *customerPage;
     QTabWidget *customerTab;
-    QWidget *OverviewTab_3;
-    QLabel *label_9;
-    QLabel *label_10;
+    QWidget *overviewTab;
+    QWidget *verticalLayoutWidget_3;
+    QVBoxLayout *verticalLayout_6;
     QLabel *label_12;
     QLabel *label_13;
     QLabel *label_14;
+    QLabel *label_9;
+    QLabel *label_10;
+    QWidget *verticalLayoutWidget_4;
+    QVBoxLayout *verticalLayout_7;
+    QLabel *firstNameInfoCustomer;
+    QLabel *surNameInfoCustomer;
+    QLabel *addressInfoCustomer;
+    QLabel *zipInfoCustomer;
+    QLabel *cityInfoCustomer;
+    QWidget *verticalLayoutWidget_5;
+    QVBoxLayout *verticalLayout_8;
+    QLabel *label_36;
+    QTableView *petTableOverview;
+    QHBoxLayout *horizontalLayout_5;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *viewPetsButton;
+    QSpacerItem *horizontalSpacer_2;
+    QWidget *verticalLayoutWidget_6;
+    QVBoxLayout *verticalLayout_9;
+    QLabel *label_37;
+    QTableView *appTableOverview;
+    QHBoxLayout *horizontalLayout_6;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *viewAppButton;
+    QSpacerItem *horizontalSpacer_4;
     QWidget *Hei_3;
     QTableView *petTableView;
     QPushButton *addPetButton;
     QWidget *Appointments_3;
+    QTableView *appTableView;
+    QPushButton *addAppButton;
     QWidget *employeePage;
     QTabWidget *tabWidget_4;
     QWidget *OverviewTab_4;
-    QLabel *label_11;
+    QWidget *verticalLayoutWidget_7;
+    QVBoxLayout *verticalLayout_10;
     QLabel *label_15;
     QLabel *label_16;
     QLabel *label_17;
+    QLabel *label_11;
     QLabel *label_18;
-    QTableView *tableView;
+    QWidget *verticalLayoutWidget_8;
+    QVBoxLayout *verticalLayout_11;
+    QLabel *firstNameInfoCustomer_2;
+    QLabel *surNameInfoCustomer_2;
+    QLabel *addressInfoCustomer_2;
+    QLabel *zipInfoCustomer_2;
+    QLabel *cityInfoCustomer_2;
+    QTableView *shiftsTableView_2;
     QWidget *Hei_4;
-    QWidget *Appointments_4;
+    QTableView *shiftsTableView;
     QPushButton *switchUserButton;
     QLabel *activeUserLabel;
     QWidget *registerPetPage;
@@ -129,7 +168,7 @@ public:
     QLabel *label_20;
     QLabel *label_21;
     QLabel *label_22;
-    QWidget *widget;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout;
     QPushButton *registerButton;
     QPushButton *cancelRegisterButton;
@@ -186,8 +225,18 @@ public:
         errorLabel->setAlignment(Qt::AlignCenter);
         sasPicLabel = new QLabel(LoginPage);
         sasPicLabel->setObjectName(QStringLiteral("sasPicLabel"));
-        sasPicLabel->setGeometry(QRect(300, 100, 201, 121));
+        sasPicLabel->setGeometry(QRect(300, 80, 201, 121));
         sasPicLabel->setPixmap(QPixmap(QString::fromUtf8("../build-ProjectSAS-Desktop_Qt_5_10_0_clang_64bit-Debug/sas.svg")));
+        label = new QLabel(LoginPage);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(330, 200, 141, 16));
+        label->setStyleSheet(QStringLiteral("font-size: 20px;"));
+        label->setAlignment(Qt::AlignCenter);
+        label_32 = new QLabel(LoginPage);
+        label_32->setObjectName(QStringLiteral("label_32"));
+        label_32->setGeometry(QRect(270, 240, 261, 16));
+        label_32->setStyleSheet(QStringLiteral("font-style: italic;"));
+        label_32->setAlignment(Qt::AlignCenter);
         stackedWidget->addWidget(LoginPage);
         mainPage = new QWidget();
         mainPage->setObjectName(QStringLiteral("mainPage"));
@@ -199,24 +248,146 @@ public:
         customerTab = new QTabWidget(customerPage);
         customerTab->setObjectName(QStringLiteral("customerTab"));
         customerTab->setGeometry(QRect(10, 10, 761, 521));
-        OverviewTab_3 = new QWidget();
-        OverviewTab_3->setObjectName(QStringLiteral("OverviewTab_3"));
-        label_9 = new QLabel(OverviewTab_3);
-        label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(90, 130, 60, 16));
-        label_10 = new QLabel(OverviewTab_3);
-        label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(90, 150, 81, 16));
-        label_12 = new QLabel(OverviewTab_3);
+        overviewTab = new QWidget();
+        overviewTab->setObjectName(QStringLiteral("overviewTab"));
+        verticalLayoutWidget_3 = new QWidget(overviewTab);
+        verticalLayoutWidget_3->setObjectName(QStringLiteral("verticalLayoutWidget_3"));
+        verticalLayoutWidget_3->setGeometry(QRect(180, 60, 160, 114));
+        verticalLayout_6 = new QVBoxLayout(verticalLayoutWidget_3);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
+        label_12 = new QLabel(verticalLayoutWidget_3);
         label_12->setObjectName(QStringLiteral("label_12"));
-        label_12->setGeometry(QRect(90, 70, 71, 16));
-        label_13 = new QLabel(OverviewTab_3);
+        label_12->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_6->addWidget(label_12);
+
+        label_13 = new QLabel(verticalLayoutWidget_3);
         label_13->setObjectName(QStringLiteral("label_13"));
-        label_13->setGeometry(QRect(90, 90, 60, 16));
-        label_14 = new QLabel(OverviewTab_3);
+        label_13->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_6->addWidget(label_13);
+
+        label_14 = new QLabel(verticalLayoutWidget_3);
         label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setGeometry(QRect(90, 110, 60, 16));
-        customerTab->addTab(OverviewTab_3, QString());
+        label_14->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_6->addWidget(label_14);
+
+        label_9 = new QLabel(verticalLayoutWidget_3);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_6->addWidget(label_9);
+
+        label_10 = new QLabel(verticalLayoutWidget_3);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_6->addWidget(label_10);
+
+        verticalLayoutWidget_4 = new QWidget(overviewTab);
+        verticalLayoutWidget_4->setObjectName(QStringLiteral("verticalLayoutWidget_4"));
+        verticalLayoutWidget_4->setGeometry(QRect(410, 60, 160, 114));
+        verticalLayout_7 = new QVBoxLayout(verticalLayoutWidget_4);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        firstNameInfoCustomer = new QLabel(verticalLayoutWidget_4);
+        firstNameInfoCustomer->setObjectName(QStringLiteral("firstNameInfoCustomer"));
+
+        verticalLayout_7->addWidget(firstNameInfoCustomer);
+
+        surNameInfoCustomer = new QLabel(verticalLayoutWidget_4);
+        surNameInfoCustomer->setObjectName(QStringLiteral("surNameInfoCustomer"));
+
+        verticalLayout_7->addWidget(surNameInfoCustomer);
+
+        addressInfoCustomer = new QLabel(verticalLayoutWidget_4);
+        addressInfoCustomer->setObjectName(QStringLiteral("addressInfoCustomer"));
+
+        verticalLayout_7->addWidget(addressInfoCustomer);
+
+        zipInfoCustomer = new QLabel(verticalLayoutWidget_4);
+        zipInfoCustomer->setObjectName(QStringLiteral("zipInfoCustomer"));
+
+        verticalLayout_7->addWidget(zipInfoCustomer);
+
+        cityInfoCustomer = new QLabel(verticalLayoutWidget_4);
+        cityInfoCustomer->setObjectName(QStringLiteral("cityInfoCustomer"));
+
+        verticalLayout_7->addWidget(cityInfoCustomer);
+
+        verticalLayoutWidget_5 = new QWidget(overviewTab);
+        verticalLayoutWidget_5->setObjectName(QStringLiteral("verticalLayoutWidget_5"));
+        verticalLayoutWidget_5->setGeometry(QRect(20, 220, 321, 251));
+        verticalLayout_8 = new QVBoxLayout(verticalLayoutWidget_5);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        label_36 = new QLabel(verticalLayoutWidget_5);
+        label_36->setObjectName(QStringLiteral("label_36"));
+        label_36->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_8->addWidget(label_36);
+
+        petTableOverview = new QTableView(verticalLayoutWidget_5);
+        petTableOverview->setObjectName(QStringLiteral("petTableOverview"));
+
+        verticalLayout_8->addWidget(petTableOverview);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer);
+
+        viewPetsButton = new QPushButton(verticalLayoutWidget_5);
+        viewPetsButton->setObjectName(QStringLiteral("viewPetsButton"));
+
+        horizontalLayout_5->addWidget(viewPetsButton);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_2);
+
+
+        verticalLayout_8->addLayout(horizontalLayout_5);
+
+        verticalLayoutWidget_6 = new QWidget(overviewTab);
+        verticalLayoutWidget_6->setObjectName(QStringLiteral("verticalLayoutWidget_6"));
+        verticalLayoutWidget_6->setGeometry(QRect(410, 220, 321, 251));
+        verticalLayout_9 = new QVBoxLayout(verticalLayoutWidget_6);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        verticalLayout_9->setContentsMargins(0, 0, 0, 0);
+        label_37 = new QLabel(verticalLayoutWidget_6);
+        label_37->setObjectName(QStringLiteral("label_37"));
+        label_37->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_9->addWidget(label_37);
+
+        appTableOverview = new QTableView(verticalLayoutWidget_6);
+        appTableOverview->setObjectName(QStringLiteral("appTableOverview"));
+
+        verticalLayout_9->addWidget(appTableOverview);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_3);
+
+        viewAppButton = new QPushButton(verticalLayoutWidget_6);
+        viewAppButton->setObjectName(QStringLiteral("viewAppButton"));
+
+        horizontalLayout_6->addWidget(viewAppButton);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_4);
+
+
+        verticalLayout_9->addLayout(horizontalLayout_6);
+
+        customerTab->addTab(overviewTab, QString());
         Hei_3 = new QWidget();
         Hei_3->setObjectName(QStringLiteral("Hei_3"));
         petTableView = new QTableView(Hei_3);
@@ -228,6 +399,12 @@ public:
         customerTab->addTab(Hei_3, QString());
         Appointments_3 = new QWidget();
         Appointments_3->setObjectName(QStringLiteral("Appointments_3"));
+        appTableView = new QTableView(Appointments_3);
+        appTableView->setObjectName(QStringLiteral("appTableView"));
+        appTableView->setGeometry(QRect(60, 60, 651, 351));
+        addAppButton = new QPushButton(Appointments_3);
+        addAppButton->setObjectName(QStringLiteral("addAppButton"));
+        addAppButton->setGeometry(QRect(300, 430, 151, 32));
         customerTab->addTab(Appointments_3, QString());
         mainStack->addWidget(customerPage);
         employeePage = new QWidget();
@@ -237,31 +414,83 @@ public:
         tabWidget_4->setGeometry(QRect(10, 10, 761, 521));
         OverviewTab_4 = new QWidget();
         OverviewTab_4->setObjectName(QStringLiteral("OverviewTab_4"));
-        label_11 = new QLabel(OverviewTab_4);
-        label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(90, 130, 60, 16));
-        label_15 = new QLabel(OverviewTab_4);
+        verticalLayoutWidget_7 = new QWidget(OverviewTab_4);
+        verticalLayoutWidget_7->setObjectName(QStringLiteral("verticalLayoutWidget_7"));
+        verticalLayoutWidget_7->setGeometry(QRect(180, 90, 160, 114));
+        verticalLayout_10 = new QVBoxLayout(verticalLayoutWidget_7);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        verticalLayout_10->setContentsMargins(0, 0, 0, 0);
+        label_15 = new QLabel(verticalLayoutWidget_7);
         label_15->setObjectName(QStringLiteral("label_15"));
-        label_15->setGeometry(QRect(90, 150, 81, 16));
-        label_16 = new QLabel(OverviewTab_4);
+        label_15->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_10->addWidget(label_15);
+
+        label_16 = new QLabel(verticalLayoutWidget_7);
         label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setGeometry(QRect(90, 70, 71, 16));
-        label_17 = new QLabel(OverviewTab_4);
+        label_16->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_10->addWidget(label_16);
+
+        label_17 = new QLabel(verticalLayoutWidget_7);
         label_17->setObjectName(QStringLiteral("label_17"));
-        label_17->setGeometry(QRect(90, 90, 60, 16));
-        label_18 = new QLabel(OverviewTab_4);
+        label_17->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_10->addWidget(label_17);
+
+        label_11 = new QLabel(verticalLayoutWidget_7);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_10->addWidget(label_11);
+
+        label_18 = new QLabel(verticalLayoutWidget_7);
         label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setGeometry(QRect(90, 110, 60, 16));
-        tableView = new QTableView(OverviewTab_4);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(290, 60, 256, 192));
+        label_18->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_10->addWidget(label_18);
+
+        verticalLayoutWidget_8 = new QWidget(OverviewTab_4);
+        verticalLayoutWidget_8->setObjectName(QStringLiteral("verticalLayoutWidget_8"));
+        verticalLayoutWidget_8->setGeometry(QRect(410, 90, 160, 114));
+        verticalLayout_11 = new QVBoxLayout(verticalLayoutWidget_8);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        verticalLayout_11->setContentsMargins(0, 0, 0, 0);
+        firstNameInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
+        firstNameInfoCustomer_2->setObjectName(QStringLiteral("firstNameInfoCustomer_2"));
+
+        verticalLayout_11->addWidget(firstNameInfoCustomer_2);
+
+        surNameInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
+        surNameInfoCustomer_2->setObjectName(QStringLiteral("surNameInfoCustomer_2"));
+
+        verticalLayout_11->addWidget(surNameInfoCustomer_2);
+
+        addressInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
+        addressInfoCustomer_2->setObjectName(QStringLiteral("addressInfoCustomer_2"));
+
+        verticalLayout_11->addWidget(addressInfoCustomer_2);
+
+        zipInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
+        zipInfoCustomer_2->setObjectName(QStringLiteral("zipInfoCustomer_2"));
+
+        verticalLayout_11->addWidget(zipInfoCustomer_2);
+
+        cityInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
+        cityInfoCustomer_2->setObjectName(QStringLiteral("cityInfoCustomer_2"));
+
+        verticalLayout_11->addWidget(cityInfoCustomer_2);
+
+        shiftsTableView_2 = new QTableView(OverviewTab_4);
+        shiftsTableView_2->setObjectName(QStringLiteral("shiftsTableView_2"));
+        shiftsTableView_2->setGeometry(QRect(80, 230, 611, 221));
         tabWidget_4->addTab(OverviewTab_4, QString());
         Hei_4 = new QWidget();
         Hei_4->setObjectName(QStringLiteral("Hei_4"));
+        shiftsTableView = new QTableView(Hei_4);
+        shiftsTableView->setObjectName(QStringLiteral("shiftsTableView"));
+        shiftsTableView->setGeometry(QRect(60, 70, 651, 351));
         tabWidget_4->addTab(Hei_4, QString());
-        Appointments_4 = new QWidget();
-        Appointments_4->setObjectName(QStringLiteral("Appointments_4"));
-        tabWidget_4->addTab(Appointments_4, QString());
         mainStack->addWidget(employeePage);
         switchUserButton = new QPushButton(mainPage);
         switchUserButton->setObjectName(QStringLiteral("switchUserButton"));
@@ -429,7 +658,7 @@ public:
         registerCustomerPage->setObjectName(QStringLiteral("registerCustomerPage"));
         verticalLayoutWidget = new QWidget(registerCustomerPage);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(290, 150, 291, 291));
+        verticalLayoutWidget->setGeometry(QRect(290, 150, 291, 302));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -551,18 +780,18 @@ public:
 
         verticalLayout_2->addWidget(label_22);
 
-        widget = new QWidget(registerCustomerPage);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(290, 440, 289, 32));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget2 = new QWidget(registerCustomerPage);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(290, 440, 289, 32));
+        horizontalLayout = new QHBoxLayout(layoutWidget2);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        registerButton = new QPushButton(widget);
+        registerButton = new QPushButton(layoutWidget2);
         registerButton->setObjectName(QStringLiteral("registerButton"));
 
         horizontalLayout->addWidget(registerButton);
 
-        cancelRegisterButton = new QPushButton(widget);
+        cancelRegisterButton = new QPushButton(layoutWidget2);
         cancelRegisterButton->setObjectName(QStringLiteral("cancelRegisterButton"));
 
         horizontalLayout->addWidget(cancelRegisterButton);
@@ -667,9 +896,9 @@ public:
         retranslateUi(Application);
 
         stackedWidget->setCurrentIndex(1);
-        mainStack->setCurrentIndex(0);
-        customerTab->setCurrentIndex(1);
-        tabWidget_4->setCurrentIndex(1);
+        mainStack->setCurrentIndex(1);
+        customerTab->setCurrentIndex(2);
+        tabWidget_4->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Application);
@@ -684,20 +913,32 @@ public:
         label_4->setText(QApplication::translate("Application", "Username", nullptr));
         errorLabel->setText(QApplication::translate("Application", "error message", nullptr));
         sasPicLabel->setText(QString());
+        label->setText(QApplication::translate("Application", "Pet Kennel", nullptr));
+        label_32->setText(QApplication::translate("Application", "- give your pet the holiday it deserves", nullptr));
 #ifndef QT_NO_TOOLTIP
-        OverviewTab_3->setToolTip(QApplication::translate("Application", "<html><head/><body><p>Overview</p></body></html>", nullptr));
+        overviewTab->setToolTip(QApplication::translate("Application", "<html><head/><body><p>Overview</p></body></html>", nullptr));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_WHATSTHIS
-        OverviewTab_3->setWhatsThis(QString());
+        overviewTab->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
-        label_9->setText(QApplication::translate("Application", "Zip", nullptr));
-        label_10->setText(QApplication::translate("Application", "Penis length", nullptr));
         label_12->setText(QApplication::translate("Application", "First Name", nullptr));
         label_13->setText(QApplication::translate("Application", "Surname", nullptr));
         label_14->setText(QApplication::translate("Application", "Address", nullptr));
-        customerTab->setTabText(customerTab->indexOf(OverviewTab_3), QApplication::translate("Application", "Overview", nullptr));
+        label_9->setText(QApplication::translate("Application", "Zip", nullptr));
+        label_10->setText(QApplication::translate("Application", "City", nullptr));
+        firstNameInfoCustomer->setText(QApplication::translate("Application", "firstName", nullptr));
+        surNameInfoCustomer->setText(QApplication::translate("Application", "surName", nullptr));
+        addressInfoCustomer->setText(QApplication::translate("Application", "address", nullptr));
+        zipInfoCustomer->setText(QApplication::translate("Application", "zip", nullptr));
+        cityInfoCustomer->setText(QApplication::translate("Application", "City", nullptr));
+        label_36->setText(QApplication::translate("Application", "Pets", nullptr));
+        viewPetsButton->setText(QApplication::translate("Application", "View", nullptr));
+        label_37->setText(QApplication::translate("Application", "Appointments", nullptr));
+        viewAppButton->setText(QApplication::translate("Application", "View", nullptr));
+        customerTab->setTabText(customerTab->indexOf(overviewTab), QApplication::translate("Application", "Overview", nullptr));
         addPetButton->setText(QApplication::translate("Application", "Add Pet", nullptr));
         customerTab->setTabText(customerTab->indexOf(Hei_3), QApplication::translate("Application", "Pets", nullptr));
+        addAppButton->setText(QApplication::translate("Application", "New Appointment", nullptr));
         customerTab->setTabText(customerTab->indexOf(Appointments_3), QApplication::translate("Application", "Appointments", nullptr));
 #ifndef QT_NO_TOOLTIP
         OverviewTab_4->setToolTip(QApplication::translate("Application", "<html><head/><body><p>Overview</p></body></html>", nullptr));
@@ -705,14 +946,18 @@ public:
 #ifndef QT_NO_WHATSTHIS
         OverviewTab_4->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
+        label_15->setText(QApplication::translate("Application", "First Name", nullptr));
+        label_16->setText(QApplication::translate("Application", "Surname", nullptr));
+        label_17->setText(QApplication::translate("Application", "Address", nullptr));
         label_11->setText(QApplication::translate("Application", "Zip", nullptr));
-        label_15->setText(QApplication::translate("Application", "Penis length", nullptr));
-        label_16->setText(QApplication::translate("Application", "First Name", nullptr));
-        label_17->setText(QApplication::translate("Application", "Surname", nullptr));
-        label_18->setText(QApplication::translate("Application", "Address", nullptr));
+        label_18->setText(QApplication::translate("Application", "City", nullptr));
+        firstNameInfoCustomer_2->setText(QApplication::translate("Application", "firstName", nullptr));
+        surNameInfoCustomer_2->setText(QApplication::translate("Application", "surName", nullptr));
+        addressInfoCustomer_2->setText(QApplication::translate("Application", "address", nullptr));
+        zipInfoCustomer_2->setText(QApplication::translate("Application", "zip", nullptr));
+        cityInfoCustomer_2->setText(QApplication::translate("Application", "City", nullptr));
         tabWidget_4->setTabText(tabWidget_4->indexOf(OverviewTab_4), QApplication::translate("Application", "Overview", nullptr));
-        tabWidget_4->setTabText(tabWidget_4->indexOf(Hei_4), QApplication::translate("Application", "Pets", nullptr));
-        tabWidget_4->setTabText(tabWidget_4->indexOf(Appointments_4), QApplication::translate("Application", "Appointments", nullptr));
+        tabWidget_4->setTabText(tabWidget_4->indexOf(Hei_4), QApplication::translate("Application", "Shifts", nullptr));
         switchUserButton->setText(QApplication::translate("Application", "Switch User", nullptr));
         activeUserLabel->setText(QApplication::translate("Application", "user", nullptr));
         label_23->setText(QApplication::translate("Application", "Name:", nullptr));

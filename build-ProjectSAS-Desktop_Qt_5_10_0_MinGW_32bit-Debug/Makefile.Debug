@@ -405,7 +405,7 @@ debug/moc_application.cpp: D:/qt/5.10.0/mingw53_32/include/QtWidgets/QWidget \
 		../ProjectSAS/application.h \
 		debug/moc_predefs.h \
 		D:/qt/5.10.0/mingw53_32/bin/moc.exe
-	D:\qt\5.10.0\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/qt/5.10.0/mingw53_32/mkspecs/win32-g++ -IC:/Users/Simen/OneDrive/Dokumenter/newersas/newsasas/ProjectSAS/ProjectSAS -ID:/qt/5.10.0/mingw53_32/include -ID:/qt/5.10.0/mingw53_32/include/QtWidgets -ID:/qt/5.10.0/mingw53_32/include/QtGui -ID:/qt/5.10.0/mingw53_32/include/QtANGLE -ID:/qt/5.10.0/mingw53_32/include/QtSql -ID:/qt/5.10.0/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\ProjectSAS\application.h -o debug\moc_application.cpp
+	D:\qt\5.10.0\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/qt/5.10.0/mingw53_32/mkspecs/win32-g++ -IC:/Users/Simen/OneDrive/Dokumenter/newersas/newsasas/new/ProjectSAS/ProjectSAS -ID:/qt/5.10.0/mingw53_32/include -ID:/qt/5.10.0/mingw53_32/include/QtWidgets -ID:/qt/5.10.0/mingw53_32/include/QtGui -ID:/qt/5.10.0/mingw53_32/include/QtANGLE -ID:/qt/5.10.0/mingw53_32/include/QtSql -ID:/qt/5.10.0/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\ProjectSAS\application.h -o debug\moc_application.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -985,13 +985,15 @@ debug/application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QRadioButton \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qradiobutton.h \
-		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QSplitter \
-		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qsplitter.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QSpacerItem \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QStackedWidget \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qstackedwidget.h \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QTabWidget \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QTableView \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qtableview.h \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QTextEdit \
+		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qtextedit.h \
+		D:/qt/5.10.0/mingw53_32/include/QtGui/qtextdocument.h \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QVBoxLayout \
 		../ProjectSAS/logininterface.h \
 		../ProjectSAS/assistant.h \
@@ -1003,7 +1005,8 @@ debug/application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/QMessageBox \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qmessagebox.h \
 		D:/qt/5.10.0/mingw53_32/include/QtWidgets/qdialog.h \
-		D:/qt/5.10.0/mingw53_32/include/QtSql/QSqlDatabase
+		D:/qt/5.10.0/mingw53_32/include/QtSql/QSqlDatabase \
+		../ProjectSAS/order.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\application.o ..\ProjectSAS\application.cpp
 
 debug/appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h

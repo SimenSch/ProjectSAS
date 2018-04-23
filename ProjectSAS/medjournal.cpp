@@ -1,5 +1,5 @@
 #include "medjournal.h"
-
+//written by simen schaufel s305491
 MedJournal::MedJournal(){}
 
 int MedJournal::getmedJournalID(){
@@ -16,21 +16,4 @@ void MedJournal::setpetID(int newpetID){
 }
 void MedJournal::setnotes(string newnote){
     notes=newnote;
-}
-void MedJournal::registermedjournal(int pID,string newnote){
-    regex notecheck("^[a-zæøåÆØÅA-Z0-9\\.]$");
-
-    try{
-        if(regex_match(newnote,notecheck)){
-            setpetID(pID);
-            setnotes(newnote);
-        }
-
-    }
-    catch(regex_error& e){
-
-    }
-
-
-
 }

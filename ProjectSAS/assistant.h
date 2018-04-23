@@ -28,7 +28,7 @@ public:
     void setdepartment(string newdepartment);
     string geteMail();
     void seteMail(string neweMail);
-    void registerassistant(string surname,string firstname,string address,string city, string zip, string dateofbirth, string department, string email);
+
 
 private:
     int assistantID;

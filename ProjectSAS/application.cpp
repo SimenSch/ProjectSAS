@@ -31,10 +31,8 @@ Application::~Application()
     delete ui;
     db.close();
 }
-
+// s315593 & s315586
 void Application::on_loginButton_clicked() {
-
-
     LoginInterface li;
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99){
         if(li.getUserID(ui->userNameEdit->text().toStdString()) > 0){
@@ -78,9 +76,7 @@ void Application::on_switchUserButton_clicked() {
     ui->passwordEdit->clear();
 }
 
-void Application::loadPets()
-{
-
+void Application::loadPets(){
     LoginInterface li;
 
     QSqlQueryModel * model=new QSqlQueryModel;
@@ -110,9 +106,7 @@ void Application::loadPets()
 
 }
 
-void Application::loadUserInfo()
-{
-
+void Application::loadUserInfo(){
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
     QSqlQueryModel* model=new QSqlQueryModel;
@@ -128,8 +122,6 @@ void Application::loadUserInfo()
     ui->addressInfoCustomer->setText(model->record(0).value(2).toString());
     ui->cityInfoCustomer->setText(model->record(0).value(3).toString());
     ui->zipInfoCustomer->setText(model->record(0).value(4).toString());
-
-
 }
 
 void Application::on_cancelRegisterButton_clicked()
@@ -145,7 +137,7 @@ void Application::on_newUserButton_clicked()
     ui->invalidKeyLabel->hide();
 }
 
-
+// s315586
 bool Application::regChecker(){
     if(ui->firstNameInput->text().isEmpty() || ui->surNameInput->text().isEmpty() || ui->addressInput->text().isEmpty() ||
             ui->dateOfBirthInput->text().isEmpty() || ui->cityInput->text().isEmpty() || ui->zipInput->text().isEmpty() ||
@@ -158,7 +150,7 @@ bool Application::regChecker(){
 }
 
 
-
+// s315586 & s315593
 void Application::on_registerButton_clicked(){
     User usr;
     Owner ownr;
@@ -201,12 +193,16 @@ void Application::on_registerButton_clicked(){
                 clearInputFields();
             }
         } else{
-            // fuck you mama
+            ui->generalMsg->setText("Password doesn't match");
+            ui->generalMsg->show();
         }
     } else {
-        cout << "No user for you" << endl;
+        cout << "RegChecker failed" << endl;
+        ui->generalMsg->setText("All fields must be filled out");
+        ui->generalMsg->show();
     }
 }
+
     void Application::addAssistant(){
     User usr;
     Assistant ownr;
@@ -461,6 +457,7 @@ void Application::on_userNameEdit_returnPressed()
     on_loginButton_clicked();
 }
 
+// s315586
 void Application::clearInputFields(){
     ui->firstNameInput->clear();
     ui->surNameInput->clear();

@@ -59,6 +59,17 @@ int LoginInterface::loginAttempt(string username, string password){
 int LoginInterface::createUser(string username, string password){
     DbOperator db;
     db.mydb.open();
+    QSqlQuery* check=new QSqlQuery(db.mydb);
+    check->prepare("SELECT EMail FROM User WHERE EMail = ?;");
+    check->bindValue(0, QString::fromStdString(username));
+    if(check->exec()){
+        check->next();
+        string checking = check->value(0).toString().toStdString();
+        if( checking == username){
+            cout << "username not available" << endl;
+            return 0;
+        }
+    }
     string pWord = hashing(password);
     QSqlQuery* create=new QSqlQuery(db.mydb);
     create->prepare("INSERT INTO User (EMail, Password, UserType) VALUES (?, ?, ?)");
@@ -85,11 +96,13 @@ int LoginInterface::getUserID(string userName) {
     if(qry->exec()) {
         qry->next();
         userID = qry->value(0).toInt();
+        return userID;
     } else {
         cout << "GetUserId Failed: SQL Query failed." << endl;
+        return 0;
     }
     cout << "GetUserID IF statement failed. Fucking thing sucks!" << endl;
-    return userID;
+    return 0;
 }
 
 string LoginInterface::getUserType(int userID) {

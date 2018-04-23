@@ -19,6 +19,8 @@ public:
     void addOrder();
     void addAssistant();
     explicit Application(QWidget *parent = 0);
+    bool regChecker();
+    void clearInputFields();
     ~Application();
 private slots:
     void on_loginButton_clicked();

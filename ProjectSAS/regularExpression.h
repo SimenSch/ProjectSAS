@@ -4,7 +4,7 @@
 #include <iostream>
 #include <regex>
 using namespace std;
-
+//written by simen schaufel S305491
 class regularExpression{
     public:
     regularExpression();

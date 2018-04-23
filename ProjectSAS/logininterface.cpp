@@ -55,7 +55,8 @@ int LoginInterface::loginAttempt(string username, string password){
     return 0;
 
 }
-
+//partly written by simen schaufel s305491
+//mainly anders nøss
 int LoginInterface::createUser(string username, string password){
     DbOperator db;
     db.mydb.open();
@@ -122,6 +123,7 @@ int LoginInterface::getOwnerID(int userID) {
     cout << "GetOwnerID IF statement failed, shit has happend" << endl;
     return 0;
 }
+//written by simen schaufel s305491
 int LoginInterface::getPetID(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);

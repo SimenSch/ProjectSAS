@@ -22,7 +22,7 @@ public:
     void setdoctor(string newdoctor);
     string getnotes();
     void setnotes(string newdoctor);
-    void registervetvisits(int petid,string appointmentdate, string appointmenttime,string newdoctor);
+
 private:
     int visitID;
     int petID;

@@ -141,7 +141,8 @@ void Application::on_newUserButton_clicked()
 }
 
 
-
+//written by simen schaufel S305491
+//partly simen Persch Andersen
 void Application::on_registerButton_clicked()
 {
 
@@ -189,6 +190,7 @@ void Application::on_registerButton_clicked()
     }
 
 }
+//written by Simen schaufel s305491
     void Application::addAssistant(){
     User usr;
     Assistant ownr;
@@ -239,7 +241,7 @@ void Application::on_registerButton_clicked()
         // fuck you mama
     }
 }
-
+//written by Simen Schaufel s305491
     void Application::addOrder(){
     Order ordr;
     LoginInterface lgn;

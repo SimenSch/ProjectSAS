@@ -1,5 +1,5 @@
 #include "appointment.h"
-
+//written by simen schaufel s305491
 Appointment::Appointment()
 {
 
@@ -33,16 +33,4 @@ string Appointment::getprice(){
 void Appointment::setprice(string newprice){
     price=newprice;
 }
-void Appointment::registerappointment(int petid,int sessionid,string newprice){
-    regex pricecheck("^[1-9\\.]{6}$");
-    setpetID(petid);
-    setsessionID(sessionid);
 
-    try{
-        if(regex_match(newprice,pricecheck)){
-                setprice(newprice);
-        }
-    }
-    catch(regex_error& e){
-    }
-}

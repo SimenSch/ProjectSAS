@@ -1,4 +1,5 @@
 #include "order.h"
+//written by simen schaufel s305491
 Order::Order(){}
 
     int Order::getOrderID(){

@@ -18,6 +18,7 @@ public:
     User activeUser;
     void addOrder();
     void addAssistant();
+    bool regChecker();
     explicit Application(QWidget *parent = 0);
     ~Application();
 private slots:

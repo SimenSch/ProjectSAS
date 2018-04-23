@@ -18,6 +18,8 @@ public:
     User activeUser;
     void addOrder();
     void addAssistant();
+    void showCustAppoint();
+    void calcAppPrice();
     bool regChecker();
     explicit Application(QWidget *parent = 0);
     ~Application();
@@ -34,25 +36,30 @@ private slots:
     void on_cancelPetAddButton_clicked();
 
 
+    //On text edited input fields customer user creation
     void on_firstNameInput_textEdited();
-
     void on_surNameInput_textEdited();
-
     void on_dateOfBirthInput_textEdited();
-
-    void on_addressInput_textChanged();
-
+    void on_addressInput_textEdited();
     void on_cityInput_textEdited();
-
     void on_zipInput_textEdited();
-
     void on_phoneinput_textEdited();
-
     void on_eMailInput_textEdited();
-
     void on_passwordInput_textEdited();
-
     void on_reEnterPasswordInput_textEdited();
+
+    //On text edited input fields employee user creation
+    void on_firstNameInput_Emp_textEdited();
+    void on_surNameInput_Emp_textEdited();
+    void on_dateOfBirthInput_Emp_textEdited();
+    void on_addressInput_Emp_textEdited();
+    void on_cityInput_Emp_textEdited();
+    void on_zipInput_Emp_textEdited();
+    void on_phoneinput_Emp_textEdited();
+    void on_departmentComboBox_currentIndexChanged();
+    void on_eMailInput_Emp_textEdited();
+    void on_passwordInput_Emp_textEdited();
+    void on_reEnterPasswordInput_Emp_textEdited();
 
     void on_cancelUserChoiceButton_clicked();
 
@@ -69,6 +76,17 @@ private slots:
     void on_userNameEdit_returnPressed();
 
     void on_addAppButton_clicked();
+
+    void on_orderAppButton_clicked();
+
+    void on_appFromEdit_dateChanged();
+
+    void on_appToEdit_dateChanged();
+
+    void on_registerButton_Emp_clicked();
+
+    void on_cancelRegisterButton_Emp_clicked();
+
 
 private:
     Ui::Application *ui;

@@ -54,24 +54,28 @@ SOURCES       = ../ProjectSAS/main.cpp \
 		../ProjectSAS/application.cpp \
 		../ProjectSAS/appointment.cpp \
 		../ProjectSAS/assistant.cpp \
+		../ProjectSAS/dboperator.cpp \
 		../ProjectSAS/medjournal.cpp \
 		../ProjectSAS/owner.cpp \
 		../ProjectSAS/pet.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
 		../ProjectSAS/logininterface.cpp \
-		../ProjectSAS/dboperator.cpp moc_application.cpp
+		../ProjectSAS/regularExpression.cpp \
+		../ProjectSAS/order.cpp moc_application.cpp
 OBJECTS       = main.o \
 		application.o \
 		appointment.o \
 		assistant.o \
+		dboperator.o \
 		medjournal.o \
 		owner.o \
 		pet.o \
 		user.o \
 		vetvisits.o \
 		logininterface.o \
-		dboperator.o \
+		regularExpression.o \
+		order.o \
 		moc_application.o
 DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.10.0/clang_64/mkspecs/qdevice.pri \
@@ -239,23 +243,27 @@ DIST          = /Applications/Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../ProjectSAS/ProjectSAS.pro ../ProjectSAS/application.h \
 		../ProjectSAS/appointment.h \
 		../ProjectSAS/assistant.h \
+		../ProjectSAS/dboperator.h \
 		../ProjectSAS/medjournal.h \
 		../ProjectSAS/owner.h \
 		../ProjectSAS/pet.h \
 		../ProjectSAS/user.h \
 		../ProjectSAS/vetvisits.h \
+		../ProjectSAS/regularExpression.h \
 		../ProjectSAS/logininterface.h \
-		../ProjectSAS/dboperator.h ../ProjectSAS/main.cpp \
+		../ProjectSAS/order.h ../ProjectSAS/main.cpp \
 		../ProjectSAS/application.cpp \
 		../ProjectSAS/appointment.cpp \
 		../ProjectSAS/assistant.cpp \
+		../ProjectSAS/dboperator.cpp \
 		../ProjectSAS/medjournal.cpp \
 		../ProjectSAS/owner.cpp \
 		../ProjectSAS/pet.cpp \
 		../ProjectSAS/user.cpp \
 		../ProjectSAS/vetvisits.cpp \
 		../ProjectSAS/logininterface.cpp \
-		../ProjectSAS/dboperator.cpp
+		../ProjectSAS/regularExpression.cpp \
+		../ProjectSAS/order.cpp
 QMAKE_TARGET  = ProjectSAS
 DESTDIR       = 
 TARGET        = ProjectSAS.app/Contents/MacOS/ProjectSAS
@@ -640,8 +648,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Applications/Qt/5.10.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/application.h ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/logininterface.h ../ProjectSAS/dboperator.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/application.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/logininterface.cpp ../ProjectSAS/dboperator.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/application.h ../ProjectSAS/appointment.h ../ProjectSAS/assistant.h ../ProjectSAS/dboperator.h ../ProjectSAS/medjournal.h ../ProjectSAS/owner.h ../ProjectSAS/pet.h ../ProjectSAS/user.h ../ProjectSAS/vetvisits.h ../ProjectSAS/regularExpression.h ../ProjectSAS/logininterface.h ../ProjectSAS/order.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectSAS/main.cpp ../ProjectSAS/application.cpp ../ProjectSAS/appointment.cpp ../ProjectSAS/assistant.cpp ../ProjectSAS/dboperator.cpp ../ProjectSAS/medjournal.cpp ../ProjectSAS/owner.cpp ../ProjectSAS/pet.cpp ../ProjectSAS/user.cpp ../ProjectSAS/vetvisits.cpp ../ProjectSAS/logininterface.cpp ../ProjectSAS/regularExpression.cpp ../ProjectSAS/order.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProjectSAS/application.ui $(DISTDIR)/
 
 
@@ -680,6 +688,25 @@ compiler_moc_header_clean:
 moc_application.cpp: /Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../ProjectSAS/user.h \
+		../ProjectSAS/dboperator.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../ProjectSAS/application.h \
 		moc_predefs.h \
 		/Applications/Qt/5.10.0/clang_64/bin/moc
@@ -740,11 +767,10 @@ application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../ProjectSAS/user.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
-		ui_application.h \
 		../ProjectSAS/dboperator.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
@@ -760,8 +786,10 @@ application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
 		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		ui_application.h \
 		../ProjectSAS/logininterface.h \
 		../ProjectSAS/assistant.h \
+		../ProjectSAS/regularExpression.h \
 		../ProjectSAS/pet.h \
 		../ProjectSAS/owner.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QPixmap \
@@ -769,7 +797,9 @@ application.o: ../ProjectSAS/application.cpp ../ProjectSAS/application.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/QImage \
 		/Applications/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
 		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QSqlDatabase \
+		../ProjectSAS/order.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o application.o ../ProjectSAS/application.cpp
 
 appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h
@@ -777,6 +807,29 @@ appointment.o: ../ProjectSAS/appointment.cpp ../ProjectSAS/appointment.h
 
 assistant.o: ../ProjectSAS/assistant.cpp ../ProjectSAS/assistant.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o assistant.o ../ProjectSAS/assistant.cpp
+
+dboperator.o: ../ProjectSAS/dboperator.cpp ../ProjectSAS/dboperator.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dboperator.o ../ProjectSAS/dboperator.cpp
 
 medjournal.o: ../ProjectSAS/medjournal.cpp ../ProjectSAS/medjournal.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o medjournal.o ../ProjectSAS/medjournal.cpp
@@ -815,28 +868,11 @@ logininterface.o: ../ProjectSAS/logininterface.cpp ../ProjectSAS/logininterface.
 		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logininterface.o ../ProjectSAS/logininterface.cpp
 
-dboperator.o: ../ProjectSAS/dboperator.cpp ../ProjectSAS/dboperator.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/QtSql \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QtDebug \
-		/Applications/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		/Applications/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dboperator.o ../ProjectSAS/dboperator.cpp
+regularExpression.o: ../ProjectSAS/regularExpression.cpp ../ProjectSAS/regularExpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o regularExpression.o ../ProjectSAS/regularExpression.cpp
+
+order.o: ../ProjectSAS/order.cpp ../ProjectSAS/order.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o order.o ../ProjectSAS/order.cpp
 
 moc_application.o: moc_application.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_application.o moc_application.cpp

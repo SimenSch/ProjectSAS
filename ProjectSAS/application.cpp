@@ -140,55 +140,69 @@ void Application::on_newUserButton_clicked()
     ui->invalidKeyLabel->hide();
 }
 
+bool Application::regChecker(){
+    if(ui->firstNameInput->text().isEmpty() || ui->surNameInput->text().isEmpty() || ui->addressInput->text().isEmpty() ||
+            ui->dateOfBirthInput->text().isEmpty() || ui->cityInput->text().isEmpty() || ui->zipInput->text().isEmpty() ||
+            ui->eMailInput->text().isEmpty() || ui->passwordInput->text().isEmpty()){
+        cout << "regChecker = false" << endl;
+        return false;
+    } else {
+    return true;
+    }
+}
 
-//written by simen schaufel S305491
-//partly simen Persch Andersen
-void Application::on_registerButton_clicked()
-{         
 
+// s315586 & s315593 & s305491
+void Application::on_registerButton_clicked(){
     User usr;
     Owner ownr;
-
-    if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
-    usr.seteMail(ui->eMailInput->text().toStdString());
-    usr.setpassword(ui->passwordInput->text().toStdString());
-    usr.setuserType("Customer");
-    LoginInterface lgin;
-    ownr.setzip(ui->zipInput->text().toStdString());
-    ownr.setfirstName(ui->firstNameInput->text().toStdString());
-    ownr.setsurname(ui->surNameInput->text().toStdString());
-    ownr.setaddress(ui->addressInput->text().toStdString());
-    ownr.setcity(ui->cityInput->text().toStdString());
-    ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
-
-    ownr.seteMail(ui->eMailInput->text().toStdString());
-    ownr.setPhone(ui->phoneinput->text().toStdString());
-    DbOperator db;
-    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
-
-    ownr.setUserID(userid);
-
-    QSqlQuery* qry=new QSqlQuery(db.mydb);
-
-    qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
-    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
-    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
-    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
-    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
-    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
-    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
-    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
-    qry->bindValue(":userid", ownr.getuserID());
-    qry->exec();
-
-
-    ui->stackedWidget->setCurrentIndex(0);
-
+    if(regChecker() == true){
+        cout << "inni regChecker IFen" << endl;
+        if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
+            usr.seteMail(ui->eMailInput->text().toStdString());
+            usr.setpassword(ui->passwordInput->text().toStdString());
+            usr.setuserType("Customer");
+            LoginInterface lgin;
+            ownr.setzip(ui->zipInput->text().toStdString());
+            ownr.setfirstName(ui->firstNameInput->text().toStdString());
+            ownr.setsurname(ui->surNameInput->text().toStdString());
+            ownr.setaddress(ui->addressInput->text().toStdString());
+            ownr.setcity(ui->cityInput->text().toStdString());
+            ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
+            ownr.seteMail(ui->eMailInput->text().toStdString());
+            ownr.setPhone(ui->phoneinput->text().toStdString());
+            DbOperator db;
+            int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+            cout << userid << endl;
+            if(userid == 0){
+                ui->generalMsg->setText("Username already taken");
+                ui->generalMsg->show();
+            } else {
+                cout << "prøver å lage bruker " << endl;
+                ownr.setUserID(userid);
+                QSqlQuery* qry=new QSqlQuery(db.mydb);
+                qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
+                qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
+                qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
+                qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
+                qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
+                qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
+                qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
+                qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
+                qry->bindValue(":userid", ownr.getuserID());
+                qry->exec();
+                ui->stackedWidget->setCurrentIndex(0);
+                clearInputFields();
+            }
+        } else{
+            ui->generalMsg->setText("Password doesn't match");
+            ui->generalMsg->show();
+        }
+    } else {
+        cout << "RegChecker failed" << endl;
+        ui->generalMsg->setText("All fields must be filled out");
+        ui->generalMsg->show();
     }
-    else{
-        // fuck you mama
-    }
-
 }
 //written by Simen schaufel s305491
     void Application::addAssistant(){

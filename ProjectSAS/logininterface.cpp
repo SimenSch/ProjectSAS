@@ -77,18 +77,16 @@ int LoginInterface::createUser(string username, string password){
 
 int LoginInterface::getUserID(string userName) {
     DbOperator db;
-    int userID;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
     qry->prepare("SELECT UserID from User WHERE EMail = :username");
     qry->bindValue(":username", QString::fromStdString(userName));
     if(qry->exec()) {
         qry->next();
-        userID = qry->value(0).toInt();
+        return qry->value(0).toInt();
     } else {
-        cout << "GetUserId Failed: SQL Query failed." << endl;
+        return 0;
     }
-    return userID;
 }
 
 string LoginInterface::getUserType(int userID) {
@@ -121,18 +119,16 @@ int LoginInterface::getOwnerID(int userID) {
     cout << "GetOwnerID IF statement failed, shit has happend" << endl;
     return 0;
 }
-int LoginInterface::getPetID(int userID) {
+int LoginInterface::getPetID(string petName) {
     DbOperator db;
+
     QSqlQuery* qry=new QSqlQuery(db.mydb);
-    qry->prepare("SELECT PetID from Pet WHERE OwnerID = (SELECT OwnerID from Owner where UserID=:userid)");
-    qry->bindValue(":userid", userID);
+    qry->prepare("SELECT PetID from Pet WHERE Name = :petname");
+    qry->bindValue(":petname", QString::fromStdString(petName));
     if(qry->exec()){
         qry->next();
-        return qry->value(0).toString().toInt();
+        return qry->value(0).toInt();
     } else {
-        cout << "Get Pet ID failed: " << endl;
         return 0;
     }
-    cout << "GetPetID IF statement failed, shit has happend" << endl;
-    return 0;
 }

@@ -45,6 +45,7 @@ void Application::on_loginButton_clicked() {
             ui->customerTab->setCurrentIndex(0);
             ui->activeUserLabel->setText(ui->userNameEdit->text());
             loadPets();
+            showCustAppoint();
             loadUserInfo();
         }
         else if(li.getUserType(activeUser.getuserID()) =="Employee") {
@@ -125,6 +126,36 @@ void Application::loadUserInfo()
     ui->zipInfoCustomer->setText(model->record(0).value(4).toString());
 
 
+}
+
+void Application::showCustAppoint() {
+   LoginInterface li;
+   QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+   QSqlQueryModel* model=new QSqlQueryModel;
+
+   if(ui->customerTab->currentIndex() == 2)
+   {
+       qry->prepare("SELECT Pet.Name, Appointment.BeginDate, Appointment.BeginTime, Appointment.EndDate, Appointment.EndTime, Appointment.Price FROM Pet, Appointment WHERE Appointment.PetID = Pet.PetID AND Pet.OwnerID = :ownerid");
+   }
+   else {
+       qry->prepare("SELECT Pet.Name, Appointment.BeginDate, Appointment.EndDate FROM Pet, Appointment WHERE Appointment.PetID = Pet.PetID AND Pet.OwnerID = :ownerid");
+   }
+
+   qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
+   qry->exec();
+
+   model->setQuery(*qry);
+
+   if(ui->customerTab->currentIndex() == 2) {
+       ui->appTableView->setModel(model);
+   }
+   else {
+       ui->appTableOverview->setModel(model);
+       ui->appTableOverview->setColumnWidth(0, 65);
+       ui->appTableOverview->setColumnWidth(1, 120);
+       ui->appTableOverview->setColumnWidth(2, 120);
+   }
 }
 
 void Application::on_cancelRegisterButton_clicked()
@@ -240,39 +271,35 @@ void Application::on_registerButton_clicked()
     }
 }
 
-    void Application::addOrder(){
-    Order ordr;
-    LoginInterface lgn;
-    DbOperator db;
-    db.addDatabase();
-    db.open();
-
-    ordr.setPetID(7/*lgn.getPetID(activeUser.getuserID()))*/);
-    ordr.setBeginDate("121212"/*ui->beginDateInput->text().toStdString()*/);
-    ordr.setEndDate("232323"/*ui->endDateInput->text().toStdString()*/);
-    ordr.setBeginTime("2323"/*ui->beginTimeInput->text().toStdString()*/);
-    ordr.setEndTime("2324"/*ui->endTimeInput->text().toStdString()*/);
-    ordr.setNotes("TESTING"/*ui->notesInput->text().toStdString()*/);
+void Application::addOrder(){
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
+    LoginInterface li;
 
-    qry->prepare("INSERT INTO Order (PetID, BeginDate, EndDate, EndTime, Notes, BeginTime ) VALUES (:petid, :begindate, :enddate, :endtime, :notes, :begintime )");
-    qry->bindValue(":petid", ordr.getPetID());
-    qry->bindValue(":begindate", QString::fromStdString(ordr.getBeginDate()));
-    qry->bindValue(":enddate", QString::fromStdString(ordr.getEndDate()));
-    qry->bindValue(":begintime", QString::fromStdString(ordr.getBeginTime()));
-    qry->bindValue(":endtime", QString::fromStdString(ordr.getEndTime()));
-    qry->bindValue(":notes", QString::fromStdString(ordr.getNotes()));
+    qry->prepare("INSERT INTO Appointment (PetID, BeginDate, EndDate, BeginTime, EndTime, Price ) VALUES (:petid, :begindate, :enddate, :begintime, :endtime, :price )");
+    qry->bindValue(":petid", li.getPetID(ui->petsComboBox->currentText().toStdString()));
+    qry->bindValue(":begindate", ui->appFromEdit->date().toString());
+    qry->bindValue(":enddate", ui->appToEdit->date().toString());
+    qry->bindValue(":begintime", ui->appFromEdit->time().toString());
+    qry->bindValue(":endtime", ui->appToEdit->time().toString());
+    qry->bindValue(":price", ui->appPriceField->text());
+    cout << "Order is being run" << endl;
     if(qry->exec()){
-            ui->stackedWidget->setCurrentIndex(0);
+            ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(0);
+            ui->customerTab->setCurrentIndex(2);
+
+            showCustAppoint();
 
             QMessageBox msgBox;
             msgBox.setText("Order successfully added");
             msgBox.exec();
-        }
+    }
+    else {
+        ui->orderError->setText("Something went wrong with SQLQuery");
+        ui->orderError->show();
+    }
 
-    db.close();
 
 
 }
@@ -321,6 +348,11 @@ void Application::on_cancelPetAddButton_clicked()
 
 }
 
+//
+//Loads of on_textEdited() functions from create customer/employee user
+//Made by Simen P. Andersen
+//
+
 void Application::on_firstNameInput_textEdited()
 {
     if(!(ui->firstNameInput->text().isEmpty())) ui->firstNameMsg->setText("");
@@ -342,7 +374,7 @@ void Application::on_dateOfBirthInput_textEdited()
     else ui->dateOfBirthMsg->setText("*");
 }
 
-void Application::on_addressInput_textChanged()
+void Application::on_addressInput_textEdited()
 {
     if(!(ui->addressInput->text().isEmpty())) ui->addressMsg->setText("");
     else ui->addressMsg->setText("*");
@@ -384,6 +416,80 @@ void Application::on_reEnterPasswordInput_textEdited()
     else ui->secondPasswordMsg->setText("*");
 }
 
+void Application::on_firstNameInput_Emp_textEdited()
+{
+    if(!(ui->firstNameInput_Emp->text().isEmpty())) ui->firstNameMsg_Emp->setText("");
+    else ui->firstNameMsg_Emp->setText("*");
+}
+
+
+
+void Application::on_surNameInput_Emp_textEdited()
+{
+    if(!(ui->surNameInput_Emp->text().isEmpty())) ui->surNameMsg_Emp->setText("");
+    else ui->surNameMsg_Emp->setText("*");
+
+}
+
+void Application::on_dateOfBirthInput_Emp_textEdited()
+{
+    if(!(ui->dateOfBirthInput_Emp->text().isEmpty())) ui->dateOfBirthMsg_Emp->setText("");
+    else ui->dateOfBirthMsg_Emp->setText("*");
+}
+
+void Application::on_addressInput_Emp_textEdited()
+{
+    if(!(ui->addressInput_Emp->text().isEmpty())) ui->addressMsg_Emp->setText("");
+    else ui->addressMsg_Emp->setText("*");
+}
+
+void Application::on_cityInput_Emp_textEdited()
+{
+    if(!(ui->cityInput_Emp->text().isEmpty())) ui->cityMsg_Emp->setText("");
+    else ui->cityMsg_Emp->setText("*");
+}
+
+void Application::on_zipInput_Emp_textEdited()
+{
+    if(!(ui->zipInput_Emp->text().isEmpty())) ui->zipMsg_Emp->setText("");
+    else ui->zipMsg_Emp->setText("*");
+}
+
+void Application::on_phoneinput_Emp_textEdited()
+{
+    if(!(ui->phoneinput_Emp->text().isEmpty())) ui->phoneMsg_Emp->setText("");
+    else ui->phoneMsg_Emp->setText("*");
+}
+
+void Application::on_departmentComboBox_currentIndexChanged()
+{
+    if(!ui->departmentComboBox->currentIndex() > -1) ui->departmentMsg_Emp->setText("");
+    else ui->departmentMsg_Emp->setText("*");
+
+}
+
+void Application::on_eMailInput_Emp_textEdited()
+{
+    if(!(ui->eMailInput_Emp->text().isEmpty())) ui->emailMsg_Emp->setText("");
+    else ui->emailMsg_Emp->setText("*");
+}
+
+void Application::on_passwordInput_Emp_textEdited()
+{
+    if(!(ui->passwordInput_Emp->text().isEmpty())) ui->firstPasswordMsg_Emp->setText("");
+    else ui->firstPasswordMsg_Emp->setText("*");
+}
+
+void Application::on_reEnterPasswordInput_Emp_textEdited()
+{
+    if(!(ui->reEnterPasswordInput_Emp->text().isEmpty())) ui->secondPasswordMsg_Emp->setText("");
+    else ui->secondPasswordMsg_Emp->setText("*");
+}
+
+//
+//End on_textEdited() functions
+//
+
 void Application::on_cancelUserChoiceButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
@@ -402,7 +508,7 @@ void Application::on_chooseUserTypeButton_clicked()
             ui->employeeKeyLabel->show();
             ui->employeeKeyInput->show();
         }
-        else if(ui->employeeKeyInput->text() == "sukimidiki")
+        else if(ui->employeeKeyInput->text() == "TopSecretCode")
         {
             ui->employeeKeyInput->hide();
             ui->employeeKeyLabel->hide();
@@ -418,8 +524,15 @@ void Application::on_chooseUserTypeButton_clicked()
 
 void Application::on_customerTab_currentChanged(int index)
 {
+    if(index == 0) {
+        loadPets();
+        showCustAppoint();
+    }
     if(index == 1) {
         loadPets();
+    }
+    else if(index == 2) {
+        showCustAppoint();
     }
 }
 
@@ -466,5 +579,112 @@ void Application::on_addAppButton_clicked()
     ui->petsComboBox->addItems(*list);
     ui->stackedWidget->setCurrentIndex(6);
 
+    ui->petChosenError->hide();
+    ui->timeFrameError->hide();
+    ui->orderError->hide();
+
 
 }
+
+void Application::on_orderAppButton_clicked()
+{
+    bool allOk = true;
+    if(!(ui->petsComboBox->currentIndex() > -1))
+    {
+        ui->petChosenError->setText("A pet must be chosen");
+        ui->petChosenError->show();
+        allOk = false;
+    }
+    if(ui->appFromEdit->dateTime() >= ui->appToEdit->dateTime()) {
+        ui->timeFrameError->setText("Invalid timespan");
+        ui->timeFrameError->show();
+        allOk = false;
+    }
+    if(allOk) {
+        ui->petChosenError->hide();
+        ui->timeFrameError->hide();
+        ui->orderError->hide();
+        addOrder();
+    }
+    else{
+        ui->orderError->setText("Invalid order");
+    }
+
+}
+
+void Application::on_appFromEdit_dateChanged()
+{
+    calcAppPrice();
+}
+
+void Application::on_appToEdit_dateChanged()
+{
+    calcAppPrice();
+}
+
+void Application::calcAppPrice()
+{
+    const int pricePerDay = 1200;
+    if(ui->appFromEdit->date() < ui->appToEdit->date())
+    {
+       QString price = QString::number(ui->appFromEdit->date().daysTo(ui->appToEdit->date()) * pricePerDay);
+       ui->appPriceField->setText(price + " kr.");
+    }
+    else
+    {
+        ui->appPriceField->setText("0 kr.");
+    }
+}
+
+
+void Application::on_registerButton_Emp_clicked()
+{
+    User usr;
+    Owner ownr;
+
+    if(ui->passwordInput_Emp->text().toStdString() == ui->reEnterPasswordInput_Emp->text().toStdString()){
+    usr.seteMail(ui->eMailInput_Emp->text().toStdString());
+    usr.setpassword(ui->passwordInput_Emp->text().toStdString());
+    usr.setuserType("Employee");
+    LoginInterface lgin;
+    ownr.setzip(ui->zipInput_Emp->text().toStdString());
+    ownr.setfirstName(ui->firstNameInput_Emp->text().toStdString());
+    ownr.setsurname(ui->surNameInput_Emp->text().toStdString());
+    ownr.setaddress(ui->addressInput_Emp->text().toStdString());
+    ownr.setcity(ui->cityInput_Emp->text().toStdString());
+    ownr.setdateOfBirth(ui->dateOfBirthInput_Emp->text().toStdString());
+
+    ownr.seteMail(ui->eMailInput_Emp->text().toStdString());
+    ownr.setPhone(ui->phoneinput_Emp->text().toStdString());
+    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+
+    ownr.setUserID(userid);
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("INSERT INTO Assistant (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
+    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
+    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
+    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
+    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
+    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
+    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
+    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
+    qry->bindValue(":userid", ownr.getuserID());
+    qry->exec();
+
+
+    ui->stackedWidget->setCurrentIndex(0);
+    }
+    else {
+        //passwords do not match
+    }
+
+
+}
+
+void Application::on_cancelRegisterButton_Emp_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+

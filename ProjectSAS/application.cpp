@@ -143,7 +143,7 @@ void Application::on_newUserButton_clicked()
 
 
 void Application::on_registerButton_clicked()
-{
+{         
 
     User usr;
     Owner ownr;
@@ -441,4 +441,30 @@ void Application::on_passwordEdit_returnPressed()
 void Application::on_userNameEdit_returnPressed()
 {
     on_loginButton_clicked();
+}
+
+void Application::on_addAppButton_clicked()
+{
+    QSqlQuery* qry=new QSqlQuery;
+    QSqlQueryModel* model= new QSqlQueryModel;
+    LoginInterface li;
+
+    qry->prepare("SELECT Name FROM Pet WHERE OwnerID = :ownerid");
+    qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
+    qry->exec();
+
+    model->setQuery(*qry);
+
+    QStringList* list = new QStringList;
+
+
+    for(int i = 0; i < model->rowCount(); i++)
+    {
+        list->append(model->record(i).value(0).toString());
+    }
+
+    ui->petsComboBox->addItems(*list);
+    ui->stackedWidget->setCurrentIndex(6);
+
+
 }

@@ -5,7 +5,7 @@
 #include <regex>
 using namespace std;
 class Order{
-
+//written by Simen Schaufel s305491
 public:
     Order();
     int getOrderID();
@@ -32,6 +32,7 @@ private:
     string notes;
 
 };
+#endif
 
 #endif
 

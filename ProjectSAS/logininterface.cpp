@@ -11,14 +11,14 @@
 using namespace std;
 
 LoginInterface::LoginInterface() {}
-
+// s315586
 string LoginInterface::hashing(string word){
     hash<string> hashFunction;
     size_t temp = hashFunction(word);
     string returnable = to_string(temp);
     return returnable;
 }
-
+// s315586
 string LoginInterface::getPassword(string username){
     DbOperator db;
     QSqlQuery* statem=new QSqlQuery(db.mydb);
@@ -37,7 +37,7 @@ string LoginInterface::getPassword(string username){
 }
 
 
-
+// s315586
 int LoginInterface::loginAttempt(string username, string password){
     if(username.empty()){
         return 2;
@@ -55,10 +55,21 @@ int LoginInterface::loginAttempt(string username, string password){
     return 0;
 
 }
-
+// s315586
 int LoginInterface::createUser(string username, string password){
     DbOperator db;
     db.mydb.open();
+    QSqlQuery* check=new QSqlQuery(db.mydb);
+    check->prepare("SELECT EMail FROM User WHERE EMail = ?;");
+    check->bindValue(0, QString::fromStdString(username));
+    if(check->exec()){
+        check->next();
+        string checking = check->value(0).toString().toStdString();
+        if( checking == username){
+            cout << "username not available" << endl;
+            return 0;
+        }
+    }
     string pWord = hashing(password);
     QSqlQuery* create=new QSqlQuery(db.mydb);
     create->prepare("INSERT INTO User (EMail, Password, UserType) VALUES (?, ?, ?)");
@@ -74,7 +85,7 @@ int LoginInterface::createUser(string username, string password){
     return 0;
 
 }
-
+// s315586 & s315593
 int LoginInterface::getUserID(string userName) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -87,8 +98,9 @@ int LoginInterface::getUserID(string userName) {
     } else {
         return 0;
     }
-}
 
+}
+// s315586 & s315593
 string LoginInterface::getUserType(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -103,7 +115,7 @@ string LoginInterface::getUserType(int userID) {
     cout << "GetUserType IF statement failed, what have you done??" << endl;
     return "NULL";
 }
-
+// s315586 & s315593
 int LoginInterface::getOwnerID(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -120,6 +132,7 @@ int LoginInterface::getOwnerID(int userID) {
     return 0;
 }
 int LoginInterface::getPetID(string petName) {
+
     DbOperator db;
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);

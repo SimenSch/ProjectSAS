@@ -1,4 +1,5 @@
 #include "regularExpression.h"
+//written by Simen schaufel S305491
 bool regularExpression::regexAddress(string stringInput){
     regex addresscheck("^[a-zæøåÆØÅA-Z+0-9]{2,20}$");
     if(regex_match(stringInput,addresscheck)){

@@ -20,6 +20,7 @@ public:
     void addAssistant();
     void showCustAppoint();
     void calcAppPrice();
+    bool regChecker();
     explicit Application(QWidget *parent = 0);
     ~Application();
 private slots:

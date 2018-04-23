@@ -31,38 +31,42 @@ Application::~Application()
     delete ui;
     db.close();
 }
-
+// s315593 & s315586
 void Application::on_loginButton_clicked() {
-
-
     LoginInterface li;
-    if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
-    {
-        activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
-        if(li.getUserType(activeUser.getuserID()) == "Customer") {
-            ui->stackedWidget->setCurrentIndex(1);
-            ui->mainStack->setCurrentIndex(0);
-            ui->customerTab->setCurrentIndex(0);
-            ui->activeUserLabel->setText(ui->userNameEdit->text());
-            loadPets();
-            showCustAppoint();
-            loadUserInfo();
-        }
-        else if(li.getUserType(activeUser.getuserID()) =="Employee") {
-            ui->stackedWidget->setCurrentIndex(1);
-            ui->mainStack->setCurrentIndex(1);
-            ui->activeUserLabel->setText(ui->userNameEdit->text());
-        }
-        else {
-            ui->errorLabel->setText("Error finding usertype");
+
+    if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99){
+        if(li.getUserID(ui->userNameEdit->text().toStdString()) > 0){
+            activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
+            if(li.getUserType(activeUser.getuserID()) == "Customer") {
+                ui->stackedWidget->setCurrentIndex(1);
+                ui->mainStack->setCurrentIndex(0);
+                ui->customerTab->setCurrentIndex(0);
+                ui->activeUserLabel->setText(ui->userNameEdit->text());
+                loadPets();
+                showCustAppoint();
+                loadUserInfo();
+            }
+            else if(li.getUserType(activeUser.getuserID()) =="Employee") {
+                ui->stackedWidget->setCurrentIndex(1);
+                ui->mainStack->setCurrentIndex(1);
+                ui->activeUserLabel->setText(ui->userNameEdit->text());
+            }
+            else {
+                ui->errorLabel->setText("Error finding usertype");
+                ui->errorLabel->show();
+            }
+        } else if (li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 2){
+            ui->errorLabel->setText("Fields cannot be empty");
             ui->errorLabel->show();
         }
-    } else if (li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 2){
-        ui->errorLabel->setText("Fields cannot be empty");
-        ui->errorLabel->show();
-    }
-    else {
-        ui->errorLabel->setText("No matching user/password");
+        else {
+            ui->errorLabel->setText("No matching user/password");
+            ui->errorLabel->show();
+        }
+    } else {
+        cout << "error getting userID" << endl;
+        ui->errorLabel->setText("Error getting user info");
         ui->errorLabel->show();
     }
 }
@@ -74,9 +78,7 @@ void Application::on_switchUserButton_clicked() {
     ui->passwordEdit->clear();
 }
 
-void Application::loadPets()
-{
-
+void Application::loadPets(){
     LoginInterface li;
 
     QSqlQueryModel * model=new QSqlQueryModel;
@@ -106,9 +108,7 @@ void Application::loadPets()
 
 }
 
-void Application::loadUserInfo()
-{
-
+void Application::loadUserInfo(){
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
     QSqlQueryModel* model=new QSqlQueryModel;
@@ -124,8 +124,6 @@ void Application::loadUserInfo()
     ui->addressInfoCustomer->setText(model->record(0).value(2).toString());
     ui->cityInfoCustomer->setText(model->record(0).value(3).toString());
     ui->zipInfoCustomer->setText(model->record(0).value(4).toString());
-
-
 }
 
 void Application::showCustAppoint() {
@@ -171,55 +169,72 @@ void Application::on_newUserButton_clicked()
     ui->invalidKeyLabel->hide();
 }
 
+// s315586
+bool Application::regChecker(){
+    if(ui->firstNameInput->text().isEmpty() || ui->surNameInput->text().isEmpty() || ui->addressInput->text().isEmpty() ||
+            ui->dateOfBirthInput->text().isEmpty() || ui->cityInput->text().isEmpty() || ui->zipInput->text().isEmpty() ||
+            ui->eMailInput->text().isEmpty() || ui->passwordInput->text().isEmpty()){
+        cout << "regChecker = false" << endl;
+        return false;
+    } else {
+    return true;
+    }
+}
 
 
-void Application::on_registerButton_clicked()
-{         
-
+// s315586 & s315593
+void Application::on_registerButton_clicked(){
     User usr;
     Owner ownr;
-
-    if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
-    usr.seteMail(ui->eMailInput->text().toStdString());
-    usr.setpassword(ui->passwordInput->text().toStdString());
-    usr.setuserType("Customer");
-    LoginInterface lgin;
-    ownr.setzip(ui->zipInput->text().toStdString());
-    ownr.setfirstName(ui->firstNameInput->text().toStdString());
-    ownr.setsurname(ui->surNameInput->text().toStdString());
-    ownr.setaddress(ui->addressInput->text().toStdString());
-    ownr.setcity(ui->cityInput->text().toStdString());
-    ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
-
-    ownr.seteMail(ui->eMailInput->text().toStdString());
-    ownr.setPhone(ui->phoneinput->text().toStdString());
-    DbOperator db;
-    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
-
-    ownr.setUserID(userid);
-
-    QSqlQuery* qry=new QSqlQuery(db.mydb);
-
-    qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
-    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
-    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
-    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
-    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
-    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
-    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
-    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
-    qry->bindValue(":userid", ownr.getuserID());
-    qry->exec();
-
-
-    ui->stackedWidget->setCurrentIndex(0);
-
+    if(regChecker() == true){
+        cout << "inni regChecker IFen" << endl;
+        if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
+            usr.seteMail(ui->eMailInput->text().toStdString());
+            usr.setpassword(ui->passwordInput->text().toStdString());
+            usr.setuserType("Customer");
+            LoginInterface lgin;
+            ownr.setzip(ui->zipInput->text().toStdString());
+            ownr.setfirstName(ui->firstNameInput->text().toStdString());
+            ownr.setsurname(ui->surNameInput->text().toStdString());
+            ownr.setaddress(ui->addressInput->text().toStdString());
+            ownr.setcity(ui->cityInput->text().toStdString());
+            ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
+            ownr.seteMail(ui->eMailInput->text().toStdString());
+            ownr.setPhone(ui->phoneinput->text().toStdString());
+            DbOperator db;
+            int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+            cout << userid << endl;
+            if(userid == 0){
+                ui->generalMsg->setText("Username already taken");
+                ui->generalMsg->show();
+            } else {
+                cout << "prøver å lage bruker " << endl;
+                ownr.setUserID(userid);
+                QSqlQuery* qry=new QSqlQuery(db.mydb);
+                qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
+                qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
+                qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
+                qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
+                qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
+                qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
+                qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
+                qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
+                qry->bindValue(":userid", ownr.getuserID());
+                qry->exec();
+                ui->stackedWidget->setCurrentIndex(0);
+                clearInputFields();
+            }
+        } else{
+            ui->generalMsg->setText("Password doesn't match");
+            ui->generalMsg->show();
+        }
+    } else {
+        cout << "RegChecker failed" << endl;
+        ui->generalMsg->setText("All fields must be filled out");
+        ui->generalMsg->show();
     }
-    else{
-        // fuck you mama
-    }
-
 }
+
     void Application::addAssistant(){
     User usr;
     Assistant ownr;
@@ -554,6 +569,18 @@ void Application::on_passwordEdit_returnPressed()
 void Application::on_userNameEdit_returnPressed()
 {
     on_loginButton_clicked();
+}
+
+// s315586
+void Application::clearInputFields(){
+    ui->firstNameInput->clear();
+    ui->surNameInput->clear();
+    ui->addressInput->clear();
+    ui->dateOfBirthInput->clear();
+    ui->cityInput->clear();
+    ui->zipInput->clear();
+    ui->eMailInput->clear();
+    ui->passwordInput->clear();
 }
 
 void Application::on_addAppButton_clicked()

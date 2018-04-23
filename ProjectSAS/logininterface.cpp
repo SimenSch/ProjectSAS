@@ -48,6 +48,7 @@ int LoginInterface::loginAttempt(string username, string password){
     if(getPassword(username) == pWord){
         return 99;
     } else {
+        cout << getPassword(username) << " u - p " << pWord << endl;
         cout << "Login attempt failed: " << endl;
         return 1;
     }
@@ -77,6 +78,7 @@ int LoginInterface::createUser(string username, string password){
 
 int LoginInterface::getUserID(string userName) {
     DbOperator db;
+    db.mydb.open();
     int userID;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 

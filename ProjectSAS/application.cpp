@@ -13,6 +13,9 @@
 #include <QImage>
 #include <QMessageBox>
 #include <QSqlDatabase>
+#include <iostream>
+
+using namespace std;
 
 Application::Application(QWidget *parent) :
     QWidget(parent),
@@ -35,6 +38,7 @@ void Application::on_loginButton_clicked() {
     LoginInterface li;
     if(li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 99)
     {
+        cout << "Login success " << endl;
         activeUser.setuserID(li.getUserID(ui->userNameEdit->text().toStdString()));
         if(li.getUserType(activeUser.getuserID()) == "Customer") {
             ui->stackedWidget->setCurrentIndex(1);
@@ -50,6 +54,7 @@ void Application::on_loginButton_clicked() {
         else {
             ui->errorLabel->setText("Error finding usertype");
             ui->errorLabel->show();
+            cout << "But why?? " << endl;
         }
     } else if (li.loginAttempt(ui->userNameEdit->text().toStdString(), ui->passwordEdit->text().toStdString()) == 2){
         ui->errorLabel->setText("Fields cannot be empty");

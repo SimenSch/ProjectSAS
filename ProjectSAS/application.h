@@ -65,6 +65,8 @@ private slots:
 
     void on_userNameEdit_returnPressed();
 
+    void on_addAppButton_clicked();
+
 private:
     Ui::Application *ui;
 };

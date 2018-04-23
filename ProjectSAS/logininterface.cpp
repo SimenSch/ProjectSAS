@@ -88,7 +88,6 @@ int LoginInterface::getUserID(string userName) {
     } else {
         cout << "GetUserId Failed: SQL Query failed." << endl;
     }
-    cout << "GetUserID IF statement failed. Fucking thing sucks!" << endl;
     return userID;
 }
 

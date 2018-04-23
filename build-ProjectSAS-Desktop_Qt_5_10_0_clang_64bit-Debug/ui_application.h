@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -186,6 +187,25 @@ public:
     QLabel *secondPasswordMsg;
     QLabel *generalMsg;
     QWidget *registerEmployeePage;
+    QWidget *appointmentPage;
+    QLabel *label_33;
+    QWidget *verticalLayoutWidget_9;
+    QVBoxLayout *verticalLayout_12;
+    QLabel *label_34;
+    QComboBox *petsComboBox;
+    QLabel *label_35;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_38;
+    QDateTimeEdit *appFromEdit;
+    QHBoxLayout *horizontalLayout_7;
+    QLabel *label_39;
+    QDateTimeEdit *appToEdit;
+    QLabel *label_40;
+    QLabel *label_41;
+    QHBoxLayout *horizontalLayout_10;
+    QPushButton *orderAppButton;
+    QPushButton *cancelAppButton;
+    QLabel *label_42;
 
     void setupUi(QWidget *Application)
     {
@@ -892,11 +912,108 @@ public:
         registerEmployeePage = new QWidget();
         registerEmployeePage->setObjectName(QStringLiteral("registerEmployeePage"));
         stackedWidget->addWidget(registerEmployeePage);
+        appointmentPage = new QWidget();
+        appointmentPage->setObjectName(QStringLiteral("appointmentPage"));
+        label_33 = new QLabel(appointmentPage);
+        label_33->setObjectName(QStringLiteral("label_33"));
+        label_33->setGeometry(QRect(309, 40, 171, 31));
+        label_33->setStyleSheet(QStringLiteral("font-size: 20px;"));
+        label_33->setAlignment(Qt::AlignCenter);
+        verticalLayoutWidget_9 = new QWidget(appointmentPage);
+        verticalLayoutWidget_9->setObjectName(QStringLiteral("verticalLayoutWidget_9"));
+        verticalLayoutWidget_9->setGeometry(QRect(260, 170, 261, 261));
+        verticalLayout_12 = new QVBoxLayout(verticalLayoutWidget_9);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        verticalLayout_12->setContentsMargins(0, 0, 0, 0);
+        label_34 = new QLabel(verticalLayoutWidget_9);
+        label_34->setObjectName(QStringLiteral("label_34"));
+        label_34->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_12->addWidget(label_34);
+
+        petsComboBox = new QComboBox(verticalLayoutWidget_9);
+        petsComboBox->setObjectName(QStringLiteral("petsComboBox"));
+
+        verticalLayout_12->addWidget(petsComboBox);
+
+        label_35 = new QLabel(verticalLayoutWidget_9);
+        label_35->setObjectName(QStringLiteral("label_35"));
+        label_35->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_12->addWidget(label_35);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        label_38 = new QLabel(verticalLayoutWidget_9);
+        label_38->setObjectName(QStringLiteral("label_38"));
+        label_38->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        horizontalLayout_8->addWidget(label_38);
+
+        appFromEdit = new QDateTimeEdit(verticalLayoutWidget_9);
+        appFromEdit->setObjectName(QStringLiteral("appFromEdit"));
+
+        horizontalLayout_8->addWidget(appFromEdit);
+
+
+        verticalLayout_12->addLayout(horizontalLayout_8);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        label_39 = new QLabel(verticalLayoutWidget_9);
+        label_39->setObjectName(QStringLiteral("label_39"));
+        label_39->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        horizontalLayout_7->addWidget(label_39);
+
+        appToEdit = new QDateTimeEdit(verticalLayoutWidget_9);
+        appToEdit->setObjectName(QStringLiteral("appToEdit"));
+
+        horizontalLayout_7->addWidget(appToEdit);
+
+
+        verticalLayout_12->addLayout(horizontalLayout_7);
+
+        label_40 = new QLabel(verticalLayoutWidget_9);
+        label_40->setObjectName(QStringLiteral("label_40"));
+        label_40->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_12->addWidget(label_40);
+
+        label_41 = new QLabel(verticalLayoutWidget_9);
+        label_41->setObjectName(QStringLiteral("label_41"));
+        label_41->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_12->addWidget(label_41);
+
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        orderAppButton = new QPushButton(verticalLayoutWidget_9);
+        orderAppButton->setObjectName(QStringLiteral("orderAppButton"));
+
+        horizontalLayout_10->addWidget(orderAppButton);
+
+        cancelAppButton = new QPushButton(verticalLayoutWidget_9);
+        cancelAppButton->setObjectName(QStringLiteral("cancelAppButton"));
+
+        horizontalLayout_10->addWidget(cancelAppButton);
+
+
+        verticalLayout_12->addLayout(horizontalLayout_10);
+
+        label_42 = new QLabel(verticalLayoutWidget_9);
+        label_42->setObjectName(QStringLiteral("label_42"));
+        label_42->setStyleSheet(QStringLiteral("color: red;"));
+        label_42->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_12->addWidget(label_42);
+
+        stackedWidget->addWidget(appointmentPage);
 
         retranslateUi(Application);
 
-        stackedWidget->setCurrentIndex(1);
-        mainStack->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(6);
+        mainStack->setCurrentIndex(0);
         customerTab->setCurrentIndex(2);
         tabWidget_4->setCurrentIndex(0);
 
@@ -1004,6 +1121,16 @@ public:
         firstPasswordMsg->setText(QApplication::translate("Application", "*", nullptr));
         secondPasswordMsg->setText(QApplication::translate("Application", "*", nullptr));
         generalMsg->setText(QApplication::translate("Application", "*", nullptr));
+        label_33->setText(QApplication::translate("Application", "New Appointment", nullptr));
+        label_34->setText(QApplication::translate("Application", "Pet:", nullptr));
+        label_35->setText(QApplication::translate("Application", "TimeFrame:", nullptr));
+        label_38->setText(QApplication::translate("Application", "From:", nullptr));
+        label_39->setText(QApplication::translate("Application", "To:", nullptr));
+        label_40->setText(QApplication::translate("Application", "Price:", nullptr));
+        label_41->setText(QApplication::translate("Application", "priceField", nullptr));
+        orderAppButton->setText(QApplication::translate("Application", "Order", nullptr));
+        cancelAppButton->setText(QApplication::translate("Application", "Cancel", nullptr));
+        label_42->setText(QApplication::translate("Application", "errorMessage", nullptr));
     } // retranslateUi
 
 };

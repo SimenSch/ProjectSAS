@@ -109,7 +109,7 @@ string LoginInterface::getUserType(int userID) {
 int LoginInterface::getOwnerID(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
-    qry->prepare("SELECT UserID from User WHERE UserID = :userid");
+    qry->prepare("SELECT OwnerID from Owner WHERE UserID = :userid");
     qry->bindValue(":userid", userID);
     if(qry->exec()){
         qry->next();
@@ -119,5 +119,20 @@ int LoginInterface::getOwnerID(int userID) {
         return 0;
     }
     cout << "GetOwnerID IF statement failed, shit has happend" << endl;
+    return 0;
+}
+int LoginInterface::getPetID(int userID) {
+    DbOperator db;
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+    qry->prepare("SELECT PetID from Pet WHERE OwnerID = (SELECT OwnerID from Owner where UserID=:userid)");
+    qry->bindValue(":userid", userID);
+    if(qry->exec()){
+        qry->next();
+        return qry->value(0).toString().toInt();
+    } else {
+        cout << "Get Pet ID failed: " << endl;
+        return 0;
+    }
+    cout << "GetPetID IF statement failed, shit has happend" << endl;
     return 0;
 }

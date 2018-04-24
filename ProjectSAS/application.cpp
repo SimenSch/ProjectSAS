@@ -32,6 +32,7 @@ Application::~Application()
     db.close();
 }
 // s315593 & s315586
+//this method logs inn selected user from database.
 void Application::on_loginButton_clicked() {
     LoginInterface li;
 
@@ -70,14 +71,14 @@ void Application::on_loginButton_clicked() {
         ui->errorLabel->show();
     }
 }
-
+//this method logs out user.
 void Application::on_switchUserButton_clicked() {
     ui->stackedWidget->setCurrentIndex(0);
     activeUser.setuserID(0);
     ui->userNameEdit->clear();
     ui->passwordEdit->clear();
 }
-
+//this method loads pets from database into the UI using active user as reference.
 void Application::loadPets(){
     LoginInterface li;
 
@@ -107,7 +108,7 @@ void Application::loadPets(){
     }
 
 }
-
+//loads the info about the user into the ui.
 void Application::loadUserInfo(){
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
@@ -125,7 +126,7 @@ void Application::loadUserInfo(){
     ui->cityInfoCustomer->setText(model->record(0).value(3).toString());
     ui->zipInfoCustomer->setText(model->record(0).value(4).toString());
 }
-
+//loads the appointments into the UI.
 void Application::showCustAppoint() {
    LoginInterface li;
    QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -155,12 +156,12 @@ void Application::showCustAppoint() {
        ui->appTableOverview->setColumnWidth(2, 120);
    }
 }
-
+//cancels the register user view.
 void Application::on_cancelRegisterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
-
+//lets you choose which usertype you want to be.
 void Application::on_newUserButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
@@ -170,6 +171,7 @@ void Application::on_newUserButton_clicked()
 }
 
 // s315586
+//checks if all inputfields are not empty in register user form.
 bool Application::regChecker(){
     if(ui->firstNameInput->text().isEmpty() || ui->surNameInput->text().isEmpty() || ui->addressInput->text().isEmpty() ||
             ui->dateOfBirthInput->text().isEmpty() || ui->cityInput->text().isEmpty() || ui->zipInput->text().isEmpty() ||
@@ -183,6 +185,7 @@ bool Application::regChecker(){
 
 
 // s315586 & s315593 & s305491
+//registers a new user and owner into the database.
 void Application::on_registerButton_clicked(){
     User usr;
     Owner ownr;
@@ -235,6 +238,7 @@ void Application::on_registerButton_clicked(){
     }
 }
 //s305491
+//method to add a new assistant into the database.
     void Application::addAssistant(){
     User usr;
     Assistant ownr;
@@ -286,6 +290,7 @@ void Application::on_registerButton_clicked(){
     }
 }
 //s305491
+//method to add a new appointment to the database(used to be order)
 void Application::addOrder(){
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -319,6 +324,7 @@ void Application::addOrder(){
 
 }
 //s305491
+//method to update selected pet(not integrated into the application).
 void Application::updatePet(int petid, string name, string birthdate, string pettype, string race, string notes)
 {
     Pet pet;
@@ -350,7 +356,7 @@ void Application::updatePet(int petid, string name, string birthdate, string pet
 
 }
 //s305491
-//updates user email and password, and changes Owner email to this email
+//updates user email and password, and changes Owner email to this email(not implemented)
 void Application::updateUser(int userid, string email,string password)
 {
     LoginInterface lgn;
@@ -391,6 +397,7 @@ void Application::updateUser(int userid, string email,string password)
    }
 }
 //s305491
+//updates the owner info into the database(not implemented)
 void Application::updateOwner(int ownerid, string name, string surname,string birthdate, string address, string city, string zip)
 {
     Owner owner;
@@ -430,6 +437,7 @@ void Application::updateOwner(int ownerid, string name, string surname,string bi
     }
 
 }
+//inserts pet into db when clicked.
 void Application::on_addPetToDBButton_clicked()
 {
     LoginInterface li;
@@ -682,6 +690,7 @@ void Application::on_userNameEdit_returnPressed()
 }
 
 // s315586
+// clears the fields after attempted register that failed.
 void Application::clearInputFields(){
     ui->firstNameInput->clear();
     ui->surNameInput->clear();

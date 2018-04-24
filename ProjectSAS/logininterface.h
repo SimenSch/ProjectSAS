@@ -10,8 +10,10 @@ class LoginInterface
 {
 public:
     LoginInterface();
+
+    bool userAvailable(string eMail);
     int loginAttempt(string username, string password);
-    int createUser(string username, string password);
+    int createUser(string username, string password, string userType);
     int getPetID(string petName);
     int getUserID(string userName);
     string getUserType(int userID);

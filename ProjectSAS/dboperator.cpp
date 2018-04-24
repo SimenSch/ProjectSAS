@@ -11,7 +11,8 @@ void DbOperator::checkDB() {
     string msg = "";
 
     if(!mydb.open()) {
-        msg += "Database connectino failed";
+        msg += "Failed";
+
     } else {
         msg += "Success";
     }

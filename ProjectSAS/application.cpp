@@ -182,7 +182,7 @@ bool Application::regChecker(){
 }
 
 
-// s315586 & s315593
+// s315586 & s315593 & s305491
 void Application::on_registerButton_clicked(){
     User usr;
     Owner ownr;
@@ -234,7 +234,7 @@ void Application::on_registerButton_clicked(){
         ui->generalMsg->show();
     }
 }
-
+//s305491
     void Application::addAssistant(){
     User usr;
     Assistant ownr;
@@ -285,7 +285,7 @@ void Application::on_registerButton_clicked(){
         // fuck you mama
     }
 }
-
+//s305491
 void Application::addOrder(){
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -318,8 +318,118 @@ void Application::addOrder(){
 
 
 }
+//s305491
+void Application::updatePet(int petid, string name, string birthdate, string pettype, string race, string notes)
+{
+    Pet pet;
+    pet.setname(name);
+    pet.setpetType(pettype);
+    pet.setrace(race);
+    pet.setdateOfBirth(birthdate);
+    pet.setnotes(notes);
+    pet.setpetID(petid);
 
 
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("UPDATE Pet SET Name=:name,BirthDate=:birthdate,PetType=:pettype,Race=:race,Notes=:notes WHERE PetID=:petid");
+    qry->bindValue(":name", QString::fromStdString(pet.getname()));
+    qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
+    qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
+    qry->bindValue(":race", QString::fromStdString(pet.getrace()));
+    qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
+    qry->bindValue(":petid", pet.getpetID());
+    if(qry->exec()){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->mainStack->setCurrentIndex(0);
+        loadPets();
+        QMessageBox msgBox;
+        msgBox.setText("Pet successfully updated");
+        msgBox.exec();
+    }
+
+}
+//s305491
+//updates user email and password, and changes Owner email to this email
+void Application::updateUser(int userid, string email,string password)
+{
+    LoginInterface lgn;
+
+
+    User usr;
+    usr.setuserID(userid);
+    usr.seteMail(email);
+    string pword= lgn.hashing(password);
+    usr.setpassword(pword);
+
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("UPDATE User SET EMail=:email,Password=:password WHERE UserID=:userid");
+    qry->bindValue(":password", QString::fromStdString(usr.getpassword()));
+    qry->bindValue(":email", QString::fromStdString(usr.geteMail()));
+    qry->bindValue(":userid", usr.getuserID());
+    if(qry->exec()){
+
+        QSqlQuery* sly=new QSqlQuery(db.mydb);
+        sly->prepare("UPDATE Owner SET EMail=:email WHERE UserID=:userid");
+        sly->bindValue(":email",QString::fromStdString(usr.geteMail()));
+        sly->bindValue(":userid",usr.getuserID());
+        if(sly->exec()){
+            ui->stackedWidget->setCurrentIndex(1);
+            ui->mainStack->setCurrentIndex(0);
+            QMessageBox msgBox;
+            msgBox.setText("User Successfully updated");
+            msgBox.exec();
+            }
+     else{
+        QMessageBox msgBox;
+        msgBox.setText("User Unsuccessfully updated");
+        msgBox.exec();
+     }
+
+   }
+}
+//s305491
+void Application::updateOwner(int ownerid, string name, string surname,string birthdate, string address, string city, string zip)
+{
+    Owner owner;
+
+    owner.setdateOfBirth(birthdate);
+    owner.setfirstName(name);
+    owner.setsurname(surname);
+    owner.setdateOfBirth(birthdate);
+    owner.setaddress(address);
+    owner.setownerID(ownerid);
+    owner.setzip(zip);
+    owner.setcity(city);
+
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("UPDATE Owner SET FirstName=:name,Surname=:surname,BirthDate=:birthdate,Address=:address,City=:city,Zip=:zip WHERE OwnerID=:ownerid");
+    qry->bindValue(":name", QString::fromStdString(owner.getfirstName()));
+    qry->bindValue(":birthdate", QString::fromStdString(owner.getdateOfBirth()));
+    qry->bindValue(":surname", QString::fromStdString(owner.getsurname()));
+    qry->bindValue(":city", QString::fromStdString(owner.getcity()));
+    qry->bindValue(":zip", QString::fromStdString(owner.getzip()));
+    qry->bindValue(":address", QString::fromStdString(owner.getaddress()));
+    qry->bindValue(":ownerid", owner.getownerID());
+    if(qry->exec()){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->mainStack->setCurrentIndex(0);
+
+        QMessageBox msgBox;
+        msgBox.setText("Owner Successfully updated");
+        msgBox.exec();
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Owner Unsuccessfully updated");
+        msgBox.exec();
+    }
+
+}
 void Application::on_addPetToDBButton_clicked()
 {
     LoginInterface li;

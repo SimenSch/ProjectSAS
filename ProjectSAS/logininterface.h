@@ -17,7 +17,7 @@ public:
     string getUserType(int userID);
     string getPassword(string username);
     int getOwnerID(int userID);
-
+    string hashing(string word);
     //bool fileExists(const string* file);
 private:
     string username;
@@ -25,7 +25,6 @@ private:
     string hashedPassword;
     string hashedUsername;
 
-    string hashing(string word);
 
 };
 

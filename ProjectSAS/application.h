@@ -17,8 +17,9 @@ public:
     DbOperator db;
     User activeUser;
     void addOrder();
-    void addAssistant();
+    void clearInputFields();
     void showCustAppoint();
+    void showEmpAppoint();
     void calcAppPrice();
     bool regChecker();
     explicit Application(QWidget *parent = 0);
@@ -28,6 +29,7 @@ private slots:
     void on_switchUserButton_clicked();
     void loadPets();
     void loadUserInfo();
+    void loadEmpInfo();
     void on_cancelRegisterButton_clicked();
     void on_newUserButton_clicked();
     void on_registerButton_clicked();
@@ -39,7 +41,7 @@ private slots:
     //On text edited input fields customer user creation
     void on_firstNameInput_textEdited();
     void on_surNameInput_textEdited();
-    void on_dateOfBirthInput_textEdited();
+    void on_dateOfBirthInput_userDateChanged();
     void on_addressInput_textEdited();
     void on_cityInput_textEdited();
     void on_zipInput_textEdited();
@@ -51,7 +53,7 @@ private slots:
     //On text edited input fields employee user creation
     void on_firstNameInput_Emp_textEdited();
     void on_surNameInput_Emp_textEdited();
-    void on_dateOfBirthInput_Emp_textEdited();
+    void on_dateOfBirthInput_Emp_userDateChanged();
     void on_addressInput_Emp_textEdited();
     void on_cityInput_Emp_textEdited();
     void on_zipInput_Emp_textEdited();
@@ -62,29 +64,17 @@ private slots:
     void on_reEnterPasswordInput_Emp_textEdited();
 
     void on_cancelUserChoiceButton_clicked();
-
     void on_chooseUserTypeButton_clicked();
-
     void on_customerTab_currentChanged(int index);
-
     void on_viewPetsButton_clicked();
-
     void on_viewAppButton_clicked();
-
     void on_passwordEdit_returnPressed();
-
     void on_userNameEdit_returnPressed();
-
     void on_addAppButton_clicked();
-
     void on_orderAppButton_clicked();
-
     void on_appFromEdit_dateChanged();
-
     void on_appToEdit_dateChanged();
-
     void on_registerButton_Emp_clicked();
-
     void on_cancelRegisterButton_Emp_clicked();
 
 

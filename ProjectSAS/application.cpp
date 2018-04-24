@@ -31,7 +31,13 @@ Application::~Application()
     delete ui;
     db.close();
 }
-// s315593 & s315586
+/*
+ * Login button slot function
+ * Checks whether the typed in user exists, and that the password matches the hashed password in the database.
+ * Errors presented to the user whenever not at all or no fields are entered, if there are no users, and if something else unforeseen
+ * occurs during the login.
+ * Cooperative function made by Simen Persch and Anders Nøss
+ */
 void Application::on_loginButton_clicked() {
     LoginInterface li;
 
@@ -51,6 +57,8 @@ void Application::on_loginButton_clicked() {
                 ui->stackedWidget->setCurrentIndex(1);
                 ui->mainStack->setCurrentIndex(1);
                 ui->activeUserLabel->setText(ui->userNameEdit->text());
+                showEmpAppoint();
+                loadEmpInfo();
             }
             else {
                 ui->errorLabel->setText("Error finding usertype");
@@ -71,6 +79,12 @@ void Application::on_loginButton_clicked() {
     }
 }
 
+/*
+ * On Switch User button slot function
+ * Brings you back to the login interface
+ * Made by Simen Persch
+ */
+
 void Application::on_switchUserButton_clicked() {
     ui->stackedWidget->setCurrentIndex(0);
     activeUser.setuserID(0);
@@ -78,6 +92,11 @@ void Application::on_switchUserButton_clicked() {
     ui->passwordEdit->clear();
 }
 
+/*
+ * Loads the currently logged in customer's pets into QSQLQueryModels which are presented in two seperate QTablewViews;
+ * A short but concise, and one with all the data per record
+ * Made by Simen Persch Andersen
+ */
 void Application::loadPets(){
     LoginInterface li;
 
@@ -108,7 +127,11 @@ void Application::loadPets(){
 
 }
 
-void Application::loadUserInfo(){
+/*
+ * Loads the data from the customer and presents it at the overview layout tab
+ * Made by Simen Persch Andersen
+ */
+void Application::loadUserInfo() {
     QSqlQuery* qry=new QSqlQuery(db.mydb);
 
     QSqlQueryModel* model=new QSqlQueryModel;
@@ -125,7 +148,35 @@ void Application::loadUserInfo(){
     ui->cityInfoCustomer->setText(model->record(0).value(3).toString());
     ui->zipInfoCustomer->setText(model->record(0).value(4).toString());
 }
+/*
+ * Loads the data from the employee and presents it at the overview layout tab
+ * Made by Simen Persch Andersen
+ */
+void Application::loadEmpInfo() {
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
 
+    QSqlQueryModel* model=new QSqlQueryModel;
+
+    qry->prepare("SELECT FirstName, Surname, Address, City, Zip, BirthDate, Department FROM Assistant WHERE UserID = :userid");
+    qry->bindValue(":userid", activeUser.getuserID());
+    qry->exec();
+
+    model->setQuery(*qry);
+
+    ui->firstNameInfoEmp->setText(model->record(0).value(0).toString());
+    ui->surNameInfoEmp->setText(model->record(0).value(1).toString());
+    ui->addressInfoEmp->setText(model->record(0).value(2).toString());
+    ui->cityInfoEmp->setText(model->record(0).value(3).toString());
+    ui->zipInfoEmp->setText(model->record(0).value(4).toString());
+    ui->birthInfoEmp->setText(model->record(0).value(5).toString());
+    ui->depInfoEmp->setText(model->record(0).value(6).toString());
+
+}
+/*
+ * Loads the appointments set for the customers pets in an QSqlQueryModel set in two different QTableViews, depending on the tab the user browses;
+ * One small and concise, and one that lists all info from the records
+ * Made by Simen Persch Andersen
+ */
 void Application::showCustAppoint() {
    LoginInterface li;
    QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -156,11 +207,44 @@ void Application::showCustAppoint() {
    }
 }
 
+/*
+ * Loads all appointments in an QSqlQueryModel presented in a QTableVIew, sorted by begin date
+ * Made by Simen Persch Andersen
+ */
+void Application::showEmpAppoint() {
+    LoginInterface li;
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    QSqlQueryModel* model=new QSqlQueryModel;
+
+    qry->prepare("SELECT Owner.FirstName, Owner.Surname, Pet.Name, Appointment.BeginDate, Appointment.BeginTime, Appointment.EndDate, Appointment.EndTime, Appointment.Price FROM Owner, Pet, Appointment WHERE Owner.OwnerID = Pet.OwnerID AND Appointment.PetID = Pet.PetID ORDER BY Appointment.BeginDate");
+    qry->bindValue(":ownerid", li.getOwnerID(activeUser.getuserID()));
+    qry->exec();
+
+    model->setQuery(*qry);
+    model->setHeaderData(0, Qt::Horizontal, tr("Owner"));
+    model->setHeaderData(1, Qt::Horizontal, tr("Owner"));
+    model->setHeaderData(2, Qt::Horizontal, tr("Pet"));
+
+    ui->appTableEmp->setModel(model);
+
+
+}
+/*
+ * Cancel register customer button slot
+ * Brings you back to the login interface
+ * Made by Simen Persch Andersen
+ */
 void Application::on_cancelRegisterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+/*
+ * New user button slot
+ * Brings you to an option menu where you may choose what type of user you would like to create.
+ * Made by Simen Persch Andersen
+ */
 void Application::on_newUserButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
@@ -173,9 +257,8 @@ void Application::on_newUserButton_clicked()
 bool Application::regChecker(){
     if(ui->firstNameInput->text().isEmpty() || ui->surNameInput->text().isEmpty() || ui->addressInput->text().isEmpty() ||
             ui->dateOfBirthInput->text().isEmpty() || ui->cityInput->text().isEmpty() || ui->zipInput->text().isEmpty() ||
-            ui->eMailInput->text().isEmpty() || ui->passwordInput->text().isEmpty()){
-        cout << "regChecker = false" << endl;
-        return false;
+            ui->eMailInput->text().isEmpty() || ui->passwordInput->text().isEmpty())
+    { return false;
     } else {
     return true;
     }
@@ -183,16 +266,24 @@ bool Application::regChecker(){
 
 
 // s315586 & s315593
+/*
+ * Register customer button slot
+ * Registers a customer and user record if the needed criterias are met, like no duplicate email existing in the database, matching passwords uses, that all fields have an entry etc.
+ * Co-operative effort by all group members
+ */
 void Application::on_registerButton_clicked(){
     User usr;
     Owner ownr;
-    if(regChecker() == true){
-        cout << "inni regChecker IFen" << endl;
-        if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
+    LoginInterface lgin;
+    if(regChecker() == true)
+    {
+        if(lgin.userAvailable(ui->eMailInput->text().toStdString()))
+        {
+            if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString())
+            {
             usr.seteMail(ui->eMailInput->text().toStdString());
             usr.setpassword(ui->passwordInput->text().toStdString());
             usr.setuserType("Customer");
-            LoginInterface lgin;
             ownr.setzip(ui->zipInput->text().toStdString());
             ownr.setfirstName(ui->firstNameInput->text().toStdString());
             ownr.setsurname(ui->surNameInput->text().toStdString());
@@ -201,14 +292,9 @@ void Application::on_registerButton_clicked(){
             ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
             ownr.seteMail(ui->eMailInput->text().toStdString());
             ownr.setPhone(ui->phoneinput->text().toStdString());
-            DbOperator db;
-            int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
-            cout << userid << endl;
-            if(userid == 0){
-                ui->generalMsg->setText("Username already taken");
-                ui->generalMsg->show();
-            } else {
-                cout << "prøver å lage bruker " << endl;
+
+            int userid = lgin.createUser(usr.geteMail(), usr.getpassword(), "Customer");
+            if(userid != 0) {
                 ownr.setUserID(userid);
                 QSqlQuery* qry=new QSqlQuery(db.mydb);
                 qry->prepare("INSERT INTO Owner (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
@@ -221,71 +307,36 @@ void Application::on_registerButton_clicked(){
                 qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
                 qry->bindValue(":userid", ownr.getuserID());
                 qry->exec();
-                ui->stackedWidget->setCurrentIndex(0);
                 clearInputFields();
+                ui->stackedWidget->setCurrentIndex(0);
+
+                QMessageBox msgBox;
+                msgBox.setText("User successfully created");
+                msgBox.exec();
+                }
+                else {
+                    ui->generalMsg->setText("Error creating user. Please report this issue");
+                    ui->generalMsg->show();
+                }
             }
-        } else{
-            ui->generalMsg->setText("Password doesn't match");
-            ui->generalMsg->show();
+            else {
+                ui->secondPasswordMsg->setText("Passwords do not match");
+                ui->secondPasswordMsg->show();
+            }
+        }
+        else
+        {
+            ui->generalMsg->setText("Email already in use");
         }
     } else {
-        cout << "RegChecker failed" << endl;
         ui->generalMsg->setText("All fields must be filled out");
         ui->generalMsg->show();
     }
 }
-
-    void Application::addAssistant(){
-    User usr;
-    Assistant ownr;
-    DbOperator db;
-    db.addDatabase();
-    db.open();
-
-
-
-    if(ui->passwordInput->text().toStdString() == ui->reEnterPasswordInput->text().toStdString()){
-    usr.seteMail(ui->eMailInput->text().toStdString());
-    usr.setpassword(ui->passwordInput->text().toStdString());
-    usr.setuserType("assistant");
-    LoginInterface lgin;
-    ownr.setzip(ui->zipInput->text().toStdString());
-    ownr.setfirstname(ui->firstNameInput->text().toStdString());
-    ownr.setsurname(ui->surNameInput->text().toStdString());
-    ownr.setaddress(ui->addressInput->text().toStdString());
-    ownr.setcity(ui->cityInput->text().toStdString());
-    ownr.setdateOfBirth(ui->dateOfBirthInput->text().toStdString());
-
-    ownr.seteMail(ui->eMailInput->text().toStdString());
-    DbOperator db;
-    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
-
-    ownr.setassistantID(userid);
-
-    QSqlQuery* qry=new QSqlQuery(db.mydb);
-
-    qry->prepare("INSERT INTO Assistant (Surname, FirstName, Address, City, Zip, BirthDate,Department,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate,:department, :email, :userid)");
-    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
-    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstname()));
-    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
-    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
-    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
-    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
-    qry->bindValue(":department", QString::fromStdString(ownr.getdepartment()));
-    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
-    qry->bindValue(":userid", ownr.getassistantID());
-    qry->exec();
-
-    db.close();
-
-    ui->stackedWidget->setCurrentIndex(0);
-
-    }
-    else{
-        // fuck you mama
-    }
-}
-
+/*
+ * Add order function which is called upon when the neccessary criterias are met by the add order button slot function
+ * Made by Simen Persch Andersen
+ */
 void Application::addOrder(){
 
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -297,8 +348,7 @@ void Application::addOrder(){
     qry->bindValue(":enddate", ui->appToEdit->date().toString());
     qry->bindValue(":begintime", ui->appFromEdit->time().toString());
     qry->bindValue(":endtime", ui->appToEdit->time().toString());
-    qry->bindValue(":price", ui->appPriceField->text());
-    cout << "Order is being run" << endl;
+    qry->bindValue(":price", ui->appPriceField->text());;
     if(qry->exec()){
             ui->stackedWidget->setCurrentIndex(1);
             ui->mainStack->setCurrentIndex(0);
@@ -319,7 +369,10 @@ void Application::addOrder(){
 
 }
 
-
+/*
+ * Add pet to DB on button clicked slot function
+ * Adds a pet to the database connected to the logged in customer, with the appropriate data
+ */
 void Application::on_addPetToDBButton_clicked()
 {
     LoginInterface li;
@@ -351,22 +404,30 @@ void Application::on_addPetToDBButton_clicked()
 
 }
 
+/*
+ * Brings you the "Add pet" layout
+ * Made by Simen Persch Andersen
+ */
 void Application::on_addPetButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
 
+/*
+ * Cancels adding a pet to the customer
+ * Brings you back to the pets overview
+ * Made by Simen Persch Andersen
+ */
 void Application::on_cancelPetAddButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
     ui->mainStack->setCurrentIndex(0);
-
 }
 
-//
-//Loads of on_textEdited() functions from create customer/employee user
-//Made by Simen P. Andersen
-//
+/*
+*Loads of on_textEdited() functions from create customer/employee user
+* Made by Simen P. Andersen
+*/
 
 void Application::on_firstNameInput_textEdited()
 {
@@ -383,7 +444,7 @@ void Application::on_surNameInput_textEdited()
 
 }
 
-void Application::on_dateOfBirthInput_textEdited()
+void Application::on_dateOfBirthInput_userDateChanged()
 {
     if(!(ui->dateOfBirthInput->text().isEmpty())) ui->dateOfBirthMsg->setText("");
     else ui->dateOfBirthMsg->setText("*");
@@ -446,7 +507,7 @@ void Application::on_surNameInput_Emp_textEdited()
 
 }
 
-void Application::on_dateOfBirthInput_Emp_textEdited()
+void Application::on_dateOfBirthInput_Emp_userDateChanged()
 {
     if(!(ui->dateOfBirthInput_Emp->text().isEmpty())) ui->dateOfBirthMsg_Emp->setText("");
     else ui->dateOfBirthMsg_Emp->setText("*");
@@ -478,7 +539,7 @@ void Application::on_phoneinput_Emp_textEdited()
 
 void Application::on_departmentComboBox_currentIndexChanged()
 {
-    if(!ui->departmentComboBox->currentIndex() > -1) ui->departmentMsg_Emp->setText("");
+    if(!(ui->departmentComboBox->currentIndex() > -1)) ui->departmentMsg_Emp->setText("");
     else ui->departmentMsg_Emp->setText("*");
 
 }
@@ -501,21 +562,26 @@ void Application::on_reEnterPasswordInput_Emp_textEdited()
     else ui->secondPasswordMsg_Emp->setText("*");
 }
 
-//
-//End on_textEdited() functions
-//
+/*
+* End on_textEdited() functions
+*/
 
 void Application::on_cancelUserChoiceButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-
+/*
+ * Choose user type on clicked slot function
+ * Brings you the customer register page if you so desire, and the employee register page if you enter the correct code necessary to do so.
+ * Made by Simen Persch Andersen
+ */
 void Application::on_chooseUserTypeButton_clicked()
 {
     if(ui->customerRadioButton->isChecked())
     {
         ui->stackedWidget->setCurrentIndex(4);
+        ui->generalMsg->hide();
     }
     else
     {
@@ -529,6 +595,7 @@ void Application::on_chooseUserTypeButton_clicked()
             ui->employeeKeyLabel->hide();
             ui->invalidKeyLabel->hide();
             ui->stackedWidget->setCurrentIndex(5);
+            ui->generalMsg_Emp->hide();
         }
         else
         {
@@ -536,7 +603,10 @@ void Application::on_chooseUserTypeButton_clicked()
         }
     }
 }
-
+/*
+ * Loads the appropriate data into their respective QTableViews based on the tab index
+ * Made by Simen Persch Andersen
+ */
 void Application::on_customerTab_currentChanged(int index)
 {
     if(index == 0) {
@@ -571,18 +641,87 @@ void Application::on_userNameEdit_returnPressed()
     on_loginButton_clicked();
 }
 
-// s315586
+/*
+ * Clears all input fields and error messages in the register customer and employee pages
+ * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
+ */
 void Application::clearInputFields(){
-    ui->firstNameInput->clear();
-    ui->surNameInput->clear();
-    ui->addressInput->clear();
-    ui->dateOfBirthInput->clear();
-    ui->cityInput->clear();
-    ui->zipInput->clear();
-    ui->eMailInput->clear();
-    ui->passwordInput->clear();
+    if(ui->stackedWidget->currentIndex() == 4) {
+        ui->firstNameInput->clear();
+        ui->surNameInput->clear();
+        ui->addressInput->clear();
+        ui->dateOfBirthInput->clear();
+        ui->cityInput->clear();
+        ui->zipInput->clear();
+        ui->eMailInput->clear();
+        ui->phoneinput->clear();
+        ui->passwordInput->clear();
+        ui->reEnterPasswordInput->clear();
+
+        ui->firstNameMsg->setText("*");
+        ui->firstNameMsg->show();
+        ui->surNameMsg->setText("*");
+        ui->surNameMsg->show();
+        ui->addressMsg->setText("*");
+        ui->addressMsg->show();
+        ui->dateOfBirthMsg->setText("*");
+        ui->dateOfBirthMsg->show();
+        ui->cityMsg->setText("*");
+        ui->cityMsg->show();
+        ui->zipMsg->setText("*");
+        ui->zipMsg->show();
+        ui->emailMsg->setText("*");
+        ui->emailMsg->show();
+        ui->phoneMsg->setText("*");
+        ui->phoneMsg->show();
+        ui->firstPasswordMsg->setText("*");
+        ui->firstPasswordMsg->show();
+        ui->secondPasswordMsg->setText("*");
+        ui->secondPasswordMsg->show();
+
+        ui->generalMsg->hide();
+    }
+    else {
+        ui->firstNameInput_Emp->clear();
+        ui->surNameInput_Emp->clear();
+        ui->addressInput_Emp->clear();
+        ui->dateOfBirthInput_Emp->clear();
+        ui->cityInput_Emp->clear();
+        ui->zipInput_Emp->clear();
+        ui->eMailInput_Emp->clear();
+        ui->phoneinput_Emp->clear();
+        ui->passwordInput_Emp->clear();
+        ui->reEnterPasswordInput_Emp->clear();
+
+        ui->firstNameMsg_Emp->setText("*");
+        ui->firstNameMsg_Emp->show();
+        ui->surNameMsg_Emp->setText("*");
+        ui->surNameMsg_Emp->show();
+        ui->addressMsg_Emp->setText("*");
+        ui->addressMsg_Emp->show();
+        ui->dateOfBirthMsg_Emp->setText("*");
+        ui->dateOfBirthMsg_Emp->show();
+        ui->cityMsg_Emp->setText("*");
+        ui->cityMsg_Emp->show();
+        ui->zipMsg_Emp->setText("*");
+        ui->zipMsg_Emp->show();
+        ui->emailMsg_Emp->setText("*");
+        ui->emailMsg_Emp->show();
+        ui->phoneMsg_Emp->setText("*");
+        ui->phoneMsg_Emp->show();
+        ui->firstPasswordMsg_Emp->setText("*");
+        ui->firstPasswordMsg_Emp->show();
+        ui->secondPasswordMsg_Emp->setText("*");
+        ui->secondPasswordMsg_Emp->show();
+
+        ui->generalMsg->show();
+    }
 }
 
+/*
+ * On click slot function which brings you the "New Appointment" order interface, and presents your pets in the Pet QComboBox
+ * Made by Simen Persch Andersen
+ */
 void Application::on_addAppButton_clicked()
 {
     QSqlQuery* qry=new QSqlQuery;
@@ -606,31 +745,41 @@ void Application::on_addAppButton_clicked()
     ui->petsComboBox->addItems(*list);
     ui->stackedWidget->setCurrentIndex(6);
 
-    ui->petChosenError->hide();
-    ui->timeFrameError->hide();
     ui->orderError->hide();
-
+    ui->timeStampErrorLabel->hide();
+    ui->petErrorLabel->hide();
 
 }
+
+/*
+ * Order appointment button click slot function which checks for correct input, and calls upon the addOrder() function if they are.
+ * Errors are presented if not
+ * Made by Simen Persch Andersen
+ */
 
 void Application::on_orderAppButton_clicked()
 {
     bool allOk = true;
     if(!(ui->petsComboBox->currentIndex() > -1))
     {
-        ui->petChosenError->setText("A pet must be chosen");
-        ui->petChosenError->show();
+        ui->petErrorLabel->setText("A pet must be chosen");
+        ui->petErrorLabel->show();
+        allOk = false;
+    }
+    if(ui->appFromEdit->dateTime() < QDateTime::currentDateTime()) {
+        ui->timeStampErrorLabel->setText("Appointment must be ahead of time");
+        ui->timeStampErrorLabel->show();
         allOk = false;
     }
     if(ui->appFromEdit->dateTime() >= ui->appToEdit->dateTime()) {
-        ui->timeFrameError->setText("Invalid timespan");
-        ui->timeFrameError->show();
+        ui->timeStampErrorLabel->setText("Invalid timespan");
+        ui->timeStampErrorLabel->show();
         allOk = false;
     }
     if(allOk) {
-        ui->petChosenError->hide();
-        ui->timeFrameError->hide();
         ui->orderError->hide();
+        ui->timeStampErrorLabel->hide();
+        ui->petErrorLabel->hide();
         addOrder();
     }
     else{
@@ -639,6 +788,10 @@ void Application::on_orderAppButton_clicked()
 
 }
 
+/*
+ * Two on_DateChanged function which recalculates the order price whenever changed
+ * Made by Simen Persch Andersen
+ */
 void Application::on_appFromEdit_dateChanged()
 {
     calcAppPrice();
@@ -649,6 +802,10 @@ void Application::on_appToEdit_dateChanged()
     calcAppPrice();
 }
 
+/*
+ * Calculates the Appointment price based on a constant integer value
+ * Made by Simen Persch Andersen
+ */
 void Application::calcAppPrice()
 {
     const int pricePerDay = 1200;
@@ -663,51 +820,64 @@ void Application::calcAppPrice()
     }
 }
 
-
+/*
+ * Register employee on button click slot function
+ * Functions very similarily to the customer creation function, adds the user to the "Assistant" table instead of "Customer", and usertype as "Employee"
+ * Co-operative effort between all group members
+ */
 void Application::on_registerButton_Emp_clicked()
 {
     User usr;
-    Owner ownr;
+    LoginInterface li;
 
-    if(ui->passwordInput_Emp->text().toStdString() == ui->reEnterPasswordInput_Emp->text().toStdString()){
-    usr.seteMail(ui->eMailInput_Emp->text().toStdString());
-    usr.setpassword(ui->passwordInput_Emp->text().toStdString());
-    usr.setuserType("Employee");
-    LoginInterface lgin;
-    ownr.setzip(ui->zipInput_Emp->text().toStdString());
-    ownr.setfirstName(ui->firstNameInput_Emp->text().toStdString());
-    ownr.setsurname(ui->surNameInput_Emp->text().toStdString());
-    ownr.setaddress(ui->addressInput_Emp->text().toStdString());
-    ownr.setcity(ui->cityInput_Emp->text().toStdString());
-    ownr.setdateOfBirth(ui->dateOfBirthInput_Emp->text().toStdString());
+    if(li.userAvailable(ui->eMailInput_Emp->text().toStdString()))
+    {
 
-    ownr.seteMail(ui->eMailInput_Emp->text().toStdString());
-    ownr.setPhone(ui->phoneinput_Emp->text().toStdString());
-    int userid= lgin.createUser(usr.geteMail(),usr.getpassword());
+        if(ui->passwordInput_Emp->text().toStdString() == ui->reEnterPasswordInput_Emp->text().toStdString()){
+            usr.seteMail(ui->eMailInput_Emp->text().toStdString());
+            usr.setpassword(ui->passwordInput_Emp->text().toStdString());
+            usr.setuserType("Employee");
+            LoginInterface lgin;
+            int userid = lgin.createUser(usr.geteMail(), usr.getpassword(), "Employee");
 
-    ownr.setUserID(userid);
-
-    QSqlQuery* qry=new QSqlQuery(db.mydb);
-
-    qry->prepare("INSERT INTO Assistant (Surname, FirstName, Address, City, Zip, BirthDate,EMail,UserID) VALUES (:surname, :firstname, :address, :city, :zip, :birthdate, :email, :userid)");
-    qry->bindValue(":surname", QString::fromStdString(ownr.getsurname()));
-    qry->bindValue(":firstname", QString::fromStdString(ownr.getfirstName()));
-    qry->bindValue(":address", QString::fromStdString(ownr.getaddress()));
-    qry->bindValue(":city", QString::fromStdString(ownr.getcity()));
-    qry->bindValue(":zip", QString::fromStdString(ownr.getzip()));
-    qry->bindValue(":birthdate", QString::fromStdString(ownr.getdateOfBirth()));
-    qry->bindValue(":email", QString::fromStdString(ownr.geteMail()));
-    qry->bindValue(":userid", ownr.getuserID());
-    qry->exec();
+            if(userid != 0) {
 
 
-    ui->stackedWidget->setCurrentIndex(0);
+                QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+                qry->prepare("INSERT INTO Assistant (Surname, FirstName, Address, City, Zip, BirthDate, EMail, Department, UserID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                qry->bindValue(0, ui->surNameInput_Emp->text());
+                qry->bindValue(1, ui->firstNameInput_Emp->text());
+                qry->bindValue(2, ui->addressInput_Emp->text());
+                qry->bindValue(3, ui->cityInput_Emp->text());
+                qry->bindValue(4, ui->zipInput_Emp->text());
+                qry->bindValue(5, ui->dateOfBirthInput_Emp->text());
+                qry->bindValue(6, ui->eMailInput_Emp->text());
+                qry->bindValue(7, ui->departmentComboBox->currentText());
+                qry->bindValue(8, userid);
+                qry->exec();
+                clearInputFields();
+
+                ui->stackedWidget->setCurrentIndex(0);
+
+                QMessageBox msgBox;
+                msgBox.setText("User succesfully created");
+                msgBox.exec();
+            }
+            else {
+                ui->generalMsg_Emp->setText("Something went wrong with the SQL query. Please report this issue.");
+            }
+
+        }
+        else {
+            ui->secondPasswordMsg_Emp->setText("Passwords do not match");
+            ui->secondPasswordMsg_Emp->show();
+        }
     }
     else {
-        //passwords do not match
+        ui->generalMsg_Emp->setText("Email already in use");
+        ui->generalMsg_Emp->show();
     }
-
-
 }
 
 void Application::on_cancelRegisterButton_Emp_clicked()

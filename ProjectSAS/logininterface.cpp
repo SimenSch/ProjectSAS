@@ -18,7 +18,10 @@ string LoginInterface::hashing(string word){
     string returnable = to_string(temp);
     return returnable;
 }
-// s315586
+/*
+ * Returns the hashed password of the selected user
+ * Made by Simen Persch Andersen
+ */
 string LoginInterface::getPassword(string username){
     DbOperator db;
     QSqlQuery* statem=new QSqlQuery(db.mydb);
@@ -28,16 +31,19 @@ string LoginInterface::getPassword(string username){
         if(statem->next()){
             return statem->value(0).toString().toStdString();
         }
-    } else {
-        cout << "GetPassword statement failed" << endl;
-        return "";
+        else {
+        return "ERROR";
+        }
     }
-    cout << "GetPassword IF statement failed, major fuckups." << endl;
-    return "";
+    return "ERROR";
 }
 
 
-// s315586
+/*
+ * Login function
+ * Returns a value based on the outcome, where code 99 is a successful request, 2 is the code for when either fields are empty, and 1 if it failed
+ * Made by ANders Nøss Olsen
+ */
 int LoginInterface::loginAttempt(string username, string password){
     if(username.empty()){
         return 2;
@@ -51,41 +57,52 @@ int LoginInterface::loginAttempt(string username, string password){
         cout << "Login attempt failed: " << endl;
         return 1;
     }
-    cout << "Login Attempt IF statement failed. Shits fucked yo." << endl;
     return 0;
 
 }
-// s315586
-int LoginInterface::createUser(string username, string password){
+/*
+ * Checks whether the email is available for use, and gives a boolean value based on the outcome
+ * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
+ */
+bool LoginInterface::userAvailable(string eMail) {
     DbOperator db;
-    db.mydb.open();
     QSqlQuery* check=new QSqlQuery(db.mydb);
-    check->prepare("SELECT EMail FROM User WHERE EMail = ?;");
-    check->bindValue(0, QString::fromStdString(username));
+    check->prepare("SELECT Count(EMail) FROM User WHERE EMail = ?;");
+    check->bindValue(0, QString::fromStdString(eMail));
     if(check->exec()){
         check->next();
-        string checking = check->value(0).toString().toStdString();
-        if( checking == username){
-            cout << "username not available" << endl;
-            return 0;
+        if(check->value(0).toInt() > 0){
+            return false;
+        }
+        else {
+            return true;
         }
     }
+    return false;
+
+
+}
+// s315586
+int LoginInterface::createUser(string username, string password, string userType){
+    DbOperator db;
+
     string pWord = hashing(password);
     QSqlQuery* create=new QSqlQuery(db.mydb);
     create->prepare("INSERT INTO User (EMail, Password, UserType) VALUES (?, ?, ?)");
     create->bindValue(0, QString::fromStdString(username));
     create->bindValue(1, QString::fromStdString(pWord));
-    create->bindValue(2, "Customer");
+    create->bindValue(2, QString::fromStdString(userType));
     if(create->exec()){
         return create->lastInsertId().toInt();
     } else {
-        cout << "Create User failed." << endl;
+        return 0;
     }
-    cout << "CreateUser IF statement failed, u done fucked up" << endl;
-    return 0;
 
 }
 // s315586 & s315593
+/* Gets the user ID of the selected username(email)
+ * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
+ */
 int LoginInterface::getUserID(string userName) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -100,7 +117,10 @@ int LoginInterface::getUserID(string userName) {
     }
 
 }
-// s315586 & s315593
+/*
+ * Return the user type of the user.
+ * Made by Anders Nøss Olsen
+ */
 string LoginInterface::getUserType(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -110,12 +130,13 @@ string LoginInterface::getUserType(int userID) {
         qry->next();
         return qry->value(0).toString().toStdString();
     } else {
-        return "Get User Type failed";
+        return "NULL";
     }
-    cout << "GetUserType IF statement failed, what have you done??" << endl;
-    return "NULL";
 }
-// s315586 & s315593
+/*
+ * Returns the ownerID the selected user
+ * Made by Anders Nøss Olsen
+ */
 int LoginInterface::getOwnerID(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -131,6 +152,10 @@ int LoginInterface::getOwnerID(int userID) {
     cout << "GetOwnerID IF statement failed, shit has happend" << endl;
     return 0;
 }
+/*
+ * Returns the petID of the entered pet name
+ * Made by Simen Persch Andersen
+ */
 int LoginInterface::getPetID(string petName) {
 
     DbOperator db;

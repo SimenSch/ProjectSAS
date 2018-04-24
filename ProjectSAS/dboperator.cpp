@@ -11,9 +11,9 @@ void DbOperator::checkDB() {
     string msg = "";
 
     if(!mydb.open()) {
-        msg += "Feilet: u mom gay";
+        msg += "Failed";
     } else {
-        msg += "Ja: ur ancestors incestors";
+        msg += "Success";
     }
     msgBox.setText(QString::fromStdString(msg));
     msgBox.exec();

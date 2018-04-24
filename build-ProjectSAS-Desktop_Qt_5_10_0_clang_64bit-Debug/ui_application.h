@@ -98,14 +98,18 @@ public:
     QLabel *label_17;
     QLabel *label_11;
     QLabel *label_18;
+    QLabel *label_53;
+    QLabel *label_54;
     QWidget *verticalLayoutWidget_8;
     QVBoxLayout *verticalLayout_11;
-    QLabel *firstNameInfoCustomer_2;
-    QLabel *surNameInfoCustomer_2;
-    QLabel *addressInfoCustomer_2;
-    QLabel *zipInfoCustomer_2;
-    QLabel *cityInfoCustomer_2;
-    QTableView *shiftsTableView_2;
+    QLabel *firstNameInfoEmp;
+    QLabel *surNameInfoEmp;
+    QLabel *addressInfoEmp;
+    QLabel *zipInfoEmp;
+    QLabel *cityInfoEmp;
+    QLabel *birthInfoEmp;
+    QLabel *depInfoEmp;
+    QTableView *appTableEmp;
     QWidget *Hei_4;
     QTableView *shiftsTableView;
     QPushButton *switchUserButton;
@@ -149,7 +153,7 @@ public:
     QVBoxLayout *verticalLayout;
     QLineEdit *firstNameInput;
     QLineEdit *surNameInput;
-    QLineEdit *dateOfBirthInput;
+    QDateEdit *dateOfBirthInput;
     QLineEdit *addressInput;
     QLineEdit *cityInput;
     QLineEdit *zipInput;
@@ -191,7 +195,7 @@ public:
     QVBoxLayout *verticalLayout_15;
     QLineEdit *firstNameInput_Emp;
     QLineEdit *surNameInput_Emp;
-    QLineEdit *dateOfBirthInput_Emp;
+    QDateEdit *dateOfBirthInput_Emp;
     QLineEdit *addressInput_Emp;
     QLineEdit *cityInput_Emp;
     QLineEdit *zipInput_Emp;
@@ -213,7 +217,7 @@ public:
     QLabel *emailMsg_Emp;
     QLabel *firstPasswordMsg_Emp;
     QLabel *secondPasswordMsg_Emp;
-    QLabel *generalMsg_2;
+    QLabel *generalMsg_Emp;
     QWidget *layoutWidget_4;
     QVBoxLayout *verticalLayout_13;
     QLabel *label_41;
@@ -252,8 +256,8 @@ public:
     QPushButton *orderAppButton;
     QPushButton *cancelAppButton;
     QLabel *orderError;
-    QLabel *petChosenError;
-    QLabel *timeFrameError;
+    QLabel *timeStampErrorLabel;
+    QLabel *petErrorLabel;
 
     void setupUi(QWidget *Application)
     {
@@ -484,7 +488,7 @@ public:
         OverviewTab_4->setObjectName(QStringLiteral("OverviewTab_4"));
         verticalLayoutWidget_7 = new QWidget(OverviewTab_4);
         verticalLayoutWidget_7->setObjectName(QStringLiteral("verticalLayoutWidget_7"));
-        verticalLayoutWidget_7->setGeometry(QRect(180, 90, 160, 114));
+        verticalLayoutWidget_7->setGeometry(QRect(180, 40, 160, 162));
         verticalLayout_10 = new QVBoxLayout(verticalLayoutWidget_7);
         verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
         verticalLayout_10->setContentsMargins(0, 0, 0, 0);
@@ -518,40 +522,62 @@ public:
 
         verticalLayout_10->addWidget(label_18);
 
+        label_53 = new QLabel(verticalLayoutWidget_7);
+        label_53->setObjectName(QStringLiteral("label_53"));
+        label_53->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_10->addWidget(label_53);
+
+        label_54 = new QLabel(verticalLayoutWidget_7);
+        label_54->setObjectName(QStringLiteral("label_54"));
+        label_54->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_10->addWidget(label_54);
+
         verticalLayoutWidget_8 = new QWidget(OverviewTab_4);
         verticalLayoutWidget_8->setObjectName(QStringLiteral("verticalLayoutWidget_8"));
-        verticalLayoutWidget_8->setGeometry(QRect(410, 90, 160, 114));
+        verticalLayoutWidget_8->setGeometry(QRect(410, 40, 160, 162));
         verticalLayout_11 = new QVBoxLayout(verticalLayoutWidget_8);
         verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
         verticalLayout_11->setContentsMargins(0, 0, 0, 0);
-        firstNameInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
-        firstNameInfoCustomer_2->setObjectName(QStringLiteral("firstNameInfoCustomer_2"));
+        firstNameInfoEmp = new QLabel(verticalLayoutWidget_8);
+        firstNameInfoEmp->setObjectName(QStringLiteral("firstNameInfoEmp"));
 
-        verticalLayout_11->addWidget(firstNameInfoCustomer_2);
+        verticalLayout_11->addWidget(firstNameInfoEmp);
 
-        surNameInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
-        surNameInfoCustomer_2->setObjectName(QStringLiteral("surNameInfoCustomer_2"));
+        surNameInfoEmp = new QLabel(verticalLayoutWidget_8);
+        surNameInfoEmp->setObjectName(QStringLiteral("surNameInfoEmp"));
 
-        verticalLayout_11->addWidget(surNameInfoCustomer_2);
+        verticalLayout_11->addWidget(surNameInfoEmp);
 
-        addressInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
-        addressInfoCustomer_2->setObjectName(QStringLiteral("addressInfoCustomer_2"));
+        addressInfoEmp = new QLabel(verticalLayoutWidget_8);
+        addressInfoEmp->setObjectName(QStringLiteral("addressInfoEmp"));
 
-        verticalLayout_11->addWidget(addressInfoCustomer_2);
+        verticalLayout_11->addWidget(addressInfoEmp);
 
-        zipInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
-        zipInfoCustomer_2->setObjectName(QStringLiteral("zipInfoCustomer_2"));
+        zipInfoEmp = new QLabel(verticalLayoutWidget_8);
+        zipInfoEmp->setObjectName(QStringLiteral("zipInfoEmp"));
 
-        verticalLayout_11->addWidget(zipInfoCustomer_2);
+        verticalLayout_11->addWidget(zipInfoEmp);
 
-        cityInfoCustomer_2 = new QLabel(verticalLayoutWidget_8);
-        cityInfoCustomer_2->setObjectName(QStringLiteral("cityInfoCustomer_2"));
+        cityInfoEmp = new QLabel(verticalLayoutWidget_8);
+        cityInfoEmp->setObjectName(QStringLiteral("cityInfoEmp"));
 
-        verticalLayout_11->addWidget(cityInfoCustomer_2);
+        verticalLayout_11->addWidget(cityInfoEmp);
 
-        shiftsTableView_2 = new QTableView(OverviewTab_4);
-        shiftsTableView_2->setObjectName(QStringLiteral("shiftsTableView_2"));
-        shiftsTableView_2->setGeometry(QRect(80, 230, 611, 221));
+        birthInfoEmp = new QLabel(verticalLayoutWidget_8);
+        birthInfoEmp->setObjectName(QStringLiteral("birthInfoEmp"));
+
+        verticalLayout_11->addWidget(birthInfoEmp);
+
+        depInfoEmp = new QLabel(verticalLayoutWidget_8);
+        depInfoEmp->setObjectName(QStringLiteral("depInfoEmp"));
+
+        verticalLayout_11->addWidget(depInfoEmp);
+
+        appTableEmp = new QTableView(OverviewTab_4);
+        appTableEmp->setObjectName(QStringLiteral("appTableEmp"));
+        appTableEmp->setGeometry(QRect(80, 230, 611, 221));
         tabWidget_4->addTab(OverviewTab_4, QString());
         Hei_4 = new QWidget();
         Hei_4->setObjectName(QStringLiteral("Hei_4"));
@@ -565,7 +591,7 @@ public:
         switchUserButton->setGeometry(QRect(650, 10, 113, 32));
         activeUserLabel = new QLabel(mainPage);
         activeUserLabel->setObjectName(QStringLiteral("activeUserLabel"));
-        activeUserLabel->setGeometry(QRect(10, 20, 141, 16));
+        activeUserLabel->setGeometry(QRect(10, 20, 391, 16));
         stackedWidget->addWidget(mainPage);
         registerPetPage = new QWidget();
         registerPetPage->setObjectName(QStringLiteral("registerPetPage"));
@@ -727,7 +753,7 @@ public:
         registerCustomerPage->setObjectName(QStringLiteral("registerCustomerPage"));
         verticalLayoutWidget = new QWidget(registerCustomerPage);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(290, 150, 291, 302));
+        verticalLayoutWidget->setGeometry(QRect(290, 150, 291, 291));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -741,7 +767,7 @@ public:
 
         verticalLayout->addWidget(surNameInput);
 
-        dateOfBirthInput = new QLineEdit(verticalLayoutWidget);
+        dateOfBirthInput = new QDateEdit(verticalLayoutWidget);
         dateOfBirthInput->setObjectName(QStringLiteral("dateOfBirthInput"));
 
         verticalLayout->addWidget(dateOfBirthInput);
@@ -962,7 +988,7 @@ public:
         registerEmployeePage->setObjectName(QStringLiteral("registerEmployeePage"));
         verticalLayoutWidget_10 = new QWidget(registerEmployeePage);
         verticalLayoutWidget_10->setObjectName(QStringLiteral("verticalLayoutWidget_10"));
-        verticalLayoutWidget_10->setGeometry(QRect(250, 140, 291, 291));
+        verticalLayoutWidget_10->setGeometry(QRect(250, 140, 291, 301));
         verticalLayout_15 = new QVBoxLayout(verticalLayoutWidget_10);
         verticalLayout_15->setObjectName(QStringLiteral("verticalLayout_15"));
         verticalLayout_15->setContentsMargins(0, 0, 0, 0);
@@ -976,7 +1002,7 @@ public:
 
         verticalLayout_15->addWidget(surNameInput_Emp);
 
-        dateOfBirthInput_Emp = new QLineEdit(verticalLayoutWidget_10);
+        dateOfBirthInput_Emp = new QDateEdit(verticalLayoutWidget_10);
         dateOfBirthInput_Emp->setObjectName(QStringLiteral("dateOfBirthInput_Emp"));
 
         verticalLayout_15->addWidget(dateOfBirthInput_Emp);
@@ -1028,7 +1054,7 @@ public:
 
         layoutWidget_6 = new QWidget(registerEmployeePage);
         layoutWidget_6->setObjectName(QStringLiteral("layoutWidget_6"));
-        layoutWidget_6->setGeometry(QRect(560, 140, 122, 291));
+        layoutWidget_6->setGeometry(QRect(560, 140, 122, 301));
         verticalLayout_14 = new QVBoxLayout(layoutWidget_6);
         verticalLayout_14->setObjectName(QStringLiteral("verticalLayout_14"));
         verticalLayout_14->setContentsMargins(0, 0, 0, 0);
@@ -1120,15 +1146,15 @@ public:
 
         verticalLayout_14->addWidget(secondPasswordMsg_Emp);
 
-        generalMsg_2 = new QLabel(registerEmployeePage);
-        generalMsg_2->setObjectName(QStringLiteral("generalMsg_2"));
-        generalMsg_2->setGeometry(QRect(250, 470, 291, 22));
-        generalMsg_2->setLayoutDirection(Qt::RightToLeft);
-        generalMsg_2->setStyleSheet(QStringLiteral("color: red;"));
-        generalMsg_2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        generalMsg_Emp = new QLabel(registerEmployeePage);
+        generalMsg_Emp->setObjectName(QStringLiteral("generalMsg_Emp"));
+        generalMsg_Emp->setGeometry(QRect(250, 480, 291, 22));
+        generalMsg_Emp->setLayoutDirection(Qt::RightToLeft);
+        generalMsg_Emp->setStyleSheet(QStringLiteral("color: red;"));
+        generalMsg_Emp->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         layoutWidget_4 = new QWidget(registerEmployeePage);
         layoutWidget_4->setObjectName(QStringLiteral("layoutWidget_4"));
-        layoutWidget_4->setGeometry(QRect(110, 140, 122, 291));
+        layoutWidget_4->setGeometry(QRect(110, 140, 122, 301));
         verticalLayout_13 = new QVBoxLayout(layoutWidget_4);
         verticalLayout_13->setObjectName(QStringLiteral("verticalLayout_13"));
         verticalLayout_13->setContentsMargins(0, 0, 0, 0);
@@ -1200,7 +1226,7 @@ public:
 
         layoutWidget_5 = new QWidget(registerEmployeePage);
         layoutWidget_5->setObjectName(QStringLiteral("layoutWidget_5"));
-        layoutWidget_5->setGeometry(QRect(250, 430, 289, 32));
+        layoutWidget_5->setGeometry(QRect(250, 450, 289, 32));
         horizontalLayout_11 = new QHBoxLayout(layoutWidget_5);
         horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
         horizontalLayout_11->setContentsMargins(0, 0, 0, 0);
@@ -1229,7 +1255,7 @@ public:
         label_33->setAlignment(Qt::AlignCenter);
         verticalLayoutWidget_9 = new QWidget(appointmentPage);
         verticalLayoutWidget_9->setObjectName(QStringLiteral("verticalLayoutWidget_9"));
-        verticalLayoutWidget_9->setGeometry(QRect(260, 170, 261, 282));
+        verticalLayoutWidget_9->setGeometry(QRect(260, 170, 261, 300));
         verticalLayout_12 = new QVBoxLayout(verticalLayoutWidget_9);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
         verticalLayout_12->setContentsMargins(0, 0, 0, 0);
@@ -1323,21 +1349,21 @@ public:
 
         verticalLayout_12->addWidget(orderError);
 
-        petChosenError = new QLabel(appointmentPage);
-        petChosenError->setObjectName(QStringLiteral("petChosenError"));
-        petChosenError->setGeometry(QRect(530, 200, 101, 16));
-        petChosenError->setStyleSheet(QStringLiteral("color: red;"));
-        timeFrameError = new QLabel(appointmentPage);
-        timeFrameError->setObjectName(QStringLiteral("timeFrameError"));
-        timeFrameError->setGeometry(QRect(530, 250, 101, 16));
-        timeFrameError->setStyleSheet(QStringLiteral("color: red;"));
+        timeStampErrorLabel = new QLabel(appointmentPage);
+        timeStampErrorLabel->setObjectName(QStringLiteral("timeStampErrorLabel"));
+        timeStampErrorLabel->setGeometry(QRect(530, 260, 241, 16));
+        timeStampErrorLabel->setStyleSheet(QStringLiteral("color: red;"));
+        petErrorLabel = new QLabel(appointmentPage);
+        petErrorLabel->setObjectName(QStringLiteral("petErrorLabel"));
+        petErrorLabel->setGeometry(QRect(530, 200, 241, 16));
+        petErrorLabel->setStyleSheet(QStringLiteral("color: red;"));
         stackedWidget->addWidget(appointmentPage);
 
         retranslateUi(Application);
 
         stackedWidget->setCurrentIndex(5);
-        mainStack->setCurrentIndex(0);
-        customerTab->setCurrentIndex(0);
+        mainStack->setCurrentIndex(1);
+        customerTab->setCurrentIndex(2);
         tabWidget_4->setCurrentIndex(0);
 
 
@@ -1391,11 +1417,15 @@ public:
         label_17->setText(QApplication::translate("Application", "Address", nullptr));
         label_11->setText(QApplication::translate("Application", "Zip", nullptr));
         label_18->setText(QApplication::translate("Application", "City", nullptr));
-        firstNameInfoCustomer_2->setText(QApplication::translate("Application", "firstName", nullptr));
-        surNameInfoCustomer_2->setText(QApplication::translate("Application", "surName", nullptr));
-        addressInfoCustomer_2->setText(QApplication::translate("Application", "address", nullptr));
-        zipInfoCustomer_2->setText(QApplication::translate("Application", "zip", nullptr));
-        cityInfoCustomer_2->setText(QApplication::translate("Application", "City", nullptr));
+        label_53->setText(QApplication::translate("Application", "Date of birth", nullptr));
+        label_54->setText(QApplication::translate("Application", "Department", nullptr));
+        firstNameInfoEmp->setText(QApplication::translate("Application", "firstName", nullptr));
+        surNameInfoEmp->setText(QApplication::translate("Application", "surName", nullptr));
+        addressInfoEmp->setText(QApplication::translate("Application", "address", nullptr));
+        zipInfoEmp->setText(QApplication::translate("Application", "zip", nullptr));
+        cityInfoEmp->setText(QApplication::translate("Application", "City", nullptr));
+        birthInfoEmp->setText(QApplication::translate("Application", "birthDate", nullptr));
+        depInfoEmp->setText(QApplication::translate("Application", "department", nullptr));
         tabWidget_4->setTabText(tabWidget_4->indexOf(OverviewTab_4), QApplication::translate("Application", "Overview", nullptr));
         tabWidget_4->setTabText(tabWidget_4->indexOf(Hei_4), QApplication::translate("Application", "Shifts", nullptr));
         switchUserButton->setText(QApplication::translate("Application", "Switch User", nullptr));
@@ -1459,7 +1489,7 @@ public:
         emailMsg_Emp->setText(QApplication::translate("Application", "*", nullptr));
         firstPasswordMsg_Emp->setText(QApplication::translate("Application", "*", nullptr));
         secondPasswordMsg_Emp->setText(QApplication::translate("Application", "*", nullptr));
-        generalMsg_2->setText(QApplication::translate("Application", "*", nullptr));
+        generalMsg_Emp->setText(QApplication::translate("Application", "*", nullptr));
         label_41->setText(QApplication::translate("Application", "First Name:", nullptr));
         label_42->setText(QApplication::translate("Application", "Surname:", nullptr));
         label_43->setText(QApplication::translate("Application", "Date of birth", nullptr));
@@ -1485,8 +1515,8 @@ public:
         orderAppButton->setText(QApplication::translate("Application", "Order", nullptr));
         cancelAppButton->setText(QApplication::translate("Application", "Cancel", nullptr));
         orderError->setText(QApplication::translate("Application", "errorMessage", nullptr));
-        petChosenError->setText(QApplication::translate("Application", "petChosenError", nullptr));
-        timeFrameError->setText(QApplication::translate("Application", "timeFrameError", nullptr));
+        timeStampErrorLabel->setText(QApplication::translate("Application", "timeStampError", nullptr));
+        petErrorLabel->setText(QApplication::translate("Application", "petError", nullptr));
     } // retranslateUi
 
 };

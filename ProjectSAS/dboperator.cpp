@@ -4,16 +4,16 @@
 #include <QMessageBox>
 
 DbOperator::DbOperator(){}
-
+//checks if the application has connectino to the database
 void DbOperator::checkDB() {
     QMessageBox msgBox;
 
     string msg = "";
 
     if(!mydb.open()) {
-        msg += "Feilet: u mom gay";
+        msg += "Database connectino failed";
     } else {
-        msg += "Ja: ur ancestors incestors";
+        msg += "Success";
     }
     msgBox.setText(QString::fromStdString(msg));
     msgBox.exec();

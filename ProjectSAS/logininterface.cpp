@@ -40,7 +40,7 @@ string LoginInterface::getPassword(string username){
 
 
 // s315586
-//checks if the input fields at the login is filled and if the
+//checks if the input fields at the login is filled and if the password matches with the getPassword() method.
 int LoginInterface::loginAttempt(string username, string password){
     if(username.empty()){
         return 2;
@@ -59,6 +59,7 @@ int LoginInterface::loginAttempt(string username, string password){
 
 }
 // s315586
+// this method if the username selected is available in the database.
 int LoginInterface::createUser(string username, string password){
     DbOperator db;
     db.mydb.open();
@@ -104,6 +105,7 @@ int LoginInterface::getUserID(string userName) {
 
 }
 // s315586 & s315593
+//retrieves usertype from database.
 string LoginInterface::getUserType(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -119,6 +121,7 @@ string LoginInterface::getUserType(int userID) {
     return "NULL";
 }
 // s315586 & s315593
+//retrieves ownerID from database
 int LoginInterface::getOwnerID(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -134,6 +137,8 @@ int LoginInterface::getOwnerID(int userID) {
     cout << "GetOwnerID IF statement failed, shit has happend" << endl;
     return 0;
 }
+//s305491
+//returns PetID from database
 int LoginInterface::getPetID(string petName) {
 
     DbOperator db;

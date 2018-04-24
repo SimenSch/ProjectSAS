@@ -12,6 +12,7 @@ using namespace std;
 
 LoginInterface::LoginInterface() {}
 // s315586
+//returns a hashed password
 string LoginInterface::hashing(string word){
     hash<string> hashFunction;
     size_t temp = hashFunction(word);
@@ -19,6 +20,7 @@ string LoginInterface::hashing(string word){
     return returnable;
 }
 // s315586
+//uses Qsql to get the hashed password to check the database password in method: loginAttempt().
 string LoginInterface::getPassword(string username){
     DbOperator db;
     QSqlQuery* statem=new QSqlQuery(db.mydb);
@@ -38,6 +40,7 @@ string LoginInterface::getPassword(string username){
 
 
 // s315586
+//checks if the input fields at the login is filled and if the
 int LoginInterface::loginAttempt(string username, string password){
     if(username.empty()){
         return 2;

@@ -21,7 +21,7 @@ string LoginInterface::hashing(string word){
 }
 /*
  * Returns the hashed password of the selected user
- * Made by Simen Persch Andersen
+ * Made by Anders Nøss Olsen(s315586)
  */
 
 string LoginInterface::getPassword(string username){
@@ -45,7 +45,7 @@ string LoginInterface::getPassword(string username){
 /*
  * Login function
  * Returns a value based on the outcome, where code 99 is a successful request, 2 is the code for when either fields are empty, and 1 if it failed
- * Made by ANders Nøss Olsen
+ * Made by Anders Nøss Olsen(s315586)
  */
 
 int LoginInterface::loginAttempt(string username, string password){
@@ -67,7 +67,7 @@ int LoginInterface::loginAttempt(string username, string password){
 
 /*
  * Checks whether the email is available for use, and gives a boolean value based on the outcome
- * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
+ * Co-operative effort between Anders Nøss Olsen(s315586) and Simen Persch Andersen(s315593)
  */
 bool LoginInterface::userAvailable(string eMail) {
     DbOperator db;
@@ -87,7 +87,10 @@ bool LoginInterface::userAvailable(string eMail) {
 
 
 }
-// s315586
+/*
+ *  Creates a user with the selected input parameters
+ * Made by Anders Nøss Olsen(s315586)
+ */
 int LoginInterface::createUser(string username, string password, string userType){
     DbOperator db;
 
@@ -106,7 +109,7 @@ int LoginInterface::createUser(string username, string password, string userType
 }
 // s315586 & s315593
 /* Gets the user ID of the selected username(email)
- * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
+ * Co-operative effort between Anders Nøss Olsen(s315586) and Simen Persch Andersen(s315593)
  */
 int LoginInterface::getUserID(string userName) {
     DbOperator db;
@@ -125,7 +128,7 @@ int LoginInterface::getUserID(string userName) {
 
 /*
  * Return the user type of the user.
- * Made by Anders Nøss Olsen
+ * Made by Anders Nøss Olsen(s315586)
  */
 
 string LoginInterface::getUserType(int userID) {
@@ -142,7 +145,7 @@ string LoginInterface::getUserType(int userID) {
 }
 /*
  * Returns the ownerID the selected user
- * Made by Anders Nøss Olsen
+ * Made by Anders Nøss Olsen(s315586)
  */
 
 int LoginInterface::getOwnerID(int userID) {
@@ -163,7 +166,7 @@ int LoginInterface::getOwnerID(int userID) {
 
 /*
  * Returns the petID of the entered pet name
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315586)
  */
 
 int LoginInterface::getPetID(string petName) {

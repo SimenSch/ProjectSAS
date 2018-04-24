@@ -36,7 +36,7 @@ Application::~Application()
  * Checks whether the typed in user exists, and that the password matches the hashed password in the database.
  * Errors presented to the user whenever not at all or no fields are entered, if there are no users, and if something else unforeseen
  * occurs during the login.
- * Cooperative function made by Simen Persch and Anders Nøss
+ * Cooperative function made by Simen Persch Andersen(s315593) and Anders Nøss Olsen(s315586)
  */
 void Application::on_loginButton_clicked() {
     LoginInterface li;
@@ -94,7 +94,7 @@ void Application::on_switchUserButton_clicked() {
 /*
  * Loads the currently logged in customer's pets into QSQLQueryModels which are presented in two seperate QTablewViews;
  * A short but concise, and one with all the data per record
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 
 void Application::loadPets(){
@@ -129,7 +129,7 @@ void Application::loadPets(){
 
 /*
  * Loads the data from the customer and presents it at the overview layout tab
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::loadUserInfo() {
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -150,7 +150,7 @@ void Application::loadUserInfo() {
 }
 /*
  * Loads the data from the employee and presents it at the overview layout tab
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::loadEmpInfo() {
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -175,7 +175,7 @@ void Application::loadEmpInfo() {
 /*
  * Loads the appointments set for the customers pets in an QSqlQueryModel set in two different QTableViews, depending on the tab the user browses;
  * One small and concise, and one that lists all info from the records
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::showCustAppoint() {
    LoginInterface li;
@@ -209,7 +209,7 @@ void Application::showCustAppoint() {
 
 /*
  * Loads all appointments in an QSqlQueryModel presented in a QTableVIew, sorted by begin date
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::showEmpAppoint() {
     LoginInterface li;
@@ -233,7 +233,7 @@ void Application::showEmpAppoint() {
 /*
  * Cancel register customer button slot
  * Brings you back to the login interface
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 
 void Application::on_cancelRegisterButton_clicked()
@@ -244,7 +244,7 @@ void Application::on_cancelRegisterButton_clicked()
 /*
  * New user button slot
  * Brings you to an option menu where you may choose what type of user you would like to create.
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 
 void Application::on_newUserButton_clicked()
@@ -255,8 +255,10 @@ void Application::on_newUserButton_clicked()
     ui->invalidKeyLabel->hide();
 }
 
-// s315586
-//checks if all inputfields are not empty in register user form.
+/*
+* checks if all inputfields are not empty in register user form.
+* Made by Anders Nøss Olsen(s315586)
+*/
 bool Application::regChecker(){
     if(ui->firstNameInput->text().isEmpty() || ui->surNameInput->text().isEmpty() || ui->addressInput->text().isEmpty() ||
             ui->dateOfBirthInput->text().isEmpty() || ui->cityInput->text().isEmpty() || ui->zipInput->text().isEmpty() ||
@@ -268,7 +270,6 @@ bool Application::regChecker(){
 }
 
 
-// s315586 & s315593
 /*
  * Register customer button slot
  * Registers a customer and user record if the needed criterias are met, like no duplicate email existing in the database, matching passwords uses, that all fields have an entry etc.
@@ -340,7 +341,7 @@ void Application::on_registerButton_clicked(){
 
 /*
  * Add order function which is called upon when the neccessary criterias are met by the add order button slot function
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::addOrder(){
 
@@ -492,6 +493,7 @@ void Application::updateOwner(int ownerid, string name, string surname,string bi
 /*
  * Add pet to DB on button clicked slot function
  * Adds a pet to the database connected to the logged in customer, with the appropriate data
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::on_addPetToDBButton_clicked()
 {
@@ -526,7 +528,7 @@ void Application::on_addPetToDBButton_clicked()
 
 /*
  * Brings you the "Add pet" layout
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::on_addPetButton_clicked()
 {
@@ -536,7 +538,7 @@ void Application::on_addPetButton_clicked()
 /*
  * Cancels adding a pet to the customer
  * Brings you back to the pets overview
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::on_cancelPetAddButton_clicked()
 {
@@ -546,7 +548,7 @@ void Application::on_cancelPetAddButton_clicked()
 
 /*
 *Loads of on_textEdited() functions from create customer/employee user
-* Made by Simen P. Andersen
+* Made by Simen P. Andersen(s315593)
 */
 
 void Application::on_firstNameInput_textEdited()
@@ -694,7 +696,7 @@ void Application::on_cancelUserChoiceButton_clicked()
 /*
  * Choose user type on clicked slot function
  * Brings you the customer register page if you so desire, and the employee register page if you enter the correct code necessary to do so.
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::on_chooseUserTypeButton_clicked()
 {
@@ -714,6 +716,7 @@ void Application::on_chooseUserTypeButton_clicked()
             ui->employeeKeyInput->hide();
             ui->employeeKeyLabel->hide();
             ui->invalidKeyLabel->hide();
+            ui->departmentMsg_Emp->hide();
             ui->stackedWidget->setCurrentIndex(5);
             ui->generalMsg_Emp->hide();
         }
@@ -725,7 +728,7 @@ void Application::on_chooseUserTypeButton_clicked()
 }
 /*
  * Loads the appropriate data into their respective QTableViews based on the tab index
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::on_customerTab_currentChanged(int index)
 {
@@ -764,7 +767,7 @@ void Application::on_userNameEdit_returnPressed()
 
 /*
  * Clears all input fields and error messages in the register customer and employee pages
- * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
+ * Co-operative effort between Anders Nøss Olsen(s315586) and Simen Persch Andersen(s315593)
  */
 
 void Application::clearInputFields(){
@@ -842,7 +845,7 @@ void Application::clearInputFields(){
 
 /*
  * On click slot function which brings you the "New Appointment" order interface, and presents your pets in the Pet QComboBox
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::on_addAppButton_clicked()
 {
@@ -865,6 +868,8 @@ void Application::on_addAppButton_clicked()
     }
 
     ui->petsComboBox->addItems(*list);
+    ui->appFromEdit->setDateTime(QDateTime::currentDateTime());
+    ui->appToEdit->setDateTime(QDateTime::currentDateTime());
     ui->stackedWidget->setCurrentIndex(6);
 
     ui->orderError->hide();
@@ -876,7 +881,7 @@ void Application::on_addAppButton_clicked()
 /*
  * Order appointment button click slot function which checks for correct input, and calls upon the addOrder() function if they are.
  * Errors are presented if not
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 
 void Application::on_orderAppButton_clicked()
@@ -912,7 +917,7 @@ void Application::on_orderAppButton_clicked()
 
 /*
  * Two on_DateChanged function which recalculates the order price whenever changed
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::on_appFromEdit_dateChanged()
 {
@@ -926,7 +931,7 @@ void Application::on_appToEdit_dateChanged()
 
 /*
  * Calculates the Appointment price based on a constant integer value
- * Made by Simen Persch Andersen
+ * Made by Simen Persch Andersen(s315593)
  */
 void Application::calcAppPrice()
 {
@@ -1007,3 +1012,9 @@ void Application::on_cancelRegisterButton_Emp_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+
+void Application::on_cancelAppButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->customerTab->setCurrentIndex(2);
+}

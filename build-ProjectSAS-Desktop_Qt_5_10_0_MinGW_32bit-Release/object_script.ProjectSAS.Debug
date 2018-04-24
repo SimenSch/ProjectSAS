@@ -1,0 +1,16 @@
+INPUT(
+./debug\main.o
+./debug\application.o
+./debug\appointment.o
+./debug\assistant.o
+./debug\dboperator.o
+./debug\medjournal.o
+./debug\owner.o
+./debug\pet.o
+./debug\user.o
+./debug\vetvisits.o
+./debug\logininterface.o
+./debug\regularExpression.o
+./debug\order.o
+./debug\moc_application.o
+);

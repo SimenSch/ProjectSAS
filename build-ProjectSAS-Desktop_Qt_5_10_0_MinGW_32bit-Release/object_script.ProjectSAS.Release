@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\application.o
+./release\appointment.o
+./release\assistant.o
+./release\dboperator.o
+./release\medjournal.o
+./release\owner.o
+./release\pet.o
+./release\user.o
+./release\vetvisits.o
+./release\logininterface.o
+./release\regularExpression.o
+./release\order.o
+./release\moc_application.o
+);

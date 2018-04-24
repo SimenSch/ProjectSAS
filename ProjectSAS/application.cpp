@@ -184,7 +184,7 @@ bool Application::regChecker(){
 }
 
 
-// s315586 & s315593 & s305491
+// anders nøss olsen s315586 & simen persch andersen s315593 & simen schaufel s305491
 //registers a new user and owner into the database.
 void Application::on_registerButton_clicked(){
     User usr;
@@ -237,7 +237,7 @@ void Application::on_registerButton_clicked(){
         ui->generalMsg->show();
     }
 }
-//s305491
+//simen schaufel s305491
 //method to add a new assistant into the database.
     void Application::addAssistant(){
     User usr;
@@ -289,7 +289,7 @@ void Application::on_registerButton_clicked(){
         // fuck you mama
     }
 }
-//s305491
+//simen schaufel s305491
 //method to add a new appointment to the database(used to be order)
 void Application::addOrder(){
 
@@ -323,7 +323,7 @@ void Application::addOrder(){
 
 
 }
-//s305491
+//simen schaufel s305491
 //method to update selected pet(not integrated into the application).
 void Application::updatePet(int petid, string name, string birthdate, string pettype, string race, string notes)
 {
@@ -355,7 +355,7 @@ void Application::updatePet(int petid, string name, string birthdate, string pet
     }
 
 }
-//s305491
+//simen schaufel s305491
 //updates user email and password, and changes Owner email to this email(not implemented)
 void Application::updateUser(int userid, string email,string password)
 {
@@ -396,7 +396,7 @@ void Application::updateUser(int userid, string email,string password)
 
    }
 }
-//s305491
+//simen schaufel s305491
 //updates the owner info into the database(not implemented)
 void Application::updateOwner(int ownerid, string name, string surname,string birthdate, string address, string city, string zip)
 {

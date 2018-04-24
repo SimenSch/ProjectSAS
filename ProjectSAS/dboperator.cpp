@@ -4,7 +4,7 @@
 #include <QMessageBox>
 
 DbOperator::DbOperator(){}
-
+//checks if the application has connectino to the database
 void DbOperator::checkDB() {
     QMessageBox msgBox;
 
@@ -12,6 +12,7 @@ void DbOperator::checkDB() {
 
     if(!mydb.open()) {
         msg += "Failed";
+
     } else {
         msg += "Success";
     }

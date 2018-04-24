@@ -78,7 +78,6 @@ void Application::on_loginButton_clicked() {
         ui->errorLabel->show();
     }
 }
-
 /*
  * On Switch User button slot function
  * Brings you back to the login interface
@@ -97,6 +96,7 @@ void Application::on_switchUserButton_clicked() {
  * A short but concise, and one with all the data per record
  * Made by Simen Persch Andersen
  */
+
 void Application::loadPets(){
     LoginInterface li;
 
@@ -235,6 +235,7 @@ void Application::showEmpAppoint() {
  * Brings you back to the login interface
  * Made by Simen Persch Andersen
  */
+
 void Application::on_cancelRegisterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
@@ -245,6 +246,7 @@ void Application::on_cancelRegisterButton_clicked()
  * Brings you to an option menu where you may choose what type of user you would like to create.
  * Made by Simen Persch Andersen
  */
+
 void Application::on_newUserButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
@@ -254,6 +256,7 @@ void Application::on_newUserButton_clicked()
 }
 
 // s315586
+//checks if all inputfields are not empty in register user form.
 bool Application::regChecker(){
     if(ui->firstNameInput->text().isEmpty() || ui->surNameInput->text().isEmpty() || ui->addressInput->text().isEmpty() ||
             ui->dateOfBirthInput->text().isEmpty() || ui->cityInput->text().isEmpty() || ui->zipInput->text().isEmpty() ||
@@ -271,6 +274,7 @@ bool Application::regChecker(){
  * Registers a customer and user record if the needed criterias are met, like no duplicate email existing in the database, matching passwords uses, that all fields have an entry etc.
  * Co-operative effort by all group members
  */
+
 void Application::on_registerButton_clicked(){
     User usr;
     Owner ownr;
@@ -333,6 +337,7 @@ void Application::on_registerButton_clicked(){
         ui->generalMsg->show();
     }
 }
+
 /*
  * Add order function which is called upon when the neccessary criterias are met by the add order button slot function
  * Made by Simen Persch Andersen
@@ -368,6 +373,121 @@ void Application::addOrder(){
 
 
 }
+//simen schaufel s305491
+//method to update selected pet(not integrated into the application).
+void Application::updatePet(int petid, string name, string birthdate, string pettype, string race, string notes)
+{
+    Pet pet;
+    pet.setname(name);
+    pet.setpetType(pettype);
+    pet.setrace(race);
+    pet.setdateOfBirth(birthdate);
+    pet.setnotes(notes);
+    pet.setpetID(petid);
+
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("UPDATE Pet SET Name=:name,BirthDate=:birthdate,PetType=:pettype,Race=:race,Notes=:notes WHERE PetID=:petid");
+    qry->bindValue(":name", QString::fromStdString(pet.getname()));
+    qry->bindValue(":birthdate", QString::fromStdString(pet.getdateOfBirth()));
+    qry->bindValue(":pettype", QString::fromStdString(pet.getpetType()));
+    qry->bindValue(":race", QString::fromStdString(pet.getrace()));
+    qry->bindValue(":notes", QString::fromStdString(pet.getnotes()));
+    qry->bindValue(":petid", pet.getpetID());
+    if(qry->exec()){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->mainStack->setCurrentIndex(0);
+        loadPets();
+        QMessageBox msgBox;
+        msgBox.setText("Pet successfully updated");
+        msgBox.exec();
+    }
+
+}
+//simen schaufel s305491
+//updates user email and password, and changes Owner email to this email(not implemented)
+void Application::updateUser(int userid, string email,string password)
+{
+    LoginInterface lgn;
+
+
+    User usr;
+    usr.setuserID(userid);
+    usr.seteMail(email);
+    string pword= lgn.hashing(password);
+    usr.setpassword(pword);
+
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("UPDATE User SET EMail=:email,Password=:password WHERE UserID=:userid");
+    qry->bindValue(":password", QString::fromStdString(usr.getpassword()));
+    qry->bindValue(":email", QString::fromStdString(usr.geteMail()));
+    qry->bindValue(":userid", usr.getuserID());
+    if(qry->exec()){
+
+        QSqlQuery* sly=new QSqlQuery(db.mydb);
+        sly->prepare("UPDATE Owner SET EMail=:email WHERE UserID=:userid");
+        sly->bindValue(":email",QString::fromStdString(usr.geteMail()));
+        sly->bindValue(":userid",usr.getuserID());
+        if(sly->exec()){
+            ui->stackedWidget->setCurrentIndex(1);
+            ui->mainStack->setCurrentIndex(0);
+            QMessageBox msgBox;
+            msgBox.setText("User Successfully updated");
+            msgBox.exec();
+            }
+     else{
+        QMessageBox msgBox;
+        msgBox.setText("User Unsuccessfully updated");
+        msgBox.exec();
+     }
+
+   }
+}
+//simen schaufel s305491
+//updates the owner info into the database(not implemented)
+void Application::updateOwner(int ownerid, string name, string surname,string birthdate, string address, string city, string zip)
+{
+    Owner owner;
+
+    owner.setdateOfBirth(birthdate);
+    owner.setfirstName(name);
+    owner.setsurname(surname);
+    owner.setdateOfBirth(birthdate);
+    owner.setaddress(address);
+    owner.setownerID(ownerid);
+    owner.setzip(zip);
+    owner.setcity(city);
+
+
+    QSqlQuery* qry=new QSqlQuery(db.mydb);
+
+    qry->prepare("UPDATE Owner SET FirstName=:name,Surname=:surname,BirthDate=:birthdate,Address=:address,City=:city,Zip=:zip WHERE OwnerID=:ownerid");
+    qry->bindValue(":name", QString::fromStdString(owner.getfirstName()));
+    qry->bindValue(":birthdate", QString::fromStdString(owner.getdateOfBirth()));
+    qry->bindValue(":surname", QString::fromStdString(owner.getsurname()));
+    qry->bindValue(":city", QString::fromStdString(owner.getcity()));
+    qry->bindValue(":zip", QString::fromStdString(owner.getzip()));
+    qry->bindValue(":address", QString::fromStdString(owner.getaddress()));
+    qry->bindValue(":ownerid", owner.getownerID());
+    if(qry->exec()){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->mainStack->setCurrentIndex(0);
+
+        QMessageBox msgBox;
+        msgBox.setText("Owner Successfully updated");
+        msgBox.exec();
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Owner Unsuccessfully updated");
+        msgBox.exec();
+    }
+
+}
+
 
 /*
  * Add pet to DB on button clicked slot function
@@ -641,10 +761,12 @@ void Application::on_userNameEdit_returnPressed()
     on_loginButton_clicked();
 }
 
+
 /*
  * Clears all input fields and error messages in the register customer and employee pages
  * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
  */
+
 void Application::clearInputFields(){
     if(ui->stackedWidget->currentIndex() == 4) {
         ui->firstNameInput->clear();

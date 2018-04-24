@@ -12,6 +12,7 @@ using namespace std;
 
 LoginInterface::LoginInterface() {}
 // s315586
+//returns a hashed password
 string LoginInterface::hashing(string word){
     hash<string> hashFunction;
     size_t temp = hashFunction(word);
@@ -22,6 +23,7 @@ string LoginInterface::hashing(string word){
  * Returns the hashed password of the selected user
  * Made by Simen Persch Andersen
  */
+
 string LoginInterface::getPassword(string username){
     DbOperator db;
     QSqlQuery* statem=new QSqlQuery(db.mydb);
@@ -39,11 +41,13 @@ string LoginInterface::getPassword(string username){
 }
 
 
+
 /*
  * Login function
  * Returns a value based on the outcome, where code 99 is a successful request, 2 is the code for when either fields are empty, and 1 if it failed
  * Made by ANders Nøss Olsen
  */
+
 int LoginInterface::loginAttempt(string username, string password){
     if(username.empty()){
         return 2;
@@ -60,6 +64,7 @@ int LoginInterface::loginAttempt(string username, string password){
     return 0;
 
 }
+
 /*
  * Checks whether the email is available for use, and gives a boolean value based on the outcome
  * Co-operative effort between Anders Nøss Olsen and Simen Persch Andersen
@@ -117,10 +122,12 @@ int LoginInterface::getUserID(string userName) {
     }
 
 }
+
 /*
  * Return the user type of the user.
  * Made by Anders Nøss Olsen
  */
+
 string LoginInterface::getUserType(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -137,6 +144,7 @@ string LoginInterface::getUserType(int userID) {
  * Returns the ownerID the selected user
  * Made by Anders Nøss Olsen
  */
+
 int LoginInterface::getOwnerID(int userID) {
     DbOperator db;
     QSqlQuery* qry=new QSqlQuery(db.mydb);
@@ -152,10 +160,12 @@ int LoginInterface::getOwnerID(int userID) {
     cout << "GetOwnerID IF statement failed, shit has happend" << endl;
     return 0;
 }
+
 /*
  * Returns the petID of the entered pet name
  * Made by Simen Persch Andersen
  */
+
 int LoginInterface::getPetID(string petName) {
 
     DbOperator db;

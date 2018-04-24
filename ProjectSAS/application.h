@@ -22,6 +22,10 @@ public:
     void showEmpAppoint();
     void calcAppPrice();
     bool regChecker();
+    void updateOwner(int ownerid, string name, string surname,string birthdate, string address, string city, string zip);
+    void clearInputFields();
+    void updateUser(int userid, string email,string password);
+    void updatePet(int petid, string name, string birthdate, string pettype, string race, string notes);
     explicit Application(QWidget *parent = 0);
     ~Application();
 private slots:

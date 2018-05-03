@@ -166,7 +166,7 @@ int LoginInterface::getOwnerID(int userID) {
 
 /*
  * Returns the petID of the entered pet name
- * Made by Simen Persch Andersen(s315586)
+ * Made by Simen Persch Andersen(s315586)|
  */
 
 int LoginInterface::getPetID(string petName) {
